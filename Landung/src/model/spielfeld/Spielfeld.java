@@ -41,6 +41,27 @@ public class Spielfeld {
 		this.spielbrett[pos[0]][pos[1]] = LEER;
 	}
 	
+	public boolean isEmpty() {
+		boolean leer = true;
+		int[] pos = new int[2];
+		
+		for(int zeile = 0; zeile < this.spielbrett.length; zeile++) {
+			for(int spalte = 0; spalte < this.spielbrett[zeile].length; spalte++) {
+				
+				pos[0] = zeile;
+				pos[1] = spalte;
+				leer = (isEmpty(pos));
+				
+			}
+		}
+		
+		return leer;
+	}
+	
+	public boolean isEmpty(int[] pos) {
+		return this.spielbrett[pos[0]][pos[1]] == LEER;
+	}
+	
 	public int getGroesse() {
 		return this.groesse;
 	}
@@ -48,5 +69,24 @@ public class Spielfeld {
 	public Spielstein[][] getSpielstein() {
 		return this.spielbrett;
 	}
+	
+	public String toString() {
+		String txt = "";
+		
+		for (int zeile = 0; zeile < this.spielbrett.length; zeile++) {
+			txt += this.spielbrett.length - zeile + " ";
+			
+			for (int spalte = 0; spalte < this.spielbrett[zeile].length ; spalte++) {
+				txt += this.spielbrett[spalte][this.spielbrett[zeile].length - 1 - zeile].getSymbol() + " ";
+			}
+			
+			txt += "\n";
+		}
+		
+		txt += "  a b c d e";
+		
+		return txt;
+	}
+	
 	
 }
