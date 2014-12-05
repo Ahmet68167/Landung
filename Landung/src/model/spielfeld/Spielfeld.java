@@ -4,6 +4,7 @@ import model.spielstein.Spielstein;
 
 public class Spielfeld {
 	
+	private final Spielstein LEER = new Spielstein('_');
 	private int groesse;
 	private Spielstein[][] spielbrett;
 	
@@ -22,12 +23,11 @@ public class Spielfeld {
 	}
 	
 	public void leeren() {
-		Spielstein leer = new Spielstein('_');
-		
+
 		for(int zeile = 0; zeile < spielbrett.length; zeile++) {
 			for(int spalte = 0; spalte < spielbrett[zeile].length; spalte++) {
 				
-				this.spielbrett[zeile][spalte] = leer;
+				this.spielbrett[zeile][spalte] = LEER;
 				
 			}		
 		}
@@ -38,8 +38,7 @@ public class Spielfeld {
 	}
 	
 	public void entferneSpielstein(int[] pos) {
-		Spielstein leer = new Spielstein('_');
-		this.spielbrett[pos[0]][pos[1]] = leer;
+		this.spielbrett[pos[0]][pos[1]] = LEER;
 	}
 	
 	public int getGroesse() {
