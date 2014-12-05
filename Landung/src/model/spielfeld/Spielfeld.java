@@ -37,6 +37,11 @@ public class Spielfeld {
 		this.spielbrett[pos[0]][pos[1]] = spielstein;
 	}
 	
+	public void entferneSpielstein(int[] pos) {
+		Spielstein leer = new Spielstein('_');
+		this.spielbrett[pos[0]][pos[1]] = leer;
+	}
+	
 	public int getGroesse() {
 		return this.groesse;
 	}
