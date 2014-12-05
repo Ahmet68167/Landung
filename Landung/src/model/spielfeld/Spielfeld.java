@@ -4,7 +4,7 @@ import model.spielstein.Spielstein;
 
 public class Spielfeld {
 	
-	private final Spielstein LEER = new Spielstein('_');
+	private final Spielstein LEER = new Spielstein('·');
 	private int groesse;
 	private Spielstein[][] spielbrett;
 	
