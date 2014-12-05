@@ -66,6 +66,24 @@ public class Spielfeld {
 		return this.spielbrett[pos[0]][pos[1]] == LEER;
 	}
 	
+	public int getAnzahlLeererFelder() {
+		int anzahl = 0;
+		int[] pos = new int[2];
+		
+		for(int zeile = 0; zeile < this.spielbrett.length; zeile++) {
+			for(int spalte = 0; spalte < this.spielbrett[zeile].length; spalte++) {
+				
+				pos[0] = zeile;
+				pos[1] = spalte;
+				if(isEmpty(pos))
+					anzahl++;
+				
+			}
+		}
+		
+		return anzahl;
+	}
+	
 	public int getGroesse() {
 		return this.groesse;
 	}
