@@ -33,6 +33,10 @@ public class Spielfeld {
 		}
 	}
 	
+	public void setzeSpielstein(Spielstein spielstein, int[] pos) {
+		this.spielbrett[pos[0]][pos[1]] = spielstein;
+	}
+	
 	public int getGroesse() {
 		return this.groesse;
 	}
