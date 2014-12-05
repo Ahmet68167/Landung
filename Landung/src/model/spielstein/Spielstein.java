@@ -8,4 +8,12 @@ public class Spielstein {
 		this.spielstein = spielstein;
 	}
 	
+	public char getSpielstein() {
+		return this.spielstein;
+	}
+	
+	public void setSpielstein(char spielstein) {
+		this.spielstein = spielstein;
+	}
+	
 }
