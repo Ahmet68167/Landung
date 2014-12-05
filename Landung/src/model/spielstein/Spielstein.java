@@ -2,20 +2,20 @@ package model.spielstein;
 
 public class Spielstein {
 	
-	private char spielstein;
+	private char symbol;
 	private int[] pos;
 	
 	public Spielstein(char spielstein) {
-		this.spielstein = spielstein;
+		this.symbol = spielstein;
 		int[] pos = {0, 0};
 	}
 	
-	public char getSpielstein() {
-		return this.spielstein;
+	public char getSymbol() {
+		return this.symbol;
 	}
 	
-	public void setSpielstein(char spielstein) {
-		this.spielstein = spielstein;
+	public void setSymbol(char spielstein) {
+		this.symbol = spielstein;
 	}
 	
 	public int[] getPos() {
