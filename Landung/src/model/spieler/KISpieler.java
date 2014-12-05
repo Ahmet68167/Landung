@@ -2,7 +2,7 @@ package model.spieler;
 
 import java.util.List;
 
-public class KISpieler extends Spieler{
+public class KISpieler extends Spieler {
 
 	private int schwierigkeitsstufe;
 	
