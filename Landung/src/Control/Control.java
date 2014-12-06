@@ -39,6 +39,8 @@ public class Control {
 		return true;
 	}
 	
-	
+	public void print(){
+		this.contolePrint.print();
+	}
 
 }

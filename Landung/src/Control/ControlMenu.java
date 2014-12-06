@@ -82,7 +82,7 @@ public class ControlMenu {
 	private void spielerGegenKI(String input) {
 		this.STATUS = STATUS.SPIELLAEUFT;
 		this.starteSpiel(input, STATUS.SvsKI);
-
+		this.checkInput(input);
 	}
 
 	private void hauptmenu(String input) {
@@ -99,7 +99,7 @@ public class ControlMenu {
 		}else if(input.equals("d")){
 			this.STATUS = STATUS.ENDE;
 		}
-
+		this.checkInput(input);
 	}
 
 	private void spielLaden() {
@@ -118,6 +118,7 @@ public class ControlMenu {
 		} else if (input.equals("b")) {
 			this.STATUS = STATUS.BESTOFTHREE;
 		}
+		
 	}
 
 	private void neuesSpiel(String input) {
