@@ -14,7 +14,7 @@ public class HighScoreListe {
 	private static final String dateiName = "high.score";
 	private static final File datei = new File(dateiName);
 	
-	private List<HighScore> liste;
+	private List<HighScore> liste ;
 	private speichern.FileHandler fileHandler;
 	
 	public HighScoreListe() {
@@ -24,6 +24,7 @@ public class HighScoreListe {
 			try {
 				datei.createNewFile();
 				this.liste = new LinkedList<>();
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}			
