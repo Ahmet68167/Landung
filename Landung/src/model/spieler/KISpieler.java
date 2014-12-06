@@ -10,5 +10,9 @@ public class KISpieler extends Spieler {
 		super(name, list);
 		this.schwierigkeitsstufe = schwierigkeitsstufe;
 	}
+	
+	public int getSchwierigkeitsstufe() {
+		return this.schwierigkeitsstufe;
+	}
 
 }
