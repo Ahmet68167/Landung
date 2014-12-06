@@ -13,7 +13,8 @@ public class ControlMenu {
 	}
 
 	public void checkInput(String input) {
-
+		
+		
 		if (input != null) {
 
 			switch (STATUS) {
@@ -27,13 +28,13 @@ public class ControlMenu {
 				this.ladeHighscore();
 				break;
 			case LADEN: // ;
-				this.spielLaden();
+				this.spielLaden();			
 				break;
 			case SvsS:
-				this.spielerGegenSpieler(input);
+				this.spielerGegenSpieler(input);				
 				break;
 			case SvsKI:
-				this.spielerGegenKI(input);
+				this.spielerGegenKI(input);				
 				break;
 			case BESTOFONE:
 				this.bestOfOne(input);
@@ -48,15 +49,14 @@ public class ControlMenu {
 			default: // Fehler ungültiger Status;
 				break;
 			}
-		}else{
-			this.hauptmenu("");
 		}
+		
 	}
 
 	/**
 	 * @return the sTATUS
 	 */
-	protected ControlEnum getSTATUS() {
+	public ControlEnum getSTATUS() {
 		return STATUS;
 	}
 
@@ -87,18 +87,13 @@ public class ControlMenu {
 
 	private void hauptmenu(String input) {
 
-		this.output.print("a)  Highscore","console");
-		this.output.print("b)  Laden","console");
-		this.output.print("c)  Neues Spiel","console");
-		this.output.print("d)  Beenden","console");
-	
 		// Highscore
 		if (input.equals("a")) {
 			this.STATUS = STATUS.HIGHSCORE;
 			// Laden
 		} else if (input.equals("b")) {
 			this.STATUS = STATUS.LADEN;
-			// Neues Spiel
+			
 		} else if (input.equals("c")) {
 			this.STATUS = STATUS.NEUESSPIEL;
 		}else if(input.equals("d")){
@@ -108,11 +103,14 @@ public class ControlMenu {
 	}
 
 	private void spielLaden() {
-		// TODO Auto-generated method stub
+		STATUS = STATUS.SPIELLAEUFT;
 
 	}
 
 	private void spielerGegenSpieler(String input) {
+		this.output.print("a)  Best of Three","console");
+		this.output.print("b)  Best of One","console");
+		this.output.print("c)  Hauptmenu","console");
 		// Best of One
 		if (input.equals("a")) {
 			this.STATUS = STATUS.BESTOFONE;
@@ -123,6 +121,7 @@ public class ControlMenu {
 	}
 
 	private void neuesSpiel(String input) {
+
 		// Spieler gegen Spieler
 		if (input.equals("a")) {
 			this.STATUS = STATUS.SvsS;
@@ -148,4 +147,6 @@ public class ControlMenu {
 		this.STATUS = STATUS.HAUPTMENU;
 
 	}
+	
+	
 }
