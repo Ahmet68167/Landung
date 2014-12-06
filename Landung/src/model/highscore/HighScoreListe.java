@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import speichern.FileHandler;
 
 public class HighScoreListe {
 
@@ -12,7 +13,7 @@ public class HighScoreListe {
 	private static final File datei = new File(dateiName);
 	
 	private List<HighScore> liste ;
-	private speichern.FileHandler fileHandler;
+	private FileHandler fileHandler;
 	
 	public HighScoreListe() {
 		if(datei.exists())
