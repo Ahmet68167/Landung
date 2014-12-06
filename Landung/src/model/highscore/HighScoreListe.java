@@ -1,7 +1,6 @@
 package model.highscore;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import speichern.FileHandler;
@@ -16,17 +15,15 @@ public class HighScoreListe {
 	private FileHandler fileHandler;
 	
 	public HighScoreListe() {
+		this.fileHandler = new FileHandler();
+		
 		if(datei.exists())
 			this.liste = ladeListe();
 		else {			
-			try {
-				datei.createNewFile();
-				this.liste = new LinkedList<>();
-				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}			
+			this.liste = new LinkedList<>();
+			schreibeInDatei();
 		}
+		
 	}
 
 	public void neuerHighScore(String name, int punkte) {
