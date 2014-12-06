@@ -15,7 +15,7 @@ public class Control {
 
 	public boolean checkInput(String input) {
 		
-		this.output.print(this.controleMenu.getSTATUS().getName());
+		this.output.print(this.controleMenu.getSTATUS().getName(),"console");
 		
 
 		if (this.chekForUpperCase(input)) {

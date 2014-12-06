@@ -87,11 +87,11 @@ public class ControlMenu {
 
 	private void hauptmenu(String input) {
 
-		this.output.print("a)  Highscore");
-		this.output.print("b)  Laden");
-		this.output.print("c)  Neues Spiel");
-		this.output.print("d)  Beenden");
-		System.out.println(input.length());
+		this.output.print("a)  Highscore","console");
+		this.output.print("b)  Laden","console");
+		this.output.print("c)  Neues Spiel","console");
+		this.output.print("d)  Beenden","console");
+	
 		// Highscore
 		if (input.equals("a")) {
 			this.STATUS = STATUS.HIGHSCORE;

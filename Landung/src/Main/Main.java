@@ -21,13 +21,13 @@ public class Main {
 
 	private void run() {
 		
-	  	this.output.print("Willkommen");
-    	this.output.print("Spiel statet...");
+	  	this.output.print("Willkommen","console");
+    	this.output.print("Spiel statet...","console");
 		
 	    while(true){	  
 	    
 	    	this.eingabe  =  this.input.read();
-	    	this.output.print(this.eingabe);
+	    	this.output.print(this.eingabe,"console");
 	    	this.control.checkInput(this.eingabe);
 	    }
 	    
