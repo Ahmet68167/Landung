@@ -1,12 +1,9 @@
 package model.highscore;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 
 public class HighScoreListe {
 
@@ -40,14 +37,12 @@ public class HighScoreListe {
 	}
 	
 	public void schreibeInDatei() {
-		
 		 fileHandler.save(dateiName, this.liste);
 	}
 	
 	public List<HighScore> ladeListe() {
 		List<HighScore> liste = new LinkedList<>();
 		liste = fileHandler.load(dateiName, liste);
-		
 		liste.sort(new HighScoreComparator());
 		return liste;
 	}

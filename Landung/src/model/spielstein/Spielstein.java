@@ -10,7 +10,7 @@ public class Spielstein {
 	
 	public Spielstein(char spielstein) {
 		this.symbol = spielstein;
-		int[] pos = {0, 0};
+		int[] pos = {-1, -1};
 	}
 	
 	public List<Spielstein> getSpielsteinListe(int anzahl) {

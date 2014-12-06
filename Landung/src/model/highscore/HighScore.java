@@ -1,7 +1,5 @@
 package model.highscore;
 
-import speichern.FileHandler;
-
 public class HighScore {
 	
 	private String name;
