@@ -23,7 +23,6 @@ public class Spielfeld {
 	}
 	
 	public void leeren() {
-
 		for(int zeile = 0; zeile < spielbrett.length; zeile++) {
 			for(int spalte = 0; spalte < spielbrett[zeile].length; spalte++) {
 				
@@ -54,7 +53,8 @@ public class Spielfeld {
 				
 				pos[0] = zeile;
 				pos[1] = spalte;
-				leer = (isEmpty(pos));
+				if(!isEmpty(pos))
+					leer = false;
 				
 			}
 		}
