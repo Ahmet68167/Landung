@@ -11,21 +11,22 @@ import java.util.Scanner;
 public class HighScoreListe {
 
 	private static final int ANZAHL = 10;
-	private static final File datei = new File("HighScore.txt");
+	private static final String dateiName = "high.score";
+	private static final File datei = new File(dateiName);
+	
 	private List<HighScore> liste;
+	private speichern.FileHandler fileHandler;
 	
 	public HighScoreListe() {
 		if(datei.exists())
 			this.liste = ladeListe();
-		else {
-			
+		else {			
 			try {
 				datei.createNewFile();
 				this.liste = new LinkedList<>();
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
-			
+			}			
 		}
 	}
 
@@ -38,40 +39,13 @@ public class HighScoreListe {
 	}
 	
 	public void schreibeInDatei() {
-		FileWriter writer;
 		
-		try {
-			writer = new FileWriter(this.datei, false);
-			
-			for(int i = 0; i < this.liste.size() && i < ANZAHL; i++)
-				writer.write(this.liste.get(i) + "\r\n");
-			
-			writer.flush();
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		this.liste = ladeListe();
+		 fileHandler.save(dateiName, this.liste);
 	}
 	
 	public List<HighScore> ladeListe() {
 		List<HighScore> liste = new LinkedList<>();
-		String zeile;
-		int pos = 0;
-		
-		try {
-			Scanner s = new Scanner(datei);
-			while(s.hasNextLine() && pos < ANZAHL) {
-				zeile = s.nextLine();
-				liste.add(new HighScore(zeile.split(" ")[0], Integer.parseInt(zeile.split(" ")[1])));
-				pos++;
-			}
-			
-			s.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} 
+		liste = fileHandler.load(dateiName, liste);
 		
 		liste.sort(new HighScoreComparator());
 		return liste;

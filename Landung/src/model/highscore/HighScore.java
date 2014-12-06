@@ -1,5 +1,7 @@
 package model.highscore;
 
+import speichern.FileHandler;
+
 public class HighScore {
 	
 	private String name;
@@ -21,5 +23,6 @@ public class HighScore {
 	public String toString() {
 		return this.name + " " + this.punkte;
 	}
+
 	
 }
