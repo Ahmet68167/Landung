@@ -18,11 +18,11 @@ public abstract class Spieler {
 		return spielSteinListe.size();
 	}
 	
-	protected void addSpielstein(Spielstein spielstein){
+	public void addSpielstein(Spielstein spielstein){
 		this.spielSteinListe.add(spielstein);
 	}
 	
-	protected Spielstein getSpielstein(){
+	public Spielstein getSpielstein(){
 		return this.spielSteinListe.remove(0);
 	}
 	
