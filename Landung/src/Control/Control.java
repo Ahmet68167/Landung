@@ -1,54 +1,37 @@
 package Control;
-import java.io.Console;
+
+import InputOutput.Output;
 
 public class Control {
 
-	private String status;
+	private ControlMenu controleMenu;
+	private Output output;
 
-	public Control() {
-		this.status = "haupmenu";
+	public Control(Output output) {
+		this.controleMenu = new ControlMenu(output);
+		this.output = output;
 
 	}
-	public void checkInput(String input) {
 
-		if (chekForUpperCase(input)) {
+	public boolean checkInput(String input) {
+		
+		this.output.print(this.controleMenu.getSTATUS().getName());
+		
 
-			switch (status) {
-			case "hauptmenu":
-				; // was im Hauptmenu so da sein sollte
-				this.hauptmenu(input);
+		if (this.chekForUpperCase(input)) {
+			this.controleMenu.checkInput(input);
 
-				break;
-			case "unterMenuB": // ;
+			if (this.controleMenu.getSTATUS() == ControlEnum.SPIELLAEUFT) {
 
-				break;
-
-			default: // Fehler ungültiger Status;
-				break;
 			}
+			
+			return true;
 		}
-	}
-
-	private boolean chekForUpperCase(String input) {
 		return false;
 	}
 
-	private void hauptmenu(String input) {
-
-		// Auswahl im Hauptmenu
-
-		switch (input) {
-		case "a":
-			this.status = "unterMenuA";
-
-			break;
-		case "b":
-			this.status = "unterMenuA";
-
-			break;
-
-		default: // Fehler ungültiger Status;
-			break;
-		}
+	private boolean chekForUpperCase(String input) {
+		return true;
 	}
+
 }
