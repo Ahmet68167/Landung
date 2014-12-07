@@ -1,35 +1,46 @@
 package Control;
 
-import InputOutput.Output;
+import Main.Main;
 
 public class Control {
 
 	private ControlMenu controleMenu;
 	private ControlSpiel controlSpiel;
-	private Output output;
+	private Main main;
 
-	public Control(Output output) {
-		this.controleMenu = new ControlMenu(output);
-		this.controlSpiel = new ControlSpiel();
-		this.output = output;
+	public Control(Main main) {
+		this.main = main;
+		this.controleMenu = new ControlMenu(main.getOutput());
+		this.controlSpiel = new ControlSpiel(main);
 
 	}
 
 	public void checkInput(String input) {
 
-		if (this.chekForUpperCase(input)) {
+		if (this.controleMenu.getSTATUS() == ControlEnum.SPIELLAEUFT) {
+			if (this.controleMenu.isGegenKI()) {
+				if (this.controleMenu.isBestOfOne()) {
+					this.main.getOutput().print("STARTE GEGEN KI und BEST OF ONE");
+					this.controlSpiel.starteSpiel("KI","BOO");
+				} else if (this.controleMenu.isBestOfOne()) {
+					this.main.getOutput().print("STARTE GEGEN KI und BEST OF THREE");
+					this.controlSpiel.starteSpiel("KI","BOT");
+				}
 
-			this.controleMenu.checkInput(input);
-
-			if (this.controleMenu.getSTATUS() == ControlEnum.SPIELLAEUFT) {
-
+			} else if (this.controleMenu.isGegenMensch()) {
+				if (this.controleMenu.isBestOfOne()) {
+					this.main.getOutput().print("STARTE GEGEN MENSCHE und BEST OF ONE");
+					this.controlSpiel.starteSpiel("MENSCH","BOO");
+				} else if (this.controleMenu.isBestOfOne()) {
+					this.main.getOutput().print("STARTE GEGEN MENSCH und BEST OF THREE");
+					this.controlSpiel.starteSpiel("MENSCH","BOT");
+				}
 			}
 
+		} else {
+			this.controleMenu.checkInput(input);
 		}
-	}
 
-	private boolean chekForUpperCase(String input) {
-		return true;
 	}
 
 	public void printStatus() {
