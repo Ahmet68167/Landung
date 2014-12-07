@@ -1,5 +1,7 @@
 package Main;
 
+import model.highscore.HighScore;
+import model.highscore.HighScoreListe;
 import model.spieler.Spieler;
 import model.spielfeld.Spielfeld;
 import model.spielstein.Spielstein;
@@ -12,6 +14,7 @@ public class Main {
 	private Input input;
 	private Output output;
 	private Control control;
+	private HighScoreListe highscore;
 
 
 	public Main() {
@@ -21,9 +24,15 @@ public class Main {
 
 	}
 
+
 	private void run() {
 
 		this.output.print("Willkommen", "console");
+		
+		// HighScore TEST
+
+		this.highscore.neuerHighScore("Bob", 100);
+		this.highscore.schreibeInDatei();
 
 		while (true) {
 			this.control.printStatus();
@@ -37,6 +46,7 @@ public class Main {
 	private void init() {
 		this.input = new Input();
 		this.output = new Output();		
+		this.highscore = new HighScoreListe();
 		this.control = new Control(this);
 		
 		
@@ -55,6 +65,13 @@ public class Main {
 	 */
 	public Output getOutput() {
 		return output;
+	}
+
+	/**
+	 * @return the highscore
+	 */
+	public HighScoreListe getHighscore() {
+		return highscore;
 	}
 
 }

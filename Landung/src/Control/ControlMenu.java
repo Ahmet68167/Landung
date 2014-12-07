@@ -1,18 +1,19 @@
 package Control;
 
 import InputOutput.Output;
+import Main.Main;
 
 public class ControlMenu {
 	// Speichert
 	private ControlEnum STATUS;
-	private Output output;
+	private Main main;
 	private boolean gegenKI = false;
 	private boolean gegenMensch = false;
 	private boolean bestOfOne = false;
 	private boolean bestOfThree = false;
 
-	public ControlMenu(Output output) {
-		this.output = output;
+	public ControlMenu(Main main) {
+		this.main = main;
 		this.STATUS = STATUS.HAUPTMENU;
 	}
 
@@ -138,41 +139,42 @@ public class ControlMenu {
 	}
 
 	private void ladeHighscore() {
-		System.out.println("Hier kommt die Highscore hin.");
+		
+		this.main.getOutput().print(this.main.getHighscore().toString());
 		this.STATUS = STATUS.HAUPTMENU;
 
 	}
 
 	public void printStatus() {
 
-		this.output.print(STATUS.getName(), "console");
+		this.main.getOutput().print(STATUS.getName(), "console");
 
 		switch (STATUS) {
 		case HAUPTMENU:
-			this.output.print("a)  Neues Spiel", "console");
-			this.output.print("b)  Laden", "console");
-			this.output.print("c)  Highscore", "console");
-			this.output.print("d)  Beenden", "console");
+			this.main.getOutput().print("a)  Neues Spiel", "console");
+			this.main.getOutput().print("b)  Laden", "console");
+			this.main.getOutput().print("c)  Highscore", "console");
+			this.main.getOutput().print("d)  Beenden", "console");
 
 			break;
 		case NEUESSPIEL:
-			this.output.print("a)  Spieler gegen Spieler", "console");
-			this.output.print("b)  Spieler gegen KI", "console");
-			this.output.print("c)  Zurück", "console");
+			this.main.getOutput().print("a)  Spieler gegen Spieler", "console");
+			this.main.getOutput().print("b)  Spieler gegen KI", "console");
+			this.main.getOutput().print("c)  Zurück", "console");
 
 			break;
 		case LADEN: // ;
-
+			this.main.getOutput().print("Spiel laden.");
 			break;
 		case SvsS:
-			this.output.print("a)  Best of One", "console");
-			this.output.print("b)  Best of Three", "console");
-			this.output.print("c)  Zurück", "console");
+			this.main.getOutput().print("a)  Best of One", "console");
+			this.main.getOutput().print("b)  Best of Three", "console");
+			this.main.getOutput().print("c)  Zurück", "console");
 			break;
 		case SvsKI:
-			this.output.print("a)  Best of One", "console");
-			this.output.print("b)  Best of Three", "console");
-			this.output.print("c)  Zurück", "console");
+			this.main.getOutput().print("a)  Best of One", "console");
+			this.main.getOutput().print("b)  Best of Three", "console");
+			this.main.getOutput().print("c)  Zurück", "console");
 			break;
 		case BESTOFONE:
 

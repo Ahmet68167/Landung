@@ -8,7 +8,7 @@ import speichern.FileHandler;
 public class HighScoreListe {
 
 	private static final int ANZAHL = 10;
-	private static final String dateiName = "high.score";
+	private static final String dateiName = "highscore";
 	private static final File datei = new File(dateiName);
 	
 	private List<HighScore> liste ;

@@ -10,7 +10,7 @@ public class Control {
 
 	public Control(Main main) {
 		this.main = main;
-		this.controleMenu = new ControlMenu(main.getOutput());
+		this.controleMenu = new ControlMenu(main);
 		this.controlSpiel = new ControlSpiel(main);
 
 	}
