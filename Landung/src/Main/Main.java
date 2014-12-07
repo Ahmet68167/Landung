@@ -24,10 +24,11 @@ public class Main {
 
 		while (true) {
 
+			this.control.printStatus();
 			this.eingabe = this.input.read();
 			this.output.print(this.eingabe, "console");
 			this.control.checkInput(this.eingabe);
-			this.control.print();
+	
 		}
 
 	}

@@ -1,5 +1,7 @@
 package InputOutput;
 
+import Control.ControlEnum;
+
 public class Output {
 
 	public void print(String txt, String wo) {
@@ -7,5 +9,7 @@ public class Output {
 			System.out.println(txt);
 		}
 	}
+
+
 
 }
