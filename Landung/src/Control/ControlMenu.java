@@ -89,12 +89,11 @@ public class ControlMenu {
 
 	}
 	private void beenden() {
-		// TODO Auto-generated method stub
+		
 
 	}
 	private void ladeSpiel() {
 		STATUS = STATUS.SPIELLAEUFT;
-
 	}
 	private void spielerGegenSpieler(String input) {
 

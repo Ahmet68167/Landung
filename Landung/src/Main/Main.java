@@ -25,9 +25,12 @@ public class Main {
 		while (true) {
 
 			this.control.printStatus();
-			this.eingabe = this.input.read();
-			this.output.print(this.eingabe, "console");
+			this.eingabe = this.input.read();		
 			this.control.checkInput(this.eingabe);
+			
+			if(control.isBeendet()){
+				break;
+			}
 	
 		}
 
