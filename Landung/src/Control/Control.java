@@ -21,19 +21,19 @@ public class Control {
 			if (this.controleMenu.isGegenKI()) {
 				if (this.controleMenu.isBestOfOne()) {
 					this.main.getOutput().print("STARTE GEGEN KI und BEST OF ONE");
-					this.controlSpiel.starteSpiel("KI","BOO");
+					this.controlSpiel.starteSpiel(input,"KI","BOO");
 				} else if (this.controleMenu.isBestOfOne()) {
 					this.main.getOutput().print("STARTE GEGEN KI und BEST OF THREE");
-					this.controlSpiel.starteSpiel("KI","BOT");
+					this.controlSpiel.starteSpiel(input,"KI","BOT");
 				}
 
 			} else if (this.controleMenu.isGegenMensch()) {
 				if (this.controleMenu.isBestOfOne()) {
 					this.main.getOutput().print("STARTE GEGEN MENSCHE und BEST OF ONE");
-					this.controlSpiel.starteSpiel("MENSCH","BOO");
+					this.controlSpiel.starteSpiel(input,"MENSCH","BOO");
 				} else if (this.controleMenu.isBestOfOne()) {
 					this.main.getOutput().print("STARTE GEGEN MENSCH und BEST OF THREE");
-					this.controlSpiel.starteSpiel("MENSCH","BOT");
+					this.controlSpiel.starteSpiel(input,"MENSCH","BOT");
 				}
 			}
 
