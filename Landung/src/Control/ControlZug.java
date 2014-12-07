@@ -4,8 +4,18 @@ public class ControlZug {
 	
 	
 
+	private ControlSpiel controlSpiel;
+
+
+
+	public ControlZug(ControlSpiel controlSpiel) {
+	   this.controlSpiel = controlSpiel;
+    }
+
+
+
 	public void nexterZug() {
-	    // TODO Auto-generated method stub
+		this.controlSpiel.spieler1.getSpielstein();
 	    
     }
 

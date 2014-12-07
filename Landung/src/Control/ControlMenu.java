@@ -1,6 +1,5 @@
 package Control;
 
-import InputOutput.Output;
 import Main.Main;
 
 public class ControlMenu {
@@ -33,7 +32,6 @@ public class ControlMenu {
 				break;
 			case SvsS:
 				this.spielerGegenSpieler(input);
-
 				break;
 			case SvsKI:
 				this.spielerGegenKI(input);

@@ -2,6 +2,7 @@ package Main;
 
 
 import model.highscore.HighScoreListe;
+
 import Control.Control;
 import InputOutput.Input;
 import InputOutput.Output;
@@ -22,10 +23,6 @@ public class Main {
 
 		this.output.print("Willkommen", "console");
 		
-		// HighScore TEST
-
-		this.highscore.neuerHighScore("Bob", 100);
-		this.highscore.schreibeInDatei();
 
 		while (true) {
 			this.control.printStatus();

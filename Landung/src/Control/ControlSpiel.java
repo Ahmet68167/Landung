@@ -1,12 +1,9 @@
 package Control;
 
 import Main.Main;
-import model.highscore.HighScore;
-import model.highscore.HighScoreListe;
 import model.spieler.MenschSpieler;
 import model.spieler.Spieler;
-import model.spielfeld.Spielfeld;
-import model.spielstein.Spielstein;
+
 
 public class ControlSpiel {
 
@@ -17,14 +14,14 @@ public class ControlSpiel {
 	private boolean vobereitung;
 	private ControlZug controlZug;
 	private int runde = 0;
-	private Spieler spieler1;
-	private Spieler spieler2;
+	 Spieler spieler1;
+	 Spieler spieler2;
 
 	public ControlSpiel(Main main) {
 
 		this.main = main;
 		this.isNameSpieler = false;
-		this.controlZug = new ControlZug();
+		this.controlZug = new ControlZug(this);
 	}
 
 	public void starteSpiel(String input, String typ, String modus) {
@@ -58,7 +55,7 @@ public class ControlSpiel {
 
 	private void initSpielMaterial() {
 		this.spieler1 = new MenschSpieler(nameSpieler1, null);
-		this.spieler2 = new MenschSpieler(nameSpieler1, null);
+		this.spieler2 = new MenschSpieler(nameSpieler2, null);
 
 	}
 

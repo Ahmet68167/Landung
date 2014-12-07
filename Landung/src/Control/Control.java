@@ -21,14 +21,14 @@ public class Control {
 			if (this.controleMenu.isGegenKI()) {
 				if (this.controleMenu.isBestOfOne()) {
 					this.controlSpiel.starteSpiel(input, "KI", "BOO");
-				} else if (this.controleMenu.isBestOfOne()) {
+				} else if (this.controleMenu.isBestOfThree()) {
 					this.controlSpiel.starteSpiel(input, "KI", "BOT");
 				}
 
 			} else if (this.controleMenu.isGegenMensch()) {
 				if (this.controleMenu.isBestOfOne()) {
 					this.controlSpiel.starteSpiel(input, "MENSCH", "BOO");
-				} else if (this.controleMenu.isBestOfOne()) {
+				} else if (this.controleMenu.isBestOfThree()) {
 					this.controlSpiel.starteSpiel(input, "MENSCH", "BOT");
 				}
 			}
