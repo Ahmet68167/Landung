@@ -16,14 +16,10 @@ public class Main {
 	private Control control;
 	private HighScoreListe highscore;
 
-
 	public Main() {
-
 		this.init();
 		this.run();
-
 	}
-
 
 	private void run() {
 
@@ -42,15 +38,11 @@ public class Main {
 			}
 		}
 	}
-
 	private void init() {
 		this.input = new Input();
 		this.output = new Output();		
 		this.highscore = new HighScoreListe();
-		this.control = new Control(this);
-		
-		
-		
+		this.control = new Control(this);				
 	}
 
 	/**
