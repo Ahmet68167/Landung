@@ -1,5 +1,8 @@
 package model.spielstein;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Spielstein {
 	
 	private char symbol;
@@ -7,7 +10,21 @@ public class Spielstein {
 	
 	public Spielstein(char spielstein) {
 		this.symbol = spielstein;
-		int[] pos = {0, 0};
+		int[] pos = {-1, -1};
+	}
+	
+	public List<Spielstein> getSpielsteinListe(int anzahl) {
+		List<Spielstein> liste = new LinkedList<Spielstein>();
+		
+		for(int i = 0; i < anzahl; i++) {
+			liste.add(new Spielstein(this.symbol));
+		}
+		
+		return liste;
+	}
+	
+	public List<Spielstein> getSpielsteinListe() {
+		return getSpielsteinListe(9);
 	}
 	
 	public char getSymbol() {
