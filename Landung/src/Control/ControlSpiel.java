@@ -1,6 +1,12 @@
 package Control;
 
 import Main.Main;
+import model.highscore.HighScore;
+import model.highscore.HighScoreListe;
+import model.spieler.MenschSpieler;
+import model.spieler.Spieler;
+import model.spielfeld.Spielfeld;
+import model.spielstein.Spielstein;
 
 public class ControlSpiel {
 
@@ -8,29 +14,56 @@ public class ControlSpiel {
 	private String nameSpieler1;
 	private String nameSpieler2;
 	private boolean isNameSpieler;
+	private boolean vobereitung;
+	private ControlZug controlZug;
+	private int runde = 0;
+	private Spieler spieler1;
+	private Spieler spieler2;
 
 	public ControlSpiel(Main main) {
 
 		this.main = main;
 		this.isNameSpieler = false;
+		this.controlZug = new ControlZug();
 	}
 
 	public void starteSpiel(String input, String typ, String modus) {
 
-		if (typ.equals("KI")) {
-			this.nameSpieler1 = "KI";
-		} 
-		
-		if (!isNameSpieler) {
-			this.setSpielerNamen(input);
+		if (!vobereitung) {
+			if (typ.equals("KI")) {
+				this.nameSpieler1 = "KI";
+			}
+
+			if (modus.equals("BOO")) {
+				this.runde = 1;
+			} else if (modus.equals("BOOT")) {
+				this.runde = 3;
+			}
+
+			if (!isNameSpieler) {
+				this.setSpielerNamen(input);
+			} else {
+				this.vobereitung = true;
+			}
+
+			this.initSpielMaterial();
+
+		} else {
+
+			this.controlZug.nexterZug();
+
 		}
-		
-	
+
+	}
+
+	private void initSpielMaterial() {
+		this.spieler1 = new MenschSpieler(nameSpieler1, null);
+		this.spieler2 = new MenschSpieler(nameSpieler1, null);
 
 	}
 
 	private void setSpielerNamen(String input) {
-		
+
 		this.main.getOutput().print("Bitte Namen eingeben.\n");
 
 		if (this.nameSpieler1 == null) {
@@ -38,17 +71,15 @@ public class ControlSpiel {
 
 			this.nameSpieler1 = input;
 
-		} else if (this.nameSpieler2 == null)  {
+		} else if (this.nameSpieler2 == null) {
 			this.main.getOutput().print("Name Spieler 2: ");
 
 			this.nameSpieler2 = input;
 			this.isNameSpieler = true;
 			this.main.getOutput().print("Die Eingegebenen Namen: ");
-			this.main.getOutput().print("Spieler 1 :"+this.nameSpieler1);
-			this.main.getOutput().print("Spieler 2 :"+this.nameSpieler2);
+			this.main.getOutput().print("Spieler 1 :" + this.nameSpieler1);
+			this.main.getOutput().print("Spieler 2 :" + this.nameSpieler2);
 		}
-
-
 
 	}
 

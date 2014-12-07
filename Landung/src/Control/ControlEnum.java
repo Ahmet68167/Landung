@@ -5,7 +5,7 @@ public enum ControlEnum {
 	START("Start"),HAUPTMENU("Hauptmenu"),LADEN("Spiel laden")
 	,HIGHSCORE("Highscore"),NEUESSPIEL("Neues Spiel"),SvsS("Spieler gegen Spieler"),
 	SvsKI("Spieler gegen KI"),BESTOFONE("Best of One"),BESTOFTHREE("Best of Three"),
-	STARTESPIEL("Starte das Spiel"),SPIELLAEUFT("Spiel laeuft"), ENDE("Ende");
+	STARTESPIEL("Starte das Spiel"),SPIELLAEUFT("Spiel laeuft"), ENDE("Ende"),SPIELERNAMENEINGEBEN("Spieler namen eingeben");
 	
 
 	

@@ -85,14 +85,11 @@ public class ControlMenu {
 
 		} else if (input.equals("d")) {
 			this.STATUS = STATUS.ENDE;
-			this.beenden();
+		
 		}
 
 	}
 
-	private void beenden() {
-
-	}
 
 	private void ladeSpiel() {
 		STATUS = STATUS.SPIELLAEUFT;

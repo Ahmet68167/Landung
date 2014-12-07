@@ -1,10 +1,7 @@
 package Main;
 
-import model.highscore.HighScore;
+
 import model.highscore.HighScoreListe;
-import model.spieler.Spieler;
-import model.spielfeld.Spielfeld;
-import model.spielstein.Spielstein;
 import Control.Control;
 import InputOutput.Input;
 import InputOutput.Output;
