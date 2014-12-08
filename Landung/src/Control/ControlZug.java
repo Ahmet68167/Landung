@@ -12,10 +12,7 @@ public class ControlZug {
 	   this.controlSpiel = controlSpiel;
     }
 
-
-
 	public void nexterZug() {
-	//	this.controlSpiel.spieler1.getSpielstein();
 	    
     }
 	
@@ -34,14 +31,21 @@ public class ControlZug {
     	
     	if(this.controlSpiel.getRundeZug() < 3) {
     	
-    		if(eingabe.length() == 2) {
+    		if(eingabe.length() == 2) { 			
     			start = getKoordinaten(eingabe);
+    			
+    			if(!this.controlSpiel.getSpielfeld().isEmpty(start))
+    				return false;
+    			
     			this.controlSpiel.getSpielfeld().setzeSpielstein(this.controlSpiel.getIstDran().getSpielstein(), start);
     			return true;
     		}
     		 return false;
     		 
     	} else if(this.controlSpiel.getRundeZug() == 3) {
+    		
+    		// Abfrage ob Sonderregel angewendet werden soll
+    		
     		
     	} else if(this.controlSpiel.getRundeZug() > 3 && this.controlSpiel.getRundeZug() < 19) {
     		if(eingabe.length() == 4) {
@@ -50,19 +54,26 @@ public class ControlZug {
         		ziel[0] = getKoordinaten(eingabe)[2];
         		ziel[1] = getKoordinaten(eingabe)[3];
         		ziel = zieheZug(start, ziel);
+        		
+        		if(!gueltigerZug(start, ziel))
+    				return false;
+        		
             	this.controlSpiel.getSpielfeld().setzeSpielstein(this.controlSpiel.getIstDran().getSpielstein(), ziel);
             	return true;
         	}
     		return false;
     		
     	} else if(this.controlSpiel.getRundeZug() >= 19) {
-    		if(eingabe.length() == 6) {
+    		if(eingabe.length() == 6) { 			
         		start[0] = getKoordinaten(eingabe)[0];
         		start[1] = getKoordinaten(eingabe)[1];
         		ziel[0] = getKoordinaten(eingabe)[2];
         		ziel[1] = getKoordinaten(eingabe)[3];
         		entf[0] = getKoordinaten(eingabe)[4];
         		entf[1] = getKoordinaten(eingabe)[5];
+        		
+        		if(!gueltigerZug(start, ziel))
+    				return false;
         		
         		if(this.controlSpiel.getSpielfeld().getSpielstein(entf).getSymbol() != this.controlSpiel.getIstDran().getSymbol())
         			return false;
