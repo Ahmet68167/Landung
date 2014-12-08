@@ -1,5 +1,7 @@
 package Control;
 
+import model.spieler.Spieler;
+
 public class ControlZug {
 	
 	
@@ -17,6 +19,14 @@ public class ControlZug {
 	public void nexterZug() {
 		this.controlSpiel.spieler1.getSpielstein();
 	    
+    }
+	
+    private boolean hattSpielsteine(Spieler spieler){
+    	if(spieler.getSpielSteinListeSize() > 0){
+    		return true;
+    	}
+    	
+    	return false;
     }
 
 }

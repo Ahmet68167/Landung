@@ -1,32 +1,55 @@
 package Control;
 
+import java.util.LinkedList;
+
 import Main.Main;
 import model.spieler.MenschSpieler;
 import model.spieler.Spieler;
-
 
 public class ControlSpiel {
 
 	private Main main;
 	private String nameSpieler1;
 	private String nameSpieler2;
-	private boolean isNameSpieler;
-	private boolean vobereitung;
+
 	private ControlZug controlZug;
 	private int runde = 0;
-	 Spieler spieler1;
-	 Spieler spieler2;
+	Spieler spieler1;
+	Spieler spieler2;
+	private ControlEnum STATUS;
+	private String typ;
+	private String modus;
 
 	public ControlSpiel(Main main) {
-
-		this.main = main;
-		this.isNameSpieler = false;
+		this.STATUS = STATUS.SPIELVORBEREITUNG;
+		this.main = main;	
 		this.controlZug = new ControlZug(this);
 	}
 
 	public void starteSpiel(String input, String typ, String modus) {
 
-		if (!vobereitung) {
+		switch (STATUS) {
+
+		case SPIELVORBEREITUNG:
+			this.setTypModus(typ, modus);
+			this.setSpielerNamen(input);
+			break;
+		case SPIELRUNDE: // ;
+			this.controlZug.nexterZug();
+			break;
+
+		default: // Fehler ungültiger Status;
+			break;
+		}
+
+	}
+
+	private void setTypModus(String typ, String modus) {
+		if (this.typ == null && this.modus == null) {
+
+			this.typ = typ;
+			this.modus = modus;
+
 			if (typ.equals("KI")) {
 				this.nameSpieler1 = "KI";
 			}
@@ -36,48 +59,50 @@ public class ControlSpiel {
 			} else if (modus.equals("BOOT")) {
 				this.runde = 3;
 			}
-
-			if (!isNameSpieler) {
-				this.setSpielerNamen(input);
-			} else {
-				this.vobereitung = true;
-			}
-
-			this.initSpielMaterial();
-
-		} else {
-
-			this.controlZug.nexterZug();
-
 		}
 
 	}
 
 	private void initSpielMaterial() {
-		this.spieler1 = new MenschSpieler(nameSpieler1, null);
-		this.spieler2 = new MenschSpieler(nameSpieler2, null);
-
+		this.spieler1 = new MenschSpieler(nameSpieler1, new LinkedList());
+		this.spieler2 = new MenschSpieler(nameSpieler2, new LinkedList());
 	}
 
 	private void setSpielerNamen(String input) {
+	
 
-		this.main.getOutput().print("Bitte Namen eingeben.\n");
-
-		if (this.nameSpieler1 == null) {
-			this.main.getOutput().print("Name Spieler 1: ");
+		if (this.nameSpieler1 == null && input.length() > 0) {
 
 			this.nameSpieler1 = input;
 
-		} else if (this.nameSpieler2 == null) {
-			this.main.getOutput().print("Name Spieler 2: ");
+		} else if (this.nameSpieler2 == null && input.length() > 0) {
 
 			this.nameSpieler2 = input;
-			this.isNameSpieler = true;
-			this.main.getOutput().print("Die Eingegebenen Namen: ");
-			this.main.getOutput().print("Spieler 1 :" + this.nameSpieler1);
-			this.main.getOutput().print("Spieler 2 :" + this.nameSpieler2);
+
+		} else if (this.nameSpieler2 != null && this.nameSpieler1 != null) {
+	
+			this.STATUS = STATUS.SPIELRUNDE;
 		}
-
 	}
+	
+	public void printStatus(){
+		switch (STATUS) {
 
+		case SPIELVORBEREITUNG:
+		if(this.nameSpieler1 == null){
+			this.main.getOutput().print("Bitte Namen fuer Spieler 1 eingeben.\n");
+			
+		}else if(this.nameSpieler2 == null){
+			this.main.getOutput().print("Bitte Namen fuer Spieler 2 eingeben.\n");
+			
+		}
+			break;
+		case SPIELRUNDE: // ;
+			this.controlZug.nexterZug();
+			break;
+
+		default: // Fehler ungültiger Status;
+			break;
+		}
+	}
 }

@@ -42,6 +42,9 @@ public class Control {
 	public void printStatus() {
 		if (this.controleMenu.getSTATUS() != ControlEnum.SPIELLAEUFT) {
 			this.controleMenu.printStatus();
+		}else{
+			this.controlSpiel.printStatus();
+			
 		}
 	}
 
