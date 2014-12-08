@@ -13,8 +13,7 @@ public abstract class Spieler {
 	
 	public Spieler() {
 		
-	}
-	
+	}	
 	public Spieler(String name, List list) {
 		this.name = name;
 		this.spielSteinListe = list;

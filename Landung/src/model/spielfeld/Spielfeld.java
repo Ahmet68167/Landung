@@ -83,11 +83,9 @@ public class Spielfeld {
 				pos[0] = zeile;
 				pos[1] = spalte;
 				if(isEmpty(pos))
-					anzahl++;
-				
+					anzahl++;				
 			}
-		}
-		
+		}		
 		return anzahl;
 	}
 	

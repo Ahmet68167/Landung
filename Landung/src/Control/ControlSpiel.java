@@ -52,22 +52,18 @@ public class ControlSpiel {
 	
 		switch (Control.STATUS) {
 		case LADEN:
-			System.out.println("tst");
-			this.ladeSpiel();
-			break;
 		
-		case SPIELVORBEREITUNG:
-			
+			break;		
+		case SPIELVORBEREITUNG:			
 			this.setSpielerNamen(input);
 			this.initSpielMaterial();
 			this.startSpieler();
-			this.spielSpeichern();
+			//this.spielSpeichern();
 			break;
 		case SPIELRUNDE: // ;
 		    this.controlZug.macheZug(input);
 		    this.main.getOutput().print("Spielfeld"+this.spielfeld.toString());
-			this.naechsterSpieler();
-			
+			this.naechsterSpieler();			
 			break;
 		case SPIELRUNDENENDE:
 			this.rundeSpiel--;
@@ -80,30 +76,22 @@ public class ControlSpiel {
 		}
 	}
 
-	private void spielSpeichern(){
-		
+	private void spielSpeichern(){		
 		FileHandler filehandler = new FileHandler();
-		filehandler.save("spieler1", this.spieler1);
-		
-		
+		filehandler.save("spieler1", this.spieler1);		
 	}
-
 	private void ladeSpiel() {
 		
-		FileHandler fileHandler = new FileHandler();
-		
+		FileHandler fileHandler = new FileHandler();		
 		this.spieler1 = fileHandler.load("spieler1.save", this.spieler1);
-		
 		Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
 	}
-
 	/**
 	 * @return the istDran
 	 */
 	protected Spieler getIstDran() {
 		return istDran;
 	}
-
 	/**
 	 * @param istDran
 	 *            the istDran to set
