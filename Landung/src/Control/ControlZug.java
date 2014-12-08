@@ -44,10 +44,7 @@ public class ControlZug {
     		}
     		 return false;
     		 
-    	} else if(this.controlSpiel.getRundeZug() == 3) {
-    		
-    		// Abfrage ob Sonderregel angewendet werden soll
-    		
+    	
     	} else if(this.controlSpiel.getRundeZug() > 3 && this.controlSpiel.getRundeZug() < 19) {
     		if(eingabe.length() == 4) {
         		start[0] = getKoordinaten(eingabe)[0];

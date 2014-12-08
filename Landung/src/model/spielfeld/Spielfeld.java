@@ -100,7 +100,7 @@ public class Spielfeld {
 	}
 	
 	public String toString() {
-		String txt = "";
+		String txt = "\n";
 		
 		for (int zeile = 0; zeile < this.spielbrett.length; zeile++) {
 			txt += this.spielbrett.length - zeile + " ";
