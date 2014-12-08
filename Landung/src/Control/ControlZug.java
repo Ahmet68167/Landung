@@ -10,7 +10,6 @@ public class ControlZug {
 
 	public ControlZug(ControlSpiel controlSpiel) {
 	   this.controlSpiel = controlSpiel;
-	
     }
 
 	public void nexterZug() {
@@ -39,6 +38,7 @@ public class ControlZug {
     				return false;
     			
     			this.controlSpiel.getSpielfeld().setzeSpielstein(this.controlSpiel.getIstDran().getSpielstein(), start);
+    			this.controlSpiel.setRundeZug(this.controlSpiel.getRundeZug() + 1);
     			return true;
     		}
     		 return false;
@@ -46,7 +46,6 @@ public class ControlZug {
     	} else if(this.controlSpiel.getRundeZug() == 3) {
     		
     		// Abfrage ob Sonderregel angewendet werden soll
-    		
     		
     	} else if(this.controlSpiel.getRundeZug() > 3 && this.controlSpiel.getRundeZug() < 19) {
     		if(eingabe.length() == 4) {
@@ -60,6 +59,7 @@ public class ControlZug {
     				return false;
         		
             	this.controlSpiel.getSpielfeld().setzeSpielstein(this.controlSpiel.getIstDran().getSpielstein(), ziel);
+            	this.controlSpiel.setRundeZug(this.controlSpiel.getRundeZug() + 1);
             	return true;
         	}
     		return false;
@@ -81,7 +81,8 @@ public class ControlZug {
         		
         		ziel = zieheZug(start, ziel);
         		this.controlSpiel.getSpielfeld().setzeSpielstein(this.controlSpiel.getSpielfeld().entferneSpielstein(entf), ziel);
-            	return true;
+        		this.controlSpiel.setRundeZug(this.controlSpiel.getRundeZug() + 1);
+        		return true;
     		}
     		return false;
     	}  	
