@@ -7,11 +7,14 @@ public class Control {
 	private ControlMenu controleMenu;
 	private ControlSpiel controlSpiel;
 	private Main main;
+	private ControlEnum STATUS;
 
 	public Control(Main main) {
 		this.main = main;
-		this.controleMenu = new ControlMenu(main);
-		this.controlSpiel = new ControlSpiel(main);
+		this.STATUS = STATUS.HAUPTMENU;
+		this.controleMenu = new ControlMenu(main,this.STATUS);
+		this.controlSpiel = new ControlSpiel(main,this.STATUS);
+	
 
 	}
 

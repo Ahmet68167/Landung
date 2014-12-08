@@ -4,16 +4,18 @@ import Main.Main;
 
 public class ControlMenu {
 	// Speichert
-	private ControlEnum STATUS;
+
 	private Main main;
 	private boolean gegenKI = false;
 	private boolean gegenMensch = false;
 	private boolean bestOfOne = false;
 	private boolean bestOfThree = false;
+	private ControlEnum STATUS;
 
-	public ControlMenu(Main main) {
+	public ControlMenu(Main main, ControlEnum STATUS) {
+		this.STATUS = STATUS;
 		this.main = main;
-		this.STATUS = STATUS.HAUPTMENU;
+	    
 	}
 
 	public void checkInput(String input) {

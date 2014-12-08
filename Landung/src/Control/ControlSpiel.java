@@ -1,6 +1,7 @@
 package Control;
 
 import java.util.List;
+
 import Main.Main;
 import model.spieler.MenschSpieler;
 import model.spieler.Spieler;
@@ -22,35 +23,38 @@ public class ControlSpiel {
 	private String typ;
 	private String modus;
 	private Spielfeld spielfeld;
+	private Spieler istDran;
 
-	public ControlSpiel(Main main) {
+	public ControlSpiel(Main main, ControlEnum STATUS) {
 		this.STATUS = STATUS.SPIELVORBEREITUNG;
 		this.main = main;
 		this.controlZug = new ControlZug(this);
 	}
 
 	public void starteSpiel(String input, String typ, String modus) {
-
 		switch (STATUS) {
-
 		case SPIELVORBEREITUNG:
 			this.setTypModus(typ, modus);
 			this.setSpielerNamen(input);
 			this.initSpielMaterial();
+			this.startSpieler();
 			break;
-		case SPIELRUNDE: // ;
+		case SPIELRUNDE: // ;			
 			this.controlZug.nexterZug();
+			this.naechsterSpieler();
 			break;
 		case SPIELRUNDENENDE:
 			this.runde--;
-			
+			if (this.runde == 0) {
+				this.STATUS = STATUS.HAUPTMENU;
+			}
 			break;
-			
 		default: // Fehler ungültiger Status;
 			break;
 		}
-
 	}
+
+
 
 	private void setTypModus(String typ, String modus) {
 		if (this.typ == null && this.modus == null) {
@@ -72,24 +76,22 @@ public class ControlSpiel {
 	}
 
 	private void initSpielMaterial() {
-		if (nameSpieler1 != null && nameSpieler2 != null) {		
-	
-			this.spieler1 = new MenschSpieler(nameSpieler1,getSpielsteinListe(this.symbol1));
-			this.spieler2 = new MenschSpieler(nameSpieler2,getSpielsteinListe(this.symbol2));
-		}
-		if(this.spielfeld == null){
-			
-			this.spielfeld = new Spielfeld();
-			
-		}
+		if (nameSpieler1 != null && nameSpieler2 != null) {
 
+			this.spieler1 = new MenschSpieler(nameSpieler1,
+			        getSpielsteinListe(this.symbol1));
+			this.spieler2 = new MenschSpieler(nameSpieler2,
+			        getSpielsteinListe(this.symbol2));
+		}
+		if (this.spielfeld == null) {
+			this.spielfeld = new Spielfeld();
+		}
 	}
 
 	private List<Spielstein> getSpielsteinListe(char sym) {
-		Spielstein liste = new Spielstein(sym);			
+		Spielstein liste = new Spielstein(sym);
 		return liste.getSpielsteinListe(9);
 	}
-
 
 	private void setSpielerNamen(String input) {
 
@@ -102,9 +104,9 @@ public class ControlSpiel {
 			this.nameSpieler2 = input;
 
 		} else if (this.nameSpieler2 != null && this.nameSpieler1 != null) {
-			this.main.getOutput().print("Spieler 1:"+this.nameSpieler1);
-			this.main.getOutput().print("Spieler 2:"+this.nameSpieler2);
-			this.STATUS = STATUS.SPIELRUNDE;
+			this.main.getOutput().print("Spieler 1:" + this.nameSpieler1);
+			this.main.getOutput().print("Spieler 2:" + this.nameSpieler2);
+		
 		}
 	}
 
@@ -151,4 +153,22 @@ public class ControlSpiel {
 	protected Spielfeld getSpielfeld() {
 		return spielfeld;
 	}
+
+	private void startSpieler() {
+		double rand = Math.random();
+		if (rand > 0.5) {
+			this.istDran = this.spieler1;
+		} else {
+			this.istDran = this.spieler2;
+		}
+		this.STATUS = STATUS.SPIELRUNDE;
+	}
+	private void naechsterSpieler() {
+		if(  this.istDran.equals(spieler1)){
+			this.istDran =   spieler2;
+		}else{
+			this.istDran = spieler1;
+		}
+	    
+    }
 }
