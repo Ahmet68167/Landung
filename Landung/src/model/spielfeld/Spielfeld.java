@@ -40,13 +40,15 @@ public class Spielfeld {
 		return this.spielbrett[pos[0]][pos[1]];
 	}
 	
-	public void zieheSpielstein(Spielstein spielstein, int[] start, int[] ziel) {
-		this.spielbrett[ziel[0]][ziel[1]] = spielstein;
-		entferneSpielstein(start);
+	public void zieheSpielstein(int[] start, int[] ziel) {
+		this.spielbrett[ziel[0]][ziel[1]] = entferneSpielstein(start);
 	}
 	
-	public void entferneSpielstein(int[] pos) {
+	public Spielstein entferneSpielstein(int[] pos) {
+		Spielstein spielstein;
+		spielstein = getSpielstein(pos);
 		this.spielbrett[pos[0]][pos[1]] = LEER;
+		return spielstein;
 	}
 	
 	public boolean isEmpty() {
