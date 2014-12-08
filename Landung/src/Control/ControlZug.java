@@ -63,8 +63,8 @@ public class ControlZug {
         		ziel[1] = getKoordinaten(eingabe)[3];
         		
         		if(!gueltigerZug(start, ziel))
-    				return false;
-        		
+        			return false;
+		
         		ziel = zieheZug(start, ziel);
         		
             	this.controlSpiel.getSpielfeld().setzeSpielstein(this.controlSpiel.getIstDran().getSpielstein(), ziel);
@@ -153,13 +153,13 @@ public class ControlZug {
 		// Teste Diagonal
 		} else if(Math.abs(start[0] - ziel[0]) == 3 && Math.abs(start[1] - ziel[1]) == 3 ||
 				Math.abs(start[0] - ziel[0]) == 4 && Math.abs(start[1] - ziel[1]) == 4) {
-			
+
 			if(start[0] - ziel[0] < 0 && start[1] - ziel[1] < 0)
 				return testeDiagonalOben(start, ziel);
 			else if(start[0] - ziel[0] < 0 && start[1] - ziel[1] > 0)
 				return testeDiagonalUnten(start, ziel);
 			else if(start[0] - ziel[0] > 0 && start[1] - ziel[1] < 0)
-				return testeDiagonalUnten(ziel, start);
+				return testeDiagonalUnten(start, ziel);
 			else if(start[0] - ziel[0] > 0 && start[1] - ziel[1] > 0)
 				return testeDiagonalOben(ziel, start);
 		}
