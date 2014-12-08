@@ -17,7 +17,7 @@ public class ControlZug {
 
 
 	public void nexterZug() {
-		this.controlSpiel.spieler1.getSpielstein();
+	//	this.controlSpiel.spieler1.getSpielstein();
 	    
     }
 	
