@@ -28,9 +28,6 @@ public class ControlZug {
     	
     	return false;
     }
-    private void istBeendet(){
-    	
-    	
-    }
+
 
 }
