@@ -20,7 +20,7 @@ public class ControlSpiel {
 	private String nameSpieler2;
 	private char symbol1 = 'A';
 	private char symbol2 = 'Z';
-	private ControlEnum STATUS;
+	
 	private String typ;
 	private String modus;
 	private Spielfeld spielfeld;
@@ -41,7 +41,6 @@ public class ControlSpiel {
 	}
 
 	public ControlSpiel(Main main) {
-		this.STATUS = Control.STATUS;
 		this.main = main;
 		this.controlZug = new ControlZug(this);
 	}
@@ -49,7 +48,8 @@ public class ControlSpiel {
 	public void starteSpiel(String input, String typ, String modus) {
 		
 	
-		switch (STATUS) {
+	
+		switch (Control.STATUS) {
 		case SPIELVORBEREITUNG:
 			this.setTypModus(typ, modus);
 			this.setSpielerNamen(input);
@@ -64,7 +64,7 @@ public class ControlSpiel {
 		case SPIELRUNDENENDE:
 			this.rundeSpiel--;
 			if (this.rundeSpiel == 0) {
-				this.STATUS = STATUS.HAUPTMENU;
+				Control.STATUS =Control.STATUS.HAUPTMENU;
 			}
 			break;
 		default: // Fehler ungültiger Status;
@@ -72,20 +72,6 @@ public class ControlSpiel {
 		}
 	}
 
-	/**
-	 * @return the sTATUS
-	 */
-	protected ControlEnum getSTATUS() {
-		return STATUS;
-	}
-
-	/**
-	 * @param sTATUS
-	 *            the sTATUS to set
-	 */
-	protected void setSTATUS(ControlEnum sTATUS) {
-		STATUS = sTATUS;
-	}
 
 	/**
 	 * @return the istDran
@@ -157,7 +143,7 @@ public class ControlSpiel {
 	}
 
 	public void printStatus() {
-		switch (STATUS) {
+		switch (Control.STATUS) {
 
 		case SPIELVORBEREITUNG:
 			if (this.nameSpieler1 == null) {
@@ -210,7 +196,7 @@ public class ControlSpiel {
 			} else {
 				this.istDran = this.spieler2;
 			}
-			this.STATUS = STATUS.SPIELRUNDE;
+			Control.STATUS =Control.STATUS.SPIELRUNDE;
 		}
 	}
 

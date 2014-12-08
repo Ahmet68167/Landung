@@ -10,10 +10,10 @@ public class ControlMenu {
 	private boolean gegenMensch = false;
 	private boolean bestOfOne = false;
 	private boolean bestOfThree = false;
-	private ControlEnum STATUS;
+	
 
 	public ControlMenu(Main main) {
-		this.STATUS = Control.STATUS;
+	 
 		this.main = main;
 	    
 	}
@@ -22,7 +22,7 @@ public class ControlMenu {
 
 		if (input != null) {
 
-			switch (STATUS) {
+			switch (Control.STATUS) {
 			case HAUPTMENU:
 				this.hauptmenu(input);
 				break;
@@ -54,7 +54,7 @@ public class ControlMenu {
 	}
 
 	public ControlEnum getSTATUS() {
-		return STATUS;
+		return Control.STATUS;
 	}
 
 	private void spielerGegenKI(String input) {
@@ -62,12 +62,12 @@ public class ControlMenu {
 		this.gegenMensch = false;
 		// Best of One
 		if (input.equals("a")) {
-			this.STATUS = STATUS.BESTOFONE;
+			Control.STATUS = Control.STATUS.BESTOFONE;
 			// Best of Three
 		} else if (input.equals("b")) {
-			this.STATUS = STATUS.BESTOFTHREE;
+			Control.STATUS = Control.STATUS.BESTOFTHREE;
 		} else if (input.equals("c")) {
-			this.STATUS = STATUS.NEUESSPIEL;
+			Control.STATUS = Control.STATUS.NEUESSPIEL;
 		}
 	}
 
@@ -81,10 +81,10 @@ public class ControlMenu {
 			this.ladeSpiel();
 
 		} else if (input.equals("a")) {
-			this.STATUS = STATUS.NEUESSPIEL;
+			Control.STATUS = Control.STATUS.NEUESSPIEL;
 
 		} else if (input.equals("d")) {
-			this.STATUS = STATUS.ENDE;
+			Control.STATUS= Control.STATUS.ENDE;
 		
 		}
 
@@ -92,7 +92,7 @@ public class ControlMenu {
 
 
 	private void ladeSpiel() {
-		STATUS = STATUS.SPIELVORBEREITUNG;
+		Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
 	}
 
 	private void spielerGegenSpieler(String input) {
@@ -100,11 +100,11 @@ public class ControlMenu {
 		this.gegenKI     = false;
 	
 		if (input.equals("a")) {
-			this.STATUS = STATUS.BESTOFONE;	
+			Control.STATUS =Control.STATUS.BESTOFONE;	
 		} else if (input.equals("b")) {
-			this.STATUS = STATUS.BESTOFTHREE;
+			Control.STATUS =Control.STATUS.BESTOFTHREE;
 		} else if (input.equals("c")) {
-			this.STATUS = STATUS.NEUESSPIEL;
+			Control.STATUS = Control.STATUS.NEUESSPIEL;
 		}
 
 	}
@@ -112,24 +112,24 @@ public class ControlMenu {
 	private void neuesSpiel(String input) {
 		
 		if (input.equals("a")) {
-			this.STATUS = STATUS.SvsS;
+			Control.STATUS = Control.STATUS.SvsS;
 		} else if (input.equals("b")) {
-			this.STATUS = STATUS.SvsKI;
+			Control.STATUS = Control.STATUS.SvsKI;
 		} else if (input.equals("c")) {
-			this.STATUS = STATUS.HAUPTMENU;
+			Control.STATUS= Control.STATUS.HAUPTMENU;
 		}
 
 	}
 
 	private void bestOfThree(String input) {
-		this.STATUS = STATUS.SPIELVORBEREITUNG;
+		Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
 		this.bestOfOne = false;
 		this.bestOfThree = true;
 	
 	}
 
 	private void bestOfOne(String input) {
-		this.STATUS = STATUS.SPIELVORBEREITUNG;
+		Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
 		this.bestOfOne = true;
 		this.bestOfThree = false;
 	
@@ -138,15 +138,15 @@ public class ControlMenu {
 	private void ladeHighscore() {
 		
 		this.main.getOutput().print(this.main.getHighscore().toString());
-		this.STATUS = STATUS.HAUPTMENU;
+		Control.STATUS= Control.STATUS.HAUPTMENU;
 
 	}
 
 	public void printStatus() {
 
-		this.main.getOutput().print(STATUS.getName(), "console");
+		this.main.getOutput().print(Control.STATUS.getName(), "console");
 
-		switch (STATUS) {
+		switch (Control.STATUS) {
 		case HAUPTMENU:
 			this.main.getOutput().print("a)  Neues Spiel", "console");
 			this.main.getOutput().print("b)  Laden", "console");
