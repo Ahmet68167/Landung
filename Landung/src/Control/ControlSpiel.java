@@ -62,8 +62,8 @@ public class ControlSpiel {
 			break;
 		case SPIELRUNDE: // ;
 		    this.controlZug.macheZug(input);
-		    this.main.getOutput().print("Spielfeld"+this.spielfeld.toString());
-			this.naechsterSpieler();			
+		    this.main.getOutput().print(this.spielfeld.toString());
+				
 			break;
 		case SPIELRUNDENENDE:
 			this.rundeSpiel--;
@@ -165,7 +165,7 @@ public class ControlSpiel {
 			}
 			break;
 		case SPIELRUNDE: // ;
-			this.controlZug.nexterZug();
+			this.main.getOutput().print("Name: "+istDran.getName());
 			break;
 		case SPIELENDE:
 			
@@ -208,7 +208,7 @@ public class ControlSpiel {
 		}
 	}
 
-	private void naechsterSpieler() {
+	 void naechsterSpieler() {
 		if (this.istDran.equals(spieler1)) {
 			this.istDran = spieler2;
 		} else {
