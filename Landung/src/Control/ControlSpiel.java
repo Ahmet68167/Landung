@@ -19,8 +19,21 @@ public class ControlSpiel {
 	private String nameSpieler1;
 	private String nameSpieler2;
 	private char symbol1 = 'A';
-	private char symbol2 = 'Z';
-	
+	private char symbol2 = 'Z';	
+	/**
+	 * @return the rundeSpiel
+	 */
+	protected int getRundeSpiel() {
+		return rundeSpiel;
+	}
+
+	/**
+	 * @param rundeSpiel the rundeSpiel to set
+	 */
+	protected void setRundeSpiel(int rundeSpiel) {
+		this.rundeSpiel = rundeSpiel;
+	}
+
 	private String typ;
 	private String modus;
 	private Spielfeld spielfeld;
@@ -59,11 +72,12 @@ public class ControlSpiel {
 			this.setSpielerNamen(input);
 			this.initSpielMaterial();
 			this.startSpieler();
+			this.spielSpeichern();
 			break;
 		case SPIELRUNDE: // ;
 			//this.controlZug.nexterZug();
 			this.naechsterSpieler();
-			spielSpeichern();
+			
 			break;
 		case SPIELRUNDENENDE:
 			this.rundeSpiel--;
@@ -74,6 +88,14 @@ public class ControlSpiel {
 		default: // Fehler ungültiger Status;
 			break;
 		}
+	}
+
+	private void spielSpeichern(){
+		
+		FileHandler filehandler = new FileHandler();
+		filehandler.save("spieler1", this.spieler1);
+		
+		
 	}
 
 	private void ladeSpiel() {
@@ -221,11 +243,5 @@ public class ControlSpiel {
 		}
 
 	}
-	private void spielSpeichern(){
-		
-		FileHandler filehandler = new FileHandler();
-		filehandler.save("spieler1", this.spieler1);
-		
-		
-	}
+
 }
