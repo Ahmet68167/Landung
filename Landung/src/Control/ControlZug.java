@@ -32,29 +32,49 @@ public class ControlZug {
     	int[] ziel = new int[2];
     	int[] entf = new int[2];
     	
-    	if(eingabe.length() == 2) {
-    		start = getKoordinaten(eingabe);
-    	}
+    	if(this.controlSpiel.getRundeZug() < 3) {
     	
-    	if(eingabe.length() == 4) {
-    		start[0] = getKoordinaten(eingabe)[0];
-    		start[1] = getKoordinaten(eingabe)[1];
-    		ziel[0] = getKoordinaten(eingabe)[2];
-    		ziel[1] = getKoordinaten(eingabe)[3];
-    	}
+    		if(eingabe.length() == 2) {
+    			start = getKoordinaten(eingabe);
+    			this.controlSpiel.getSpielfeld().setzeSpielstein(this.controlSpiel.getIstDran().getSpielstein(), start);
+    			return true;
+    		}
+    		 return false;
+    		 
+    	} else if(this.controlSpiel.getRundeZug() == 3) {
+    		
+    	} else if(this.controlSpiel.getRundeZug() > 3 && this.controlSpiel.getRundeZug() < 19) {
+    		if(eingabe.length() == 4) {
+        		start[0] = getKoordinaten(eingabe)[0];
+        		start[1] = getKoordinaten(eingabe)[1];
+        		ziel[0] = getKoordinaten(eingabe)[2];
+        		ziel[1] = getKoordinaten(eingabe)[3];
+        		ziel = zieheZug(start, ziel);
+            	this.controlSpiel.getSpielfeld().setzeSpielstein(this.controlSpiel.getIstDran().getSpielstein(), ziel);
+            	return true;
+        	}
+    		return false;
+    		
+    	} else if(this.controlSpiel.getRundeZug() >= 19) {
+    		if(eingabe.length() == 6) {
+        		start[0] = getKoordinaten(eingabe)[0];
+        		start[1] = getKoordinaten(eingabe)[1];
+        		ziel[0] = getKoordinaten(eingabe)[2];
+        		ziel[1] = getKoordinaten(eingabe)[3];
+        		entf[0] = getKoordinaten(eingabe)[4];
+        		entf[1] = getKoordinaten(eingabe)[5];
+        		
+        		if(this.controlSpiel.getSpielfeld().getSpielstein(entf).getSymbol() != this.controlSpiel.getIstDran().getSymbol())
+        			return false;
+        		
+        		ziel = zieheZug(start, ziel);
+        		this.controlSpiel.getSpielfeld().setzeSpielstein(this.controlSpiel.getSpielfeld().entferneSpielstein(entf), ziel);
+            	return true;
+    		}
+    		return false;
+    	}  	
     	
-    	if(eingabe.length() == 6) {
-    		start[0] = getKoordinaten(eingabe)[0];
-    		start[1] = getKoordinaten(eingabe)[1];
-    		ziel[0] = getKoordinaten(eingabe)[2];
-    		ziel[1] = getKoordinaten(eingabe)[3];
-    		entf[0] = getKoordinaten(eingabe)[4];
-    		entf[1] = getKoordinaten(eingabe)[5];
-    	}
-    	
-    	ziel = zieheZug(start, ziel);
-    	this.controlSpiel.getSpielfeld().setzeSpielstein(this.controlSpiel.getIstDran().getSpielstein(), ziel);
-    	return true;
+    	return false;
     }
     
     public boolean istZugMoeglich() {

@@ -25,7 +25,7 @@ public class ControlSpiel {
 	private String modus;
 	private Spielfeld spielfeld;
 	private Spieler istDran;
-    private int rundeZug;
+    private int rundeZug = 1;
 	/**
 	 * @return the rundeZug
 	 */
