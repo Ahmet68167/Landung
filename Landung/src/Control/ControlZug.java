@@ -3,12 +3,8 @@ package Control;
 import model.spieler.Spieler;
 
 public class ControlZug {
-	
-	
 
 	private ControlSpiel controlSpiel;
-
-
 
 	public ControlZug(ControlSpiel controlSpiel) {
 	   this.controlSpiel = controlSpiel;
@@ -29,15 +25,9 @@ public class ControlZug {
     	return false;
     }
     
-    public boolean macheZug(int[] start, int[] ziel) {
-    	
-    	if(this.controlSpiel.getIstDran().getSpielSteinListeSize() > 0) {
-    		
-    		if()
-    		
-    	}
-    	
-    	return false;
+    public void macheZug(int[] start, int[] ziel) {
+    	ziel = zieheZug(start, ziel);
+    	this.controlSpiel.getSpielfeld().setzeSpielstein(this.controlSpiel.getIstDran().getSpielstein(), ziel);
     }
     
     public boolean istZugMoeglich() {
@@ -66,7 +56,7 @@ public class ControlZug {
 	}
 	
 	public boolean gueltigerZug(int[] start, int[] ziel) {
-		// Pruefe start  FEHLER BEI Spieler.getSpielstein zu oft remove!!!!!
+		// Pruefe start 
 		if(this.controlSpiel.getSpielfeld().getSpielstein(start).getSymbol() != 
 				this.controlSpiel.getIstDran().getSymbol())
 			return false;
@@ -158,5 +148,32 @@ public class ControlZug {
 		return true;
 	}
 
+	public int[] zieheZug(int[] start, int[] ziel) {
+		this.controlSpiel.getSpielfeld().zieheSpielstein(start, ziel);
+		
+		if(start[0] == ziel[0] && start[1] - ziel[1] < 0) {
+			ziel[1] -= 1;
+			} else if(start[0] == ziel[0] && start[1] - ziel[1] > 0) {
+			ziel[1] += 1;
+		} else if(start[0] - ziel[0] < 0 && start[1] == ziel[1]) {
+			ziel[0] -= 1;
+		} else if(start[0] - ziel[0] > 0 && start[1] == ziel[1]) {
+			ziel[0] += 1;
+		} else if(start[0] - ziel[0] < 0 && start[1] - ziel[1] < 0) {
+			ziel[0] -= 1;
+			ziel[1] -= 1;
+		} else if(start[0] - ziel[0] < 0 && start[1] - ziel[1] > 0) {
+			ziel[0] -= 1;
+			ziel[1] += 1;
+		} else if(start[0] - ziel[0] > 0 && start[1] - ziel[1] < 0) {
+			ziel[0] += 1;
+			ziel[1] -= 1;
+		} else if(start[0] - ziel[0] > 0 && start[1] - ziel[1] > 0) {
+			ziel[0] += 1;
+			ziel[1] += 1;
+		}
+		
+		return ziel;
+	}
 
 }
