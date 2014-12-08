@@ -1,5 +1,7 @@
 package Control;
 
+import java.util.regex.Pattern;
+
 import model.spieler.Spieler;
 
 public class ControlZug {
@@ -25,13 +27,34 @@ public class ControlZug {
     	return false;
     }
     
-    public void macheZug(int[] start, int[] ziel) {
+    public boolean macheZug(String eingabe) {
+    	int[] start = new int[2];
+    	int[] ziel = new int[2];
+    	int[] entf = new int[2];
     	
+    	if(eingabe.length() == 2) {
+    		start = getKoordinaten(eingabe);
+    	}
     	
+    	if(eingabe.length() == 4) {
+    		start[0] = getKoordinaten(eingabe)[0];
+    		start[1] = getKoordinaten(eingabe)[1];
+    		ziel[0] = getKoordinaten(eingabe)[2];
+    		ziel[1] = getKoordinaten(eingabe)[3];
+    	}
     	
+    	if(eingabe.length() == 6) {
+    		start[0] = getKoordinaten(eingabe)[0];
+    		start[1] = getKoordinaten(eingabe)[1];
+    		ziel[0] = getKoordinaten(eingabe)[2];
+    		ziel[1] = getKoordinaten(eingabe)[3];
+    		entf[0] = getKoordinaten(eingabe)[4];
+    		entf[1] = getKoordinaten(eingabe)[5];
+    	}
     	
     	ziel = zieheZug(start, ziel);
     	this.controlSpiel.getSpielfeld().setzeSpielstein(this.controlSpiel.getIstDran().getSpielstein(), ziel);
+    	return true;
     }
     
     public boolean istZugMoeglich() {
@@ -178,6 +201,26 @@ public class ControlZug {
 		}
 		
 		return ziel;
+	}
+	
+	public static boolean gueltigeEingabe(String eingabe) {
+		boolean gueltig = false;
+		
+		if(Pattern.matches("[a-e][1-5]|[a-e][1-5][a-e][1-5]|[a-e][1-5][a-e][1-5][a-e][1-5]", eingabe))
+			return true;
+		
+		return gueltig;	
+	}
+	
+	public int[] getKoordinaten(String eingabe) {
+		int[] koordinaten = new int[eingabe.length()];
+		
+		for(int i = 0; i < koordinaten.length; i+=2) {
+			koordinaten[i] = eingabe.charAt(i) - 'a';
+			koordinaten[i+1] = eingabe.charAt(i+1) - '0' - 1;
+		}
+		
+		return koordinaten;
 	}
 
 }
