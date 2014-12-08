@@ -3,42 +3,31 @@ package Control;
 import Main.Main;
 
 public class Control {
-
 	private ControlMenu controleMenu;
 	private ControlSpiel controlSpiel;
 	private Main main;
 	static ControlEnum STATUS;
-
 	public Control(Main main) {
 		this.main = main;
 		this.STATUS = STATUS.HAUPTMENU;
 		this.controleMenu = new ControlMenu(main);
 		this.controlSpiel = new ControlSpiel(main);
-
 	}
-
 	public void checkInput(String input) {
-
 		this.setupControle();
 		this.controleMenu.checkInput(input);
 		this.controlSpiel.starteSpiel(input);
-
 	}
-
 	public void printStatus() {
-
 		this.controleMenu.printStatus();
 		this.controlSpiel.printStatus();
-
 	}
-
 	public boolean isBeendet() {
 		if (this.controleMenu.getSTATUS() == ControlEnum.ENDE) {
 			return true;
 		}
 		return false;
 	}
-
 	private void setupControle() {
 		if (STATUS == STATUS.SPIELVORBEREITUNG) {
 			if (this.controleMenu.isGegenKI()) {

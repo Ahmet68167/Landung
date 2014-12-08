@@ -11,7 +11,7 @@ import model.spielstein.Spielstein;
 
 public class ControlSpiel {
 
-	private Main main;
+	Main main;
 	private ControlZug controlZug;
 	private int rundeSpiel = 0;
 	Spieler spieler1;
@@ -128,9 +128,7 @@ public class ControlSpiel {
 				this.rundeSpiel = 3;
 			}
 		}
-
 	}
-
 	private void initSpielMaterial() {
 		if (nameSpieler1 != null && nameSpieler2 != null) {
 
@@ -143,12 +141,10 @@ public class ControlSpiel {
 			this.spielfeld = new Spielfeld();
 		}
 	}
-
 	private List<Spielstein> getSpielsteinListe(char sym) {
 		Spielstein liste = new Spielstein(sym);
 		return liste.getSpielsteinListe(9);
 	}
-
 	private void setSpielerNamen(String input) {
 
 		if (this.nameSpieler1 == null && input.length() > 0) {
