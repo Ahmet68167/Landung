@@ -61,7 +61,10 @@ public class ControlSpiel {
 			//this.spielSpeichern();
 			break;
 		case SPIELRUNDE: // ;
-		    this.controlZug.macheZug(input);
+		    if(this.controlZug.macheZug(input)){
+		    	this.naechsterSpieler();
+		    }   
+		    
 		    this.main.getOutput().print(this.spielfeld.toString());
 				
 			break;
