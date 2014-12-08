@@ -56,6 +56,34 @@ public class ControlSpiel {
 
 
 
+	/**
+	 * @return the sTATUS
+	 */
+	protected ControlEnum getSTATUS() {
+		return STATUS;
+	}
+
+	/**
+	 * @param sTATUS the sTATUS to set
+	 */
+	protected void setSTATUS(ControlEnum sTATUS) {
+		STATUS = sTATUS;
+	}
+
+	/**
+	 * @return the istDran
+	 */
+	protected Spieler getIstDran() {
+		return istDran;
+	}
+
+	/**
+	 * @param istDran the istDran to set
+	 */
+	protected void setIstDran(Spieler istDran) {
+		this.istDran = istDran;
+	}
+
 	private void setTypModus(String typ, String modus) {
 		if (this.typ == null && this.modus == null) {
 
