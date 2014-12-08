@@ -29,9 +29,7 @@ public class ControlMenu {
 			case NEUESSPIEL:
 				this.neuesSpiel(input);
 				break;
-			case LADEN: // ;
-				this.ladeSpiel();
-				break;
+		
 			case SvsS:
 				this.spielerGegenSpieler(input);
 				break;
@@ -78,7 +76,7 @@ public class ControlMenu {
 			this.ladeHighscore();
 			// Laden
 		} else if (input.equals("b")) {
-			this.ladeSpiel();
+			Control.STATUS = Control.STATUS.LADEN;
 
 		} else if (input.equals("a")) {
 			Control.STATUS = Control.STATUS.NEUESSPIEL;
@@ -91,9 +89,6 @@ public class ControlMenu {
 	}
 
 
-	private void ladeSpiel() {
-		Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
-	}
 
 	private void spielerGegenSpieler(String input) {
 		this.gegenMensch = true;

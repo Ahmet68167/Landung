@@ -25,7 +25,7 @@ public class ControlSpiel {
 	private String modus;
 	private Spielfeld spielfeld;
 	private Spieler istDran;
-    private int rundeZug = 1;
+    private int rundeZug =1;
 	/**
 	 * @return the rundeZug
 	 */
@@ -50,6 +50,10 @@ public class ControlSpiel {
 	
 	
 		switch (Control.STATUS) {
+		case LADEN:
+			this.ladeSpiel();
+			break;
+		
 		case SPIELVORBEREITUNG:
 			this.setTypModus(typ, modus);
 			this.setSpielerNamen(input);
@@ -72,6 +76,15 @@ public class ControlSpiel {
 		}
 	}
 
+	private void ladeSpiel() {
+		
+		FileHandler fileHandler = new FileHandler();
+		
+		this.spieler1 = fileHandler.load("spieler1.save", this.spieler1);
+		
+		
+		Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
+	}
 
 	/**
 	 * @return the istDran
