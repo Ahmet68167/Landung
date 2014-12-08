@@ -27,6 +27,7 @@ public abstract class Spieler {
 	}
 	
 	public Spielstein getSpielstein() {
+		
 		return this.spielSteinListe.remove(0);
 	}
 	

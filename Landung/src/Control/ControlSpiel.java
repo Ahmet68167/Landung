@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import Main.Main;
 import model.spieler.MenschSpieler;
 import model.spieler.Spieler;
+import model.spielstein.Spielstein;
 
 public class ControlSpiel {
 
@@ -22,7 +23,7 @@ public class ControlSpiel {
 
 	public ControlSpiel(Main main) {
 		this.STATUS = STATUS.SPIELVORBEREITUNG;
-		this.main = main;	
+		this.main = main;
 		this.controlZug = new ControlZug(this);
 	}
 
@@ -33,6 +34,7 @@ public class ControlSpiel {
 		case SPIELVORBEREITUNG:
 			this.setTypModus(typ, modus);
 			this.setSpielerNamen(input);
+			this.initSpielMaterial();
 			break;
 		case SPIELRUNDE: // ;
 			this.controlZug.nexterZug();
@@ -64,12 +66,17 @@ public class ControlSpiel {
 	}
 
 	private void initSpielMaterial() {
-		this.spieler1 = new MenschSpieler(nameSpieler1, new LinkedList());
-		this.spieler2 = new MenschSpieler(nameSpieler2, new LinkedList());
+		if (nameSpieler1 != null && nameSpieler2 != null) {
+			LinkedList<Spielstein> tmp = new LinkedList<>();
+			tmp.add(new Spielstein('X'));
+			tmp.add(new Spielstein('X'));
+			this.spieler1 = new MenschSpieler(nameSpieler1, tmp);
+			this.spieler2 = new MenschSpieler(nameSpieler2, tmp);
+		}
+
 	}
 
 	private void setSpielerNamen(String input) {
-	
 
 		if (this.nameSpieler1 == null && input.length() > 0) {
 
@@ -80,22 +87,24 @@ public class ControlSpiel {
 			this.nameSpieler2 = input;
 
 		} else if (this.nameSpieler2 != null && this.nameSpieler1 != null) {
-	
+
 			this.STATUS = STATUS.SPIELRUNDE;
 		}
 	}
-	
-	public void printStatus(){
+
+	public void printStatus() {
 		switch (STATUS) {
 
 		case SPIELVORBEREITUNG:
-		if(this.nameSpieler1 == null){
-			this.main.getOutput().print("Bitte Namen fuer Spieler 1 eingeben.\n");
-			
-		}else if(this.nameSpieler2 == null){
-			this.main.getOutput().print("Bitte Namen fuer Spieler 2 eingeben.\n");
-			
-		}
+			if (this.nameSpieler1 == null) {
+				this.main.getOutput().print(
+				        "Bitte Namen fuer Spieler 1 eingeben.\n");
+
+			} else if (this.nameSpieler2 == null) {
+				this.main.getOutput().print(
+				        "Bitte Namen fuer Spieler 2 eingeben.\n");
+
+			}
 			break;
 		case SPIELRUNDE: // ;
 			this.controlZug.nexterZug();
