@@ -2,6 +2,7 @@ package Control;
 
 import java.util.List;
 
+import speichern.FileHandler;
 import Main.Main;
 import model.spieler.MenschSpieler;
 import model.spieler.Spieler;
@@ -12,7 +13,7 @@ public class ControlSpiel {
 
 	private Main main;
 	private ControlZug controlZug;
-	private int runde = 0;
+	private int rundeSpiel = 0;
 	Spieler spieler1;
 	Spieler spieler2;
 	private String nameSpieler1;
@@ -24,14 +25,30 @@ public class ControlSpiel {
 	private String modus;
 	private Spielfeld spielfeld;
 	private Spieler istDran;
+    private int rundeZug;
+	/**
+	 * @return the rundeZug
+	 */
+	protected int getRundeZug() {
+		return rundeZug;
+	}
 
-	public ControlSpiel(Main main, ControlEnum STATUS) {
-		this.STATUS = STATUS.SPIELVORBEREITUNG;
+	/**
+	 * @param rundeZug the rundeZug to set
+	 */
+	protected void setRundeZug(int rundeZug) {
+		this.rundeZug = rundeZug;
+	}
+
+	public ControlSpiel(Main main) {
+		this.STATUS = Control.STATUS;
 		this.main = main;
 		this.controlZug = new ControlZug(this);
 	}
 
 	public void starteSpiel(String input, String typ, String modus) {
+		
+	
 		switch (STATUS) {
 		case SPIELVORBEREITUNG:
 			this.setTypModus(typ, modus);
@@ -39,13 +56,14 @@ public class ControlSpiel {
 			this.initSpielMaterial();
 			this.startSpieler();
 			break;
-		case SPIELRUNDE: // ;			
-			this.controlZug.nexterZug();
+		case SPIELRUNDE: // ;
+			//this.controlZug.nexterZug();
 			this.naechsterSpieler();
+			spielSpeichern();
 			break;
 		case SPIELRUNDENENDE:
-			this.runde--;
-			if (this.runde == 0) {
+			this.rundeSpiel--;
+			if (this.rundeSpiel == 0) {
 				this.STATUS = STATUS.HAUPTMENU;
 			}
 			break;
@@ -53,8 +71,6 @@ public class ControlSpiel {
 			break;
 		}
 	}
-
-
 
 	/**
 	 * @return the sTATUS
@@ -64,7 +80,8 @@ public class ControlSpiel {
 	}
 
 	/**
-	 * @param sTATUS the sTATUS to set
+	 * @param sTATUS
+	 *            the sTATUS to set
 	 */
 	protected void setSTATUS(ControlEnum sTATUS) {
 		STATUS = sTATUS;
@@ -78,7 +95,8 @@ public class ControlSpiel {
 	}
 
 	/**
-	 * @param istDran the istDran to set
+	 * @param istDran
+	 *            the istDran to set
 	 */
 	protected void setIstDran(Spieler istDran) {
 		this.istDran = istDran;
@@ -95,9 +113,9 @@ public class ControlSpiel {
 			}
 
 			if (modus.equals("BOO")) {
-				this.runde = 1;
+				this.rundeSpiel = 1;
 			} else if (modus.equals("BOOT")) {
-				this.runde = 3;
+				this.rundeSpiel = 3;
 			}
 		}
 
@@ -134,7 +152,7 @@ public class ControlSpiel {
 		} else if (this.nameSpieler2 != null && this.nameSpieler1 != null) {
 			this.main.getOutput().print("Spieler 1:" + this.nameSpieler1);
 			this.main.getOutput().print("Spieler 2:" + this.nameSpieler2);
-		
+
 		}
 	}
 
@@ -155,7 +173,9 @@ public class ControlSpiel {
 		case SPIELRUNDE: // ;
 			this.controlZug.nexterZug();
 			break;
-
+		case SPIELENDE:
+			
+             break;
 		default: // Fehler ungültiger Status;
 			break;
 		}
@@ -183,20 +203,30 @@ public class ControlSpiel {
 	}
 
 	private void startSpieler() {
-		double rand = Math.random();
-		if (rand > 0.5) {
-			this.istDran = this.spieler1;
-		} else {
-			this.istDran = this.spieler2;
+		if (this.spieler1 != null && this.spieler2 != null) {
+			double rand = Math.random();
+			if (rand > 0.5) {
+				this.istDran = this.spieler1;
+			} else {
+				this.istDran = this.spieler2;
+			}
+			this.STATUS = STATUS.SPIELRUNDE;
 		}
-		this.STATUS = STATUS.SPIELRUNDE;
 	}
+
 	private void naechsterSpieler() {
-		if(  this.istDran.equals(spieler1)){
-			this.istDran =   spieler2;
-		}else{
+		if (this.istDran.equals(spieler1)) {
+			this.istDran = spieler2;
+		} else {
 			this.istDran = spieler1;
 		}
-	    
-    }
+
+	}
+	private void spielSpeichern(){
+		
+		FileHandler filehandler = new FileHandler();
+		filehandler.save("spieler1", this.spieler1);
+		
+		
+	}
 }

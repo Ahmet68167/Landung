@@ -26,6 +26,10 @@ public class ControlZug {
     }
     
     public void macheZug(int[] start, int[] ziel) {
+    	
+    	
+    	
+    	
     	ziel = zieheZug(start, ziel);
     	this.controlSpiel.getSpielfeld().setzeSpielstein(this.controlSpiel.getIstDran().getSpielstein(), ziel);
     }

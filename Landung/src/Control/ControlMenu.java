@@ -12,8 +12,8 @@ public class ControlMenu {
 	private boolean bestOfThree = false;
 	private ControlEnum STATUS;
 
-	public ControlMenu(Main main, ControlEnum STATUS) {
-		this.STATUS = STATUS;
+	public ControlMenu(Main main) {
+		this.STATUS = Control.STATUS;
 		this.main = main;
 	    
 	}
@@ -92,7 +92,7 @@ public class ControlMenu {
 
 
 	private void ladeSpiel() {
-		STATUS = STATUS.SPIELLAEUFT;
+		STATUS = STATUS.SPIELVORBEREITUNG;
 	}
 
 	private void spielerGegenSpieler(String input) {
@@ -122,14 +122,14 @@ public class ControlMenu {
 	}
 
 	private void bestOfThree(String input) {
-		this.STATUS = STATUS.SPIELLAEUFT;
+		this.STATUS = STATUS.SPIELVORBEREITUNG;
 		this.bestOfOne = false;
 		this.bestOfThree = true;
 	
 	}
 
 	private void bestOfOne(String input) {
-		this.STATUS = STATUS.SPIELLAEUFT;
+		this.STATUS = STATUS.SPIELVORBEREITUNG;
 		this.bestOfOne = true;
 		this.bestOfThree = false;
 	
@@ -179,9 +179,7 @@ public class ControlMenu {
 		case BESTOFTHREE:
 
 			break;
-		case SPIELLAEUFT:
-
-			break;
+	
 
 		default: // Fehler ungültiger Status;
 			break;

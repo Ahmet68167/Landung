@@ -7,20 +7,20 @@ public class Control {
 	private ControlMenu controleMenu;
 	private ControlSpiel controlSpiel;
 	private Main main;
-	private ControlEnum STATUS;
+	static ControlEnum STATUS;
 
 	public Control(Main main) {
 		this.main = main;
 		this.STATUS = STATUS.HAUPTMENU;
-		this.controleMenu = new ControlMenu(main,this.STATUS);
-		this.controlSpiel = new ControlSpiel(main,this.STATUS);
+		this.controleMenu = new ControlMenu(main);
+		this.controlSpiel = new ControlSpiel(main);
 	
 
 	}
 
 	public void checkInput(String input) {
 
-		if (this.controleMenu.getSTATUS() == ControlEnum.SPIELLAEUFT) {
+		if (this.controleMenu.getSTATUS() == ControlEnum.SPIELVORBEREITUNG) {
 			if (this.controleMenu.isGegenKI()) {
 				if (this.controleMenu.isBestOfOne()) {
 					this.controlSpiel.starteSpiel(input, "KI", "BOO");
@@ -43,12 +43,12 @@ public class Control {
 	}
 
 	public void printStatus() {
-		if (this.controleMenu.getSTATUS() != ControlEnum.SPIELLAEUFT) {
+	
 			this.controleMenu.printStatus();
-		}else{
+	
 			this.controlSpiel.printStatus();
 			
-		}
+	
 	}
 
 	public boolean isBeendet() {
