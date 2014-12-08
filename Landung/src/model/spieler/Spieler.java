@@ -7,10 +7,14 @@ import model.spielstein.Spielstein;
 public abstract class Spieler {
 
 	private List<Spielstein> spielSteinListe;
-	private final String name;
+	private String name;
 	private int punkte;
 	private int gesamtpunkte;
-
+	
+	public Spieler() {
+		
+	}
+	
 	public Spieler(String name, List list) {
 		this.name = name;
 		this.spielSteinListe = list;

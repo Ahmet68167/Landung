@@ -6,6 +6,10 @@ public class KISpieler extends Spieler {
 
 	private int schwierigkeitsstufe;
 	
+	public KISpieler() {
+		
+	}
+	
 	public KISpieler(String name, List list, int schwierigkeitsstufe) {
 		super(name, list);
 		this.schwierigkeitsstufe = schwierigkeitsstufe;
