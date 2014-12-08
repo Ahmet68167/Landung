@@ -29,6 +29,10 @@ public abstract class Spieler {
 	public Spielstein getSpielstein() {
 		return this.spielSteinListe.remove(0);
 	}
+	
+	public char getSymbol() {
+		return this.spielSteinListe.get(0).getSymbol();
+	}
 
 	public boolean pruefeSpielstein(Spielstein spielstein){	
 	
