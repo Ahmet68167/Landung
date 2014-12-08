@@ -14,41 +14,22 @@ public class Control {
 		this.STATUS = STATUS.HAUPTMENU;
 		this.controleMenu = new ControlMenu(main);
 		this.controlSpiel = new ControlSpiel(main);
-	
 
 	}
 
 	public void checkInput(String input) {
 
-		if (this.controleMenu.getSTATUS() == ControlEnum.SPIELVORBEREITUNG) {
-			if (this.controleMenu.isGegenKI()) {
-				if (this.controleMenu.isBestOfOne()) {
-					this.controlSpiel.starteSpiel(input, "KI", "BOO");
-				} else if (this.controleMenu.isBestOfThree()) {
-					this.controlSpiel.starteSpiel(input, "KI", "BOT");
-				}
-
-			} else if (this.controleMenu.isGegenMensch()) {
-				if (this.controleMenu.isBestOfOne()) {
-					this.controlSpiel.starteSpiel(input, "MENSCH", "BOO");
-				} else if (this.controleMenu.isBestOfThree()) {
-					this.controlSpiel.starteSpiel(input, "MENSCH", "BOT");
-				}
-			}
-
-		} else {
-			this.controleMenu.checkInput(input);
-		}
+		this.setupControle();
+		this.controleMenu.checkInput(input);
+		this.controlSpiel.starteSpiel(input);
 
 	}
 
 	public void printStatus() {
-	
-			this.controleMenu.printStatus();
-	
-			this.controlSpiel.printStatus();
-			
-	
+
+		this.controleMenu.printStatus();
+		this.controlSpiel.printStatus();
+
 	}
 
 	public boolean isBeendet() {
@@ -58,4 +39,22 @@ public class Control {
 		return false;
 	}
 
+	private void setupControle() {
+		if (STATUS == STATUS.SPIELVORBEREITUNG) {
+			if (this.controleMenu.isGegenKI()) {
+				if (this.controleMenu.isBestOfOne()) {
+					this.controlSpiel.setTypModus("KI", "BOO");
+				} else if (this.controleMenu.isBestOfThree()) {
+					this.controlSpiel.setTypModus("KI", "BOT");
+				}
+
+			} else if (this.controleMenu.isGegenMensch()) {
+				if (this.controleMenu.isBestOfOne()) {
+					this.controlSpiel.setTypModus("MENSCH", "BOO");
+				} else if (this.controleMenu.isBestOfThree()) {
+					this.controlSpiel.setTypModus("MENSCH", "BOT");
+				}
+			}
+		}
+	}
 }

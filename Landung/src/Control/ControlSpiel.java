@@ -20,19 +20,6 @@ public class ControlSpiel {
 	private String nameSpieler2;
 	private char symbol1 = 'A';
 	private char symbol2 = 'Z';	
-	/**
-	 * @return the rundeSpiel
-	 */
-	protected int getRundeSpiel() {
-		return rundeSpiel;
-	}
-
-	/**
-	 * @param rundeSpiel the rundeSpiel to set
-	 */
-	protected void setRundeSpiel(int rundeSpiel) {
-		this.rundeSpiel = rundeSpiel;
-	}
 
 	private String typ;
 	private String modus;
@@ -58,17 +45,19 @@ public class ControlSpiel {
 		this.controlZug = new ControlZug(this);
 	}
 
-	public void starteSpiel(String input, String typ, String modus) {
+
+	public void starteSpiel(String input) {
 		
-	
+
 	
 		switch (Control.STATUS) {
 		case LADEN:
+			System.out.println("tst");
 			this.ladeSpiel();
 			break;
 		
 		case SPIELVORBEREITUNG:
-			this.setTypModus(typ, modus);
+			
 			this.setSpielerNamen(input);
 			this.initSpielMaterial();
 			this.startSpieler();
@@ -76,6 +65,7 @@ public class ControlSpiel {
 			break;
 		case SPIELRUNDE: // ;
 		    this.controlZug.macheZug(input);
+		    this.main.getOutput().print("Spielfeld"+this.spielfeld.toString());
 			this.naechsterSpieler();
 			
 			break;
@@ -104,9 +94,6 @@ public class ControlSpiel {
 		
 		this.spieler1 = fileHandler.load("spieler1.save", this.spieler1);
 		
-		System.out.println(this.spieler1.getName());
-		
-		
 		Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
 	}
 
@@ -125,7 +112,7 @@ public class ControlSpiel {
 		this.istDran = istDran;
 	}
 
-	private void setTypModus(String typ, String modus) {
+	void setTypModus(String typ, String modus) {
 		if (this.typ == null && this.modus == null) {
 
 			this.typ = typ;
@@ -245,5 +232,19 @@ public class ControlSpiel {
 		}
 
 	}
+	/**
+	 * @return the rundeSpiel
+	 */
+	protected int getRundeSpiel() {
+		return rundeSpiel;
+	}
+
+	/**
+	 * @param rundeSpiel the rundeSpiel to set
+	 */
+	protected void setRundeSpiel(int rundeSpiel) {
+		this.rundeSpiel = rundeSpiel;
+	}
+
 
 }
