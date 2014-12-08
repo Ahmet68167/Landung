@@ -1,25 +1,27 @@
 package Control;
 
-import java.util.LinkedList;
-
+import java.util.List;
 import Main.Main;
 import model.spieler.MenschSpieler;
 import model.spieler.Spieler;
+import model.spielfeld.Spielfeld;
 import model.spielstein.Spielstein;
 
 public class ControlSpiel {
 
 	private Main main;
-	private String nameSpieler1;
-	private String nameSpieler2;
-
 	private ControlZug controlZug;
 	private int runde = 0;
 	Spieler spieler1;
 	Spieler spieler2;
+	private String nameSpieler1;
+	private String nameSpieler2;
+	private char symbol1 = 'A';
+	private char symbol2 = 'Z';
 	private ControlEnum STATUS;
 	private String typ;
 	private String modus;
+	private Spielfeld spielfeld;
 
 	public ControlSpiel(Main main) {
 		this.STATUS = STATUS.SPIELVORBEREITUNG;
@@ -39,7 +41,11 @@ public class ControlSpiel {
 		case SPIELRUNDE: // ;
 			this.controlZug.nexterZug();
 			break;
-
+		case SPIELRUNDENENDE:
+			this.runde--;
+			
+			break;
+			
 		default: // Fehler ungültiger Status;
 			break;
 		}
@@ -66,15 +72,24 @@ public class ControlSpiel {
 	}
 
 	private void initSpielMaterial() {
-		if (nameSpieler1 != null && nameSpieler2 != null) {
-			LinkedList<Spielstein> tmp = new LinkedList<>();
-			tmp.add(new Spielstein('X'));
-			tmp.add(new Spielstein('X'));
-			this.spieler1 = new MenschSpieler(nameSpieler1, tmp);
-			this.spieler2 = new MenschSpieler(nameSpieler2, tmp);
+		if (nameSpieler1 != null && nameSpieler2 != null) {		
+	
+			this.spieler1 = new MenschSpieler(nameSpieler1,getSpielsteinListe(this.symbol1));
+			this.spieler2 = new MenschSpieler(nameSpieler2,getSpielsteinListe(this.symbol2));
+		}
+		if(this.spielfeld == null){
+			
+			this.spielfeld = new Spielfeld();
+			
 		}
 
 	}
+
+	private List<Spielstein> getSpielsteinListe(char sym) {
+		Spielstein liste = new Spielstein(sym);			
+		return liste.getSpielsteinListe(9);
+	}
+
 
 	private void setSpielerNamen(String input) {
 
@@ -113,5 +128,26 @@ public class ControlSpiel {
 		default: // Fehler ungültiger Status;
 			break;
 		}
+	}
+
+	/**
+	 * @return the spieler1
+	 */
+	protected Spieler getSpieler1() {
+		return spieler1;
+	}
+
+	/**
+	 * @return the spieler2
+	 */
+	protected Spieler getSpieler2() {
+		return spieler2;
+	}
+
+	/**
+	 * @return the spielfeld
+	 */
+	protected Spielfeld getSpielfeld() {
+		return spielfeld;
 	}
 }
