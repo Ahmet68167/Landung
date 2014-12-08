@@ -102,7 +102,8 @@ public class ControlSpiel {
 			this.nameSpieler2 = input;
 
 		} else if (this.nameSpieler2 != null && this.nameSpieler1 != null) {
-
+			this.main.getOutput().print("Spieler 1:"+this.nameSpieler1);
+			this.main.getOutput().print("Spieler 2:"+this.nameSpieler2);
 			this.STATUS = STATUS.SPIELRUNDE;
 		}
 	}
