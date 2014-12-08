@@ -75,7 +75,7 @@ public class ControlSpiel {
 			this.spielSpeichern();
 			break;
 		case SPIELRUNDE: // ;
-			//this.controlZug.nexterZug();
+		    this.controlZug.macheZug(input);
 			this.naechsterSpieler();
 			
 			break;
@@ -103,6 +103,8 @@ public class ControlSpiel {
 		FileHandler fileHandler = new FileHandler();
 		
 		this.spieler1 = fileHandler.load("spieler1.save", this.spieler1);
+		
+		System.out.println(this.spieler1.getName());
 		
 		
 		Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;

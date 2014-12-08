@@ -10,6 +10,7 @@ public class ControlZug {
 
 	public ControlZug(ControlSpiel controlSpiel) {
 	   this.controlSpiel = controlSpiel;
+	
     }
 
 	public void nexterZug() {
