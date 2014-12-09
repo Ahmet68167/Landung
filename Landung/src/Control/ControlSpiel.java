@@ -53,7 +53,10 @@ public class ControlSpiel {
 		switch (Control.STATUS) {
 		case LADEN:
 		
-			break;		
+			break;	
+		case SPEICHERN:
+			
+			break;
 		case SPIELVORBEREITUNG:			
 			this.setSpielerNamen(input);
 			this.initSpielMaterial();
