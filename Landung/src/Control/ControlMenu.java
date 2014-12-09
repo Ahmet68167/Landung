@@ -132,7 +132,7 @@ public class ControlMenu {
 
 	private void ladeHighscore() {
 		
-		this.main.getOutput().print(this.main.getHighscore().toString());
+		this.main.getOutput().print(""+this.main.getHighscore().toString());
 		Control.STATUS= Control.STATUS.HAUPTMENU;
 
 	}
