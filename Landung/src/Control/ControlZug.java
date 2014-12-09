@@ -12,8 +12,20 @@ public class ControlZug {
 	   this.controlSpiel = controlSpiel;
     }
 
-	public void nexterZug() {
-	    
+	public void naechsterZug(String eingabe) {
+		if(!istZugMoeglich() && this.controlSpiel.getRundeZug() > 2) {
+    		this.controlSpiel.naechsterSpieler();
+    		this.controlSpiel.main.getOutput().print(this.controlSpiel.getIstDran().getName() + " hat gewonnen.");
+    		Control.STATUS =Control.STATUS.HAUPTMENU;
+    	} else {
+		
+    		if(macheZug(eingabe)) {
+	    	
+    			this.controlSpiel.setRundeZug(this.controlSpiel.getRundeZug() + 1);
+    			this.controlSpiel.naechsterSpieler();
+    		}
+    	}
+		
     }
 	
     private boolean hattSpielsteine(Spieler spieler){
@@ -29,13 +41,6 @@ public class ControlZug {
     	int[] ziel = new int[2];
     	int[] entf = new int[2];
     	
-    	/*
-    	if(!istZugMoeglich()) {
-    		Control.STATUS =Control.STATUS.HAUPTMENU;
-    		return false;
-    	}
-    	*/
-    	
     	if(this.controlSpiel.getRundeZug() < 3) {
     	
     		if(eingabe.length() == 2) { 			
@@ -45,7 +50,6 @@ public class ControlZug {
     				return false;
     			
     			this.controlSpiel.getSpielfeld().setzeSpielstein(this.controlSpiel.getIstDran().getSpielstein(), start);
-    			this.controlSpiel.setRundeZug(this.controlSpiel.getRundeZug() + 1);
     			return true;
     		}
     		 return false;
@@ -68,7 +72,6 @@ public class ControlZug {
         		ziel = zieheZug(start, ziel);
         		
             	this.controlSpiel.getSpielfeld().setzeSpielstein(this.controlSpiel.getIstDran().getSpielstein(), ziel);
-            	this.controlSpiel.setRundeZug(this.controlSpiel.getRundeZug() + 1);
             	return true;
         	}
     		return false;
@@ -92,7 +95,6 @@ public class ControlZug {
         		
         		ziel = zieheZug(start, ziel);
         		this.controlSpiel.getSpielfeld().setzeSpielstein(this.controlSpiel.getSpielfeld().entferneSpielstein(entf), ziel);
-        		this.controlSpiel.setRundeZug(this.controlSpiel.getRundeZug() + 1);
         		return true;
     		}
     		return false;
