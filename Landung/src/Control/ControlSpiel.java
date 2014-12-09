@@ -18,8 +18,8 @@ public class ControlSpiel {
 	Spieler spieler2;
 	private String nameSpieler1;
 	private String nameSpieler2;
-	private char symbol1 = 'A';
-	private char symbol2 = 'Z';	
+	private char symbol1 = 'X';
+	private char symbol2 = 'O';	
 
 	private String typ;
 	private String modus;

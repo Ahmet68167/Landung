@@ -20,9 +20,13 @@ public class ControlZug {
     	} else {
 		
     		if(macheZug(eingabe)) {
-	    	
-    			this.controlSpiel.setRundeZug(this.controlSpiel.getRundeZug() + 1);
-    			this.controlSpiel.naechsterSpieler();
+    			if(gewonnen()) {
+    				this.controlSpiel.main.getOutput().print(this.controlSpiel.getIstDran().getName() + " hat gewonnen.");
+    				Control.STATUS =Control.STATUS.HAUPTMENU;
+    			} else {
+    				this.controlSpiel.setRundeZug(this.controlSpiel.getRundeZug() + 1);
+    				this.controlSpiel.naechsterSpieler();
+    			}
     		}
     	}
 		
@@ -247,6 +251,34 @@ public class ControlZug {
 		}
 		
 		return ziel;
+	}
+	
+	public boolean gewonnen() {
+		int[] pos = new int[2];
+		int anzahl = 0;
+		
+		for(int k = 0; k < 5; k++) {
+			for(int i = 0; i < 2; i++) {
+				
+				pos[0] = k;
+				pos[1] = i;
+				
+				for(int n = 0; n < 4; n++) {
+					if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
+					pos[1] = i+1;
+					anzahl++;
+					}
+				}
+				
+				if(anzahl >= 4) {
+					return true;
+				} else
+					anzahl = 0;
+				
+			}
+		}
+		
+		return false;
 	}
 	
 	public static boolean gueltigeEingabe(String eingabe) {
