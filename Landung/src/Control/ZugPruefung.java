@@ -58,7 +58,7 @@ public class ZugPruefung {
 	
 	public boolean gueltigerZug(int[] start, int[] ziel) {
 		// Pruefe start  FEHLER BEI Spieler.getSpielstein zu oft remove!!!!!
-		if(spielfeld.getSpielstein(start).getSymbol() != 'X')
+		if(spielfeld.fetchSpielstein(start).getSymbol() != 'X')
 			return false;
 		
 		// Pruefe ziel

@@ -94,7 +94,7 @@ public class ControlZug {
         		
         		ziel = zieheZug(start, ziel);
         		
-        		if(this.controlSpiel.getSpielfeld().getSpielstein(entf).getSymbol() != this.controlSpiel.getIstDran().getSymbol())
+        		if(this.controlSpiel.getSpielfeld().fetchSpielstein(entf).getSymbol() != this.controlSpiel.getIstDran().getSymbol())
         			return false;
         		
         		ziel = zieheZug(start, ziel);
@@ -134,7 +134,7 @@ public class ControlZug {
 	
 	public boolean gueltigerZug(int[] start, int[] ziel) {
 		// Pruefe start 
-		if(this.controlSpiel.getSpielfeld().getSpielstein(start).getSymbol() != 
+		if(this.controlSpiel.getSpielfeld().fetchSpielstein(start).getSymbol() != 
 				this.controlSpiel.getIstDran().getSymbol())
 			return false;
 		
@@ -271,7 +271,7 @@ public class ControlZug {
 				pos[1] = i;
 				
 				for(int n = 0; n < 4; n++) {
-					if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
+					if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().fetchSpielstein(pos).getSymbol()) {
 					pos[1] += 1;
 					anzahl++;
 					}
@@ -286,7 +286,7 @@ public class ControlZug {
 				pos[1] = k;
 				
 				for(int n = 0; n < 4; n++) {
-					if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
+					if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().fetchSpielstein(pos).getSymbol()) {
 					pos[0] += 1;
 					anzahl++;
 					}
@@ -304,56 +304,56 @@ public class ControlZug {
 			pos[0] = i;
 			pos[1] = i + 1;
 			
-			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
+			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().fetchSpielstein(pos).getSymbol()) {
 				anzahl++;
 			}
 			
 			pos[0] = i + 1;
 			pos[1] = i;
 			
-			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
+			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().fetchSpielstein(pos).getSymbol()) {
 				anzahl2++;
 			}
 			
 			pos[0] = i;
 			pos[1] = 3 - i;
 			
-			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
+			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().fetchSpielstein(pos).getSymbol()) {
 				anzahl3++;
 			}
 			
 			pos[0] = i + 1;
 			pos[1] = 4 - i;
 			
-			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
+			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().fetchSpielstein(pos).getSymbol()) {
 				anzahl4++;
 			}
 			
 			pos[0] = i;
 			pos[1] = i;
 			
-			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
+			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().fetchSpielstein(pos).getSymbol()) {
 				anzahl5++;
 			}
 			
 			pos[0] = i + 1;
 			pos[1] = i + 1;
 			
-			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
+			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().fetchSpielstein(pos).getSymbol()) {
 				anzahl6++;
 			}
 			
 			pos[0] = i;
 			pos[1] = 4 - i;
 			
-			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
+			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().fetchSpielstein(pos).getSymbol()) {
 				anzahl7++;
 			}
 			
 			pos[0] = i + 1;
 			pos[1] = 3 - i;
 			
-			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
+			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().fetchSpielstein(pos).getSymbol()) {
 				anzahl8++;
 			}
 			

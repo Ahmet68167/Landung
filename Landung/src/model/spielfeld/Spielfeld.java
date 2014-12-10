@@ -15,6 +15,7 @@ public class Spielfeld {
 		this.spielbrett = spielbrett;
 	}
 
+
 	public Spielfeld(int groesse) {
 		this.groesse = groesse;
 		initialisiereSpielbrett();
@@ -38,12 +39,13 @@ public class Spielfeld {
 			}		
 		}
 	}
+
 	
 	public void setzeSpielstein(Spielstein spielstein, int[] pos) {
 		this.spielbrett[pos[0]][pos[1]] = spielstein;
 	}
 	
-	public Spielstein getSpielstein(int[] pos) {
+	public Spielstein fetchSpielstein(int[] pos) {
 		return this.spielbrett[pos[0]][pos[1]];
 	}
 	
@@ -53,7 +55,7 @@ public class Spielfeld {
 	
 	public Spielstein entferneSpielstein(int[] pos) {
 		Spielstein spielstein;
-		spielstein = getSpielstein(pos);
+		spielstein = fetchSpielstein(pos);
 		this.spielbrett[pos[0]][pos[1]] = LEER;
 		return spielstein;
 	}
@@ -112,11 +114,9 @@ public class Spielfeld {
 			
 			for (int spalte = 0; spalte < this.spielbrett[zeile].length ; spalte++) {
 				txt += this.spielbrett[spalte][this.spielbrett[zeile].length - 1 - zeile].getSymbol() + " ";
-			}
-			
+			}			
 			txt += "\n";
-		}
-		
+		}		
 		txt += "  a b c d e";
 		
 		return txt;
