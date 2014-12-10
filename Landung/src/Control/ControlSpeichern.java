@@ -13,7 +13,36 @@ public class ControlSpeichern {
 	Spielfeld  spielfeld;
 	String typ;
 	private Spieler istDran;
-	private int runde;
+	private int rundeZug;
+	private int rundeSpiel;
+	/**
+	 * @return the rundeZug
+	 */
+	public int getRundeZug() {
+		return rundeZug;
+	}
+
+	/**
+	 * @param rundeZug the rundeZug to set
+	 */
+	public void setRundeZug(int rundeZug) {
+		this.rundeZug = rundeZug;
+	}
+
+	/**
+	 * @return the rundeSpiel
+	 */
+	public int getRundeSpiel() {
+		return rundeSpiel;
+	}
+
+	/**
+	 * @param rundeSpiel the rundeSpiel to set
+	 */
+	public void setRundeSpiel(int rundeSpiel) {
+		this.rundeSpiel = rundeSpiel;
+	}
+
 	private Spielstein[][] spielbrett;
 	private Date speicherDatum;
 	String modus;
@@ -77,15 +106,10 @@ public class ControlSpeichern {
 	public Spieler getIstDran() {
 		return istDran;
 	}
-	public int getRunde() {
-		return runde;
-	}
+
 	public void setSpieler2(Spieler spieler2) {
 		this.spieler2 = spieler2;
 	}
-	public void setRunde(int runde) {
-	   this.runde= runde;	    
-    }
 
 	public void setIstDran(Spieler istDran) {
 	   this.istDran = istDran;	    

@@ -13,17 +13,22 @@ public class ControlZug {
     }
 
 	public void naechsterZug(String eingabe) {
+	
 		if(!istZugMoeglich() && this.controlSpiel.getRundeZug() > 2) {
+			
     		this.controlSpiel.naechsterSpieler();
     		this.controlSpiel.main.getOutput().print(this.controlSpiel.getIstDran().getName() + " hat gewonnen.");
     		Control.STATUS =Control.STATUS.HAUPTMENU;
     	} else {
-		
+    	
     		if(macheZug(eingabe)) {
+    		
     			if(gewonnen()) {
+    				
     				this.controlSpiel.main.getOutput().print(this.controlSpiel.getIstDran().getName() + " hat gewonnen.");
     				Control.STATUS =Control.STATUS.HAUPTMENU;
     			} else {
+    			
     				this.controlSpiel.setRundeZug(this.controlSpiel.getRundeZug() + 1);
     				this.controlSpiel.naechsterSpieler();
     			}
@@ -41,18 +46,19 @@ public class ControlZug {
     }
     
     public boolean macheZug(String eingabe) {
+    
     	int[] start = new int[2];
     	int[] ziel = new int[2];
     	int[] entf = new int[2];
     	
     	if(this.controlSpiel.getRundeZug() < 3) {
-    	
+    
     		if(eingabe.length() == 2) { 			
     			start = getKoordinaten(eingabe);
-    			
-    			if(!this.controlSpiel.getSpielfeld().isEmpty(start))
-    				return false;
-    			
+        		
+    		//	if(!this.controlSpiel.getSpielfeld().isEmpty(start)){
+    		//		return false;}
+      			
     			this.controlSpiel.getSpielfeld().setzeSpielstein(this.controlSpiel.getIstDran().getSpielstein(), start);
     			return true;
     		}
@@ -135,9 +141,9 @@ public class ControlZug {
 	public boolean gueltigerZug(int[] start, int[] ziel) {
 		// Pruefe start 
 		if(this.controlSpiel.getSpielfeld().fetchSpielstein(start).getSymbol() != 
-				this.controlSpiel.getIstDran().getSymbol())
+				this.controlSpiel.getIstDran().getSymbol())				
 			return false;
-		
+	
 		// Pruefe ziel
 		if(!this.controlSpiel.getSpielfeld().isEmpty(ziel))
 			return false;

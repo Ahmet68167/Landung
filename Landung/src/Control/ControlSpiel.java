@@ -72,6 +72,7 @@ public class ControlSpiel {
 			if (input.equals("speichern")) {
 				this.spielSpeichern();
 			} else {
+				
 				this.controlZug.naechsterZug(input);
 				this.main.getOutput().print(this.spielfeld.toString());
 			}
@@ -96,12 +97,12 @@ public class ControlSpiel {
 		conSp.setSpieler1(spieler1);
 		conSp.setSpieler2(spieler2);
 		conSp.setSpielfeld(spielfeld);
-		conSp.setRunde(this.rundeSpiel);
+		conSp.setRundeSpiel(this.rundeSpiel);
+		conSp.setRundeZug(this.rundeZug);
 		conSp.setSpielbrett(spielfeld.getSpielbrett());
 		conSp.setIstDran(this.istDran);
 		conSp.setSpeicherDatum(new Date());
 		FileHandler filehandler = new FileHandler();
-
 		filehandler.save(this.filename+""+num, conSp);
 
 	}
@@ -120,8 +121,9 @@ public class ControlSpiel {
 			this.spieler1 = conSp.getSpieler1();
 			this.spieler2 = conSp.getSpieler2();
 			this.spielfeld = conSp.getSpielfeld();
-			this.rundeSpiel = conSp.getRunde();
-			this.istDran = conSp.getIstDran();
+			this.rundeSpiel = conSp.getRundeSpiel();
+			this.rundeZug  = conSp.getRundeZug();
+			this.istDran = conSp.getIstDran();			
 			this.spielfeld.setSpielbrett(conSp.getSpielbrett());
 
 			Control.STATUS = Control.STATUS.SPIELRUNDE;
