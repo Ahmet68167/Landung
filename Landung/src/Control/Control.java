@@ -10,17 +10,19 @@ public class Control {
 	public Control(Main main) {
 		this.main = main;
 		this.STATUS = STATUS.HAUPTMENU;
-		this.controleMenu = new ControlMenu(main);
+		this.controleMenu = new ControlMenu(main,this);
 		this.controlSpiel = new ControlSpiel(main);
 	}
-	public void checkInput(String input) {
+	public void checkInput(String input) {		
+		
 		this.setupControle();
 		this.controleMenu.checkInput(input);
 		this.controlSpiel.starteSpiel(input);
 	}
 	public void printStatus() {
-		this.controleMenu.printStatus();
 		this.controlSpiel.printStatus();
+		this.controleMenu.printStatus();
+	
 	}
 	public boolean isBeendet() {
 		if (this.controleMenu.getSTATUS() == ControlEnum.ENDE) {
@@ -28,7 +30,7 @@ public class Control {
 		}
 		return false;
 	}
-	private void setupControle() {
+	protected void setupControle() {
 		if (STATUS == STATUS.SPIELVORBEREITUNG) {
 			if (this.controleMenu.isGegenKI()) {
 				if (this.controleMenu.isBestOfOne()) {

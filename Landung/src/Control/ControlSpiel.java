@@ -59,8 +59,8 @@ public class ControlSpiel {
 			Control.STATUS = Control.STATUS.LADEN;
 			break;
 		case LADEN:
-		    this.ladeSpiel(input);		
-			
+			this.ladeSpiel(input);
+
 			break;
 		case SPIELVORBEREITUNG:
 			this.setSpielerNamen(input);
@@ -72,7 +72,7 @@ public class ControlSpiel {
 			if (input.equals("speichern")) {
 				this.spielSpeichern();
 			} else {
-				
+				this.main.getOutput().print("Letzter Befehl:" + input);
 				this.controlZug.naechsterZug(input);
 				this.main.getOutput().print(this.spielfeld.toString());
 			}
@@ -103,16 +103,16 @@ public class ControlSpiel {
 		conSp.setIstDran(this.istDran);
 		conSp.setSpeicherDatum(new Date());
 		FileHandler filehandler = new FileHandler();
-		filehandler.save(this.filename+""+num, conSp);
-
+		filehandler.save(this.filename + "" + num, conSp);
+		this.main.getOutput().print("Spiel gespeichert");
 	}
 
 	private void ladeSpiel(String num) {
-		
-		String name =this.filename+num;	
-		
-		if (fileExists(name)) {
 
+		String name = this.filename + num;
+
+		if (fileExists(name)) {
+			this.main.getOutput().print("Spiel geladen");
 			ControlSpeichern conSp = new ControlSpeichern();
 			FileHandler fileHandler = new FileHandler();
 			conSp = fileHandler.load(name, conSp);
@@ -122,13 +122,13 @@ public class ControlSpiel {
 			this.spieler2 = conSp.getSpieler2();
 			this.spielfeld = conSp.getSpielfeld();
 			this.rundeSpiel = conSp.getRundeSpiel();
-			this.rundeZug  = conSp.getRundeZug();
-			this.istDran = conSp.getIstDran();			
+			this.rundeZug = conSp.getRundeZug();
+			this.istDran = conSp.getIstDran();
 			this.spielfeld.setSpielbrett(conSp.getSpielbrett());
 
 			Control.STATUS = Control.STATUS.SPIELRUNDE;
 		} else {
-
+			this.main.getOutput().print("kein Spiel geladen");
 			Control.STATUS = Control.STATUS.HAUPTMENU;
 		}
 	}
@@ -195,42 +195,21 @@ public class ControlSpiel {
 	private void setSpielerNamen(String input) {
 
 		if (this.nameSpieler1 == null && input.length() > 0) {
-
 			this.nameSpieler1 = input;
-
 		} else if (this.nameSpieler2 == null && input.length() > 0) {
-
 			this.nameSpieler2 = input;
-
-		} else if (this.nameSpieler2 != null && this.nameSpieler1 != null) {
-			this.main.getOutput().print("Spieler 1:" + this.nameSpieler1);
-			this.main.getOutput().print("Spieler 2:" + this.nameSpieler2);
-
 		}
 	}
 
 	public void printStatus() {
 		switch (Control.STATUS) {
 
-		case SPIELVORBEREITUNG:
-			if (this.nameSpieler1 == null) {
-				this.main.getOutput().print(
-				        "Bitte Namen fuer Spieler 1 eingeben.\n");
-
-			} else if (this.nameSpieler2 == null) {
-				this.main.getOutput().print(
-				        "Bitte Namen fuer Spieler 2 eingeben.\n");
-
-			}
-			break;
 		case SPIELRUNDE: // ;
-			this.main.getOutput().print("Name: " + istDran.getName());
+			this.main.getOutput().print("Spieler: " + istDran.getName());
 			break;
 		case SPIELENDE:
-
 			break;
 		case LADEN:
-		
 			break;
 		default: // Fehler ungültiger Status;
 			break;
@@ -266,19 +245,19 @@ public class ControlSpiel {
 			} else {
 				this.istDran = this.spieler2;
 			}
+			this.main.getOutput().print("Startspieler: "+this.istDran);
 			Control.STATUS = Control.STATUS.SPIELRUNDE;
 		}
 	}
 
 	private void printListeSpielstaende() {
-        List<String> list = leseListeSpielstaende();
+		List<String> list = leseListeSpielstaende();
 		ControlSpeichern conSp = new ControlSpeichern();
 		FileHandler fileHandler = new FileHandler();
-		Date date ;
+		Date date;
 		this.main.getOutput().print("\nbSpielstaende\n-------------");
 		int i = 0;
 		for (String str : list) {
-						
 			conSp = fileHandler.load(str, conSp);
 			this.main.getOutput().print(
 			        "[" + i + "] Spielstand vom "
@@ -290,13 +269,13 @@ public class ControlSpiel {
 
 	private List<String> leseListeSpielstaende() {
 		List<String> list = new ArrayList();
-	
+
 		for (int i = 0; i < 100; i++) {
-			
-			File f = new File(this.filename+""+i);
+
+			File f = new File(this.filename + "" + i);
 			if (f.exists() && !f.isDirectory()) {
-			
-				list.add(this.filename+""+i);
+
+				list.add(this.filename + "" + i);
 			}
 		}
 		return list;
@@ -308,7 +287,6 @@ public class ControlSpiel {
 		} else {
 			this.istDran = spieler1;
 		}
-
 	}
 
 	/**

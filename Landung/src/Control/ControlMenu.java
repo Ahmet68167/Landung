@@ -6,20 +6,17 @@ import Main.Main;
 
 public class ControlMenu {
 	// Speichert
-
 	private Main main;
 	private boolean gegenKI = false;
 	private boolean gegenMensch = false;
 	private boolean bestOfOne = false;
 	private boolean bestOfThree = false;
+	private Control control;
 	
-
-	public ControlMenu(Main main) {
-	 
-		this.main = main;
-	    
+	public ControlMenu(Main main, Control control) {
+		this.control = control;
+		this.main = main;	    
 	}
-
 	public void checkInput(String input) {
 
 		if (input != null) {
@@ -30,8 +27,7 @@ public class ControlMenu {
 				break;
 			case NEUESSPIEL:
 				this.neuesSpiel(input);
-				break;
-		
+				break;		
 			case SvsS:
 				this.spielerGegenSpieler(input);
 				break;
@@ -40,11 +36,10 @@ public class ControlMenu {
 				break;
 			case BESTOFONE:
 				this.bestOfOne(input);
-
 				break;
 			case BESTOFTHREE:
 				this.bestOfThree(input);
-				break;			
+				break;		
 
 			default: // Fehler ungültiger Status;
 				break;
@@ -115,7 +110,7 @@ public class ControlMenu {
 		} else if (input.equals("c")) {
 			Control.STATUS= Control.STATUS.HAUPTMENU;
 		}
-
+		
 	}
 
 	private void bestOfThree(String input) {
@@ -123,13 +118,15 @@ public class ControlMenu {
 		this.bestOfOne = false;
 		this.bestOfThree = true;
 	
+
 	}
 
 	private void bestOfOne(String input) {
 		Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
 		this.bestOfOne = true;
-		this.bestOfThree = false;
+		this.bestOfThree = false;	
 	
+
 	}
 
 	private void ladeHighscore() {
@@ -140,42 +137,40 @@ public class ControlMenu {
 	}
 
 	public void printStatus() {
-
-		this.main.getOutput().print(Control.STATUS.getName(), "console");
-
+		
 		switch (Control.STATUS) {
 		case HAUPTMENU:
+			this.main.getOutput().print(Control.STATUS.getName(), "console");
 			this.main.getOutput().print("[a]  Neues Spiel", "console");
 			this.main.getOutput().print("[b]  Laden", "console");
 			this.main.getOutput().print("[c]  Highscore", "console");
 			this.main.getOutput().print("[d]  Beenden", "console");
-
 			break;
 		case NEUESSPIEL:
+			this.main.getOutput().print(Control.STATUS.getName(), "console");
 			this.main.getOutput().print("[a]  Spieler gegen Spieler", "console");
 			this.main.getOutput().print("[b]  Spieler gegen KI", "console");
 			this.main.getOutput().print("[c]  Zurück", "console");
-
-			break;
-	
+			break;	
 		case SvsS:
+			this.main.getOutput().print(Control.STATUS.getName(), "console");
 			this.main.getOutput().print("[a]  Best of One", "console");
 			this.main.getOutput().print("[b]  Best of Three", "console");
 			this.main.getOutput().print("[c]  Zurück", "console");
 			break;
 		case SvsKI:
+			this.main.getOutput().print(Control.STATUS.getName(), "console");
 			this.main.getOutput().print("[a]  Best of One", "console");
 			this.main.getOutput().print("[b]  Best of Three", "console");
 			this.main.getOutput().print("[c]  Zurück", "console");
 			break;
+		
 		case BESTOFONE:
-
+			
 			break;
-		case BESTOFTHREE:
-
+		case BESTOFTHREE:	
+			
 			break;
-	
-
 		default: // Fehler ungültiger Status;
 			break;
 		}
