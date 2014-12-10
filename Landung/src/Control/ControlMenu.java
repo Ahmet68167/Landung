@@ -1,5 +1,7 @@
 package Control;
 
+
+
 import Main.Main;
 
 public class ControlMenu {
@@ -76,7 +78,7 @@ public class ControlMenu {
 			this.ladeHighscore();
 			// Laden
 		} else if (input.equals("b")) {
-			Control.STATUS = Control.STATUS.LADEN;
+			Control.STATUS = Control.STATUS.LADENAUSWAHL;
 
 		} else if (input.equals("a")) {
 			Control.STATUS = Control.STATUS.NEUESSPIEL;
@@ -143,30 +145,28 @@ public class ControlMenu {
 
 		switch (Control.STATUS) {
 		case HAUPTMENU:
-			this.main.getOutput().print("a)  Neues Spiel", "console");
-			this.main.getOutput().print("b)  Laden", "console");
-			this.main.getOutput().print("c)  Highscore", "console");
-			this.main.getOutput().print("d)  Beenden", "console");
+			this.main.getOutput().print("[a]  Neues Spiel", "console");
+			this.main.getOutput().print("[b]  Laden", "console");
+			this.main.getOutput().print("[c]  Highscore", "console");
+			this.main.getOutput().print("[d]  Beenden", "console");
 
 			break;
 		case NEUESSPIEL:
-			this.main.getOutput().print("a)  Spieler gegen Spieler", "console");
-			this.main.getOutput().print("b)  Spieler gegen KI", "console");
-			this.main.getOutput().print("c)  Zurück", "console");
+			this.main.getOutput().print("[a]  Spieler gegen Spieler", "console");
+			this.main.getOutput().print("[b]  Spieler gegen KI", "console");
+			this.main.getOutput().print("[c]  Zurück", "console");
 
 			break;
-		case LADEN: // ;
-			this.main.getOutput().print("Spiel laden.");
-			break;
+	
 		case SvsS:
-			this.main.getOutput().print("a)  Best of One", "console");
-			this.main.getOutput().print("b)  Best of Three", "console");
-			this.main.getOutput().print("c)  Zurück", "console");
+			this.main.getOutput().print("[a]  Best of One", "console");
+			this.main.getOutput().print("[b]  Best of Three", "console");
+			this.main.getOutput().print("[c]  Zurück", "console");
 			break;
 		case SvsKI:
-			this.main.getOutput().print("a)  Best of One", "console");
-			this.main.getOutput().print("b)  Best of Three", "console");
-			this.main.getOutput().print("c)  Zurück", "console");
+			this.main.getOutput().print("[a]  Best of One", "console");
+			this.main.getOutput().print("[b]  Best of Three", "console");
+			this.main.getOutput().print("[c]  Zurück", "console");
 			break;
 		case BESTOFONE:
 
@@ -180,6 +180,7 @@ public class ControlMenu {
 			break;
 		}
 	}
+
 
 	/**
 	 * @return the gegenKI

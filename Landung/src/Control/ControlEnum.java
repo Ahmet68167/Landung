@@ -8,7 +8,9 @@ public enum ControlEnum {
 	        "Best of One"), BESTOFTHREE("Best of Three"), STARTESPIEL(
 	        "Starte das Spiel"), SPIELLAEUFT("Spiel laeuft"), ENDE("Ende"), SPIELERNAMENEINGEBEN(
 	        "Spieler namen eingeben"), SPIELVORBEREITUNG("Spielvorbereitung"), SPIELEINSTELLUNGEN(
-	        "Spieleinstellungen"), SPIELRUNDE("Spielrunde"), SPIELRUNDENENDE("Ende der Spielrunde"), SPIELENDE("Spiel beendet"), SPEICHERN("Spiel speichern");
+	        "Spieleinstellungen"), SPIELRUNDE("Spielrunde"), SPIELRUNDENENDE(
+	        "Ende der Spielrunde"), SPIELENDE("Spiel beendet"), SPEICHERN(
+	        "Spiel speichern"), LADENAUSWAHL("Liste Spielstaende");
 
 	private String name;
 

@@ -1,5 +1,8 @@
 package Control;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import speichern.FileHandler;
@@ -26,6 +29,7 @@ public class ControlSpiel {
 	private Spielfeld spielfeld;
 	private Spieler istDran;
 	private int rundeZug = 1;
+	private String filename = "saveFile";
 
 	/**
 	 * @return the rundeZug
@@ -50,20 +54,24 @@ public class ControlSpiel {
 	public void starteSpiel(String input) {
 
 		switch (Control.STATUS) {
+		case LADENAUSWAHL:
+			this.printListeSpielstaende();
+			Control.STATUS = Control.STATUS.LADEN;
+			break;
 		case LADEN:
-			this.ladeSpiel();
-			Control.STATUS = Control.STATUS.SPIELRUNDE;
-			break;	
+		    this.ladeSpiel(input);		
+			
+			break;
 		case SPIELVORBEREITUNG:
 			this.setSpielerNamen(input);
 			this.initSpielMaterial();
 			this.startSpieler();
-		
+
 			break;
-		case SPIELRUNDE: 
+		case SPIELRUNDE:
 			if (input.equals("speichern")) {
 				this.spielSpeichern();
-			}else {
+			} else {
 				this.controlZug.naechsterZug(input);
 				this.main.getOutput().print(this.spielfeld.toString());
 			}
@@ -81,6 +89,7 @@ public class ControlSpiel {
 	}
 
 	private void spielSpeichern() {
+		int num = this.leseListeSpielstaende().size();
 		ControlSpeichern conSp = new ControlSpeichern();
 		conSp.setModus(modus);
 		conSp.setTyp(typ);
@@ -90,26 +99,44 @@ public class ControlSpiel {
 		conSp.setRunde(this.rundeSpiel);
 		conSp.setSpielbrett(spielfeld.getSpielbrett());
 		conSp.setIstDran(this.istDran);
-		
+		conSp.setSpeicherDatum(new Date());
 		FileHandler filehandler = new FileHandler();
-		filehandler.save("save.game",conSp );
+
+		filehandler.save(this.filename+""+num, conSp);
+
 	}
 
-	private void ladeSpiel() {
-		ControlSpeichern conSp = new ControlSpeichern();
-		FileHandler fileHandler = new FileHandler();
-		conSp = fileHandler.load("save.game", conSp);
-		this.modus = conSp.getModus();
-		this.typ   = conSp.getTyp();
-		this.spieler1 = conSp.getSpieler1();
-		this.spieler2 = conSp.getSpieler2();
-		this.spielfeld = conSp.getSpielfeld();
-		this.rundeSpiel = conSp.getRunde();
-		this.istDran    = conSp.getIstDran();
-		this.spielfeld.setSpielbrett(conSp.getSpielbrett());
+	private void ladeSpiel(String num) {
 		
+		String name =this.filename+num;	
 		
+		if (fileExists(name)) {
 
+			ControlSpeichern conSp = new ControlSpeichern();
+			FileHandler fileHandler = new FileHandler();
+			conSp = fileHandler.load(name, conSp);
+			this.modus = conSp.getModus();
+			this.typ = conSp.getTyp();
+			this.spieler1 = conSp.getSpieler1();
+			this.spieler2 = conSp.getSpieler2();
+			this.spielfeld = conSp.getSpielfeld();
+			this.rundeSpiel = conSp.getRunde();
+			this.istDran = conSp.getIstDran();
+			this.spielfeld.setSpielbrett(conSp.getSpielbrett());
+
+			Control.STATUS = Control.STATUS.SPIELRUNDE;
+		} else {
+
+			Control.STATUS = Control.STATUS.HAUPTMENU;
+		}
+	}
+
+	private boolean fileExists(String filename) {
+		File f = new File(filename);
+		if (f.exists() && !f.isDirectory()) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -200,6 +227,9 @@ public class ControlSpiel {
 		case SPIELENDE:
 
 			break;
+		case LADEN:
+		
+			break;
 		default: // Fehler ungültiger Status;
 			break;
 		}
@@ -236,6 +266,38 @@ public class ControlSpiel {
 			}
 			Control.STATUS = Control.STATUS.SPIELRUNDE;
 		}
+	}
+
+	private void printListeSpielstaende() {
+        List<String> list = leseListeSpielstaende();
+		ControlSpeichern conSp = new ControlSpeichern();
+		FileHandler fileHandler = new FileHandler();
+		this.main.getOutput().print("\nbSpielstaende\n-------------");
+		int i = 0;
+		for (String str : list) {
+	
+			
+			conSp = fileHandler.load(str, conSp);
+			this.main.getOutput().print(
+			        "[" + i + "] Spielstand vom "
+			                + conSp.getSpeicherDatum().getDate());
+			i++;
+		}
+		this.main.getOutput().print("\n-------------\n");
+	}
+
+	private List<String> leseListeSpielstaende() {
+		List<String> list = new ArrayList();
+	
+		for (int i = 0; i < 100; i++) {
+			
+			File f = new File(this.filename+""+i);
+			if (f.exists() && !f.isDirectory()) {
+			
+				list.add(this.filename+""+i);
+			}
+		}
+		return list;
 	}
 
 	void naechsterSpieler() {
