@@ -8,6 +8,13 @@ public class Spielfeld {
 	private int groesse;
 	private Spielstein[][] spielbrett;
 	
+	/**
+	 * @param spielbrett the spielbrett to set
+	 */
+	public void setSpielbrett(Spielstein[][] spielbrett) {
+		this.spielbrett = spielbrett;
+	}
+
 	public Spielfeld(int groesse) {
 		this.groesse = groesse;
 		initialisiereSpielbrett();

@@ -8,6 +8,10 @@ public class Spielstein {
 	private char symbol;
 	private int[] pos;
 	
+	public Spielstein(){
+		
+	}
+	
 	public Spielstein(char spielstein) {
 		this.symbol = spielstein;
 		int[] pos = {-1, -1};

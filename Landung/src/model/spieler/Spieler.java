@@ -46,6 +46,30 @@ public abstract class Spieler {
 		return this.name;
 	}
 
+	/**
+	 * @return the spielSteinListe
+	 */
+	public List<Spielstein> getSpielSteinListe() {
+		return spielSteinListe;
+	}
+	/**
+	 * @param spielSteinListe the spielSteinListe to set
+	 */
+	public void setSpielSteinListe(List<Spielstein> spielSteinListe) {
+		this.spielSteinListe = spielSteinListe;
+	}
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	/**
+	 * @param gesamtpunkte the gesamtpunkte to set
+	 */
+	public void setGesamtpunkte(int gesamtpunkte) {
+		this.gesamtpunkte = gesamtpunkte;
+	}
 	public int getPunkte() {
 		return this.punkte;
 	}

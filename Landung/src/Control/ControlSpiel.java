@@ -19,13 +19,14 @@ public class ControlSpiel {
 	private String nameSpieler1;
 	private String nameSpieler2;
 	private char symbol1 = 'X';
-	private char symbol2 = 'O';	
-
+	private char symbol2 = 'O';
+	ControlEnum tmp;
 	private String typ;
 	private String modus;
 	private Spielfeld spielfeld;
 	private Spieler istDran;
-    private int rundeZug =1;
+	private int rundeZug = 1;
+
 	/**
 	 * @return the rundeZug
 	 */
@@ -34,7 +35,8 @@ public class ControlSpiel {
 	}
 
 	/**
-	 * @param rundeZug the rundeZug to set
+	 * @param rundeZug
+	 *            the rundeZug to set
 	 */
 	protected void setRundeZug(int rundeZug) {
 		this.rundeZug = rundeZug;
@@ -45,34 +47,32 @@ public class ControlSpiel {
 		this.controlZug = new ControlZug(this);
 	}
 
-
 	public void starteSpiel(String input) {
-		
 
-	
 		switch (Control.STATUS) {
 		case LADEN:
-		
+			this.ladeSpiel();
+			Control.STATUS = Control.STATUS.SPIELRUNDE;
 			break;	
-		case SPEICHERN:
-			
-			break;
-		case SPIELVORBEREITUNG:			
+		case SPIELVORBEREITUNG:
 			this.setSpielerNamen(input);
 			this.initSpielMaterial();
 			this.startSpieler();
-			//this.spielSpeichern();
+		
 			break;
-		case SPIELRUNDE: // ;
-		   this.controlZug.naechsterZug(input);
-		    
-		    this.main.getOutput().print(this.spielfeld.toString());
-				
+		case SPIELRUNDE: 
+			if (input.equals("speichern")) {
+				this.spielSpeichern();
+			}else {
+				this.controlZug.naechsterZug(input);
+				this.main.getOutput().print(this.spielfeld.toString());
+			}
+
 			break;
 		case SPIELRUNDENENDE:
 			this.rundeSpiel--;
 			if (this.rundeSpiel == 0) {
-				Control.STATUS =Control.STATUS.HAUPTMENU;
+				Control.STATUS = Control.STATUS.HAUPTMENU;
 			}
 			break;
 		default: // Fehler ungültiger Status;
@@ -80,22 +80,42 @@ public class ControlSpiel {
 		}
 	}
 
-	private void spielSpeichern(){		
+	private void spielSpeichern() {
+		ControlSpeichern conSp = new ControlSpeichern();
+		conSp.setModus(modus);
+		conSp.setTyp(typ);
+		conSp.setSpieler1(spieler1);
+		conSp.setSpieler2(spieler2);
+		conSp.setSpielfeld(spielfeld);
+		conSp.setRunde(this.rundeSpiel);
+		conSp.setIstDran(this.istDran);
 		FileHandler filehandler = new FileHandler();
-		filehandler.save("spieler1", this.spieler1);		
+		filehandler.save("save.game",conSp );
 	}
+
 	private void ladeSpiel() {
+		ControlSpeichern conSp = new ControlSpeichern();
+		FileHandler fileHandler = new FileHandler();
+		conSp = fileHandler.load("save.game", conSp);
+		this.modus = conSp.getModus();
+		this.typ   = conSp.getTyp();
+		this.spieler1 = conSp.getSpieler1();
+		this.spieler2 = conSp.getSpieler2();
+		this.spielfeld = conSp.getSpielfeld();
+		this.rundeSpiel = conSp.getRunde();
+		this.istDran    = conSp.getIstDran();
 		
-		FileHandler fileHandler = new FileHandler();		
-		this.spieler1 = fileHandler.load("spieler1.save", this.spieler1);
-		Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
+		
+
 	}
+
 	/**
 	 * @return the istDran
 	 */
 	protected Spieler getIstDran() {
 		return istDran;
 	}
+
 	/**
 	 * @param istDran
 	 *            the istDran to set
@@ -121,6 +141,7 @@ public class ControlSpiel {
 			}
 		}
 	}
+
 	private void initSpielMaterial() {
 		if (nameSpieler1 != null && nameSpieler2 != null) {
 
@@ -133,10 +154,12 @@ public class ControlSpiel {
 			this.spielfeld = new Spielfeld();
 		}
 	}
+
 	private List<Spielstein> getSpielsteinListe(char sym) {
 		Spielstein liste = new Spielstein(sym);
 		return liste.getSpielsteinListe(9);
 	}
+
 	private void setSpielerNamen(String input) {
 
 		if (this.nameSpieler1 == null && input.length() > 0) {
@@ -169,11 +192,11 @@ public class ControlSpiel {
 			}
 			break;
 		case SPIELRUNDE: // ;
-			this.main.getOutput().print("Name: "+istDran.getName());
+			this.main.getOutput().print("Name: " + istDran.getName());
 			break;
 		case SPIELENDE:
-			
-             break;
+
+			break;
 		default: // Fehler ungültiger Status;
 			break;
 		}
@@ -208,11 +231,11 @@ public class ControlSpiel {
 			} else {
 				this.istDran = this.spieler2;
 			}
-			Control.STATUS =Control.STATUS.SPIELRUNDE;
+			Control.STATUS = Control.STATUS.SPIELRUNDE;
 		}
 	}
 
-	 void naechsterSpieler() {
+	void naechsterSpieler() {
 		if (this.istDran.equals(spieler1)) {
 			this.istDran = spieler2;
 		} else {
@@ -220,6 +243,7 @@ public class ControlSpiel {
 		}
 
 	}
+
 	/**
 	 * @return the rundeSpiel
 	 */
@@ -228,11 +252,11 @@ public class ControlSpiel {
 	}
 
 	/**
-	 * @param rundeSpiel the rundeSpiel to set
+	 * @param rundeSpiel
+	 *            the rundeSpiel to set
 	 */
 	protected void setRundeSpiel(int rundeSpiel) {
 		this.rundeSpiel = rundeSpiel;
 	}
-
 
 }

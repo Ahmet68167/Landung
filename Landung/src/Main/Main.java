@@ -20,7 +20,6 @@ public class Main {
 	}
 
 	private void run() {
-
 		
 		while (true) {
 			this.control.printStatus();
