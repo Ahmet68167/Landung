@@ -256,6 +256,13 @@ public class ControlZug {
 	public boolean gewonnen() {
 		int[] pos = new int[2];
 		int anzahl = 0;
+		int anzahl2 = 0;
+		int anzahl3 = 0;
+		int anzahl4 = 0;
+		int anzahl5 = 0;
+		int anzahl6 = 0;
+		int anzahl7 = 0;
+		int anzahl8 = 0;
 		
 		for(int k = 0; k < 5; k++) {
 			for(int i = 0; i < 2; i++) {
@@ -265,7 +272,22 @@ public class ControlZug {
 				
 				for(int n = 0; n < 4; n++) {
 					if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
-					pos[1] = i+1;
+					pos[1] += 1;
+					anzahl++;
+					}
+				}
+				
+				if(anzahl >= 4) {
+					return true;
+				} else
+					anzahl = 0;
+				
+				pos[0] = i;
+				pos[1] = k;
+				
+				for(int n = 0; n < 4; n++) {
+					if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
+					pos[0] += 1;
 					anzahl++;
 					}
 				}
@@ -276,6 +298,78 @@ public class ControlZug {
 					anzahl = 0;
 				
 			}
+		}
+		
+		for(int i = 0; i < 4; i++) {
+			pos[0] = i;
+			pos[1] = i + 1;
+			
+			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
+				anzahl++;
+			}
+			
+			pos[0] = i + 1;
+			pos[1] = i;
+			
+			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
+				anzahl2++;
+			}
+			
+			pos[0] = i;
+			pos[1] = 3 - i;
+			
+			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
+				anzahl3++;
+			}
+			
+			pos[0] = i + 1;
+			pos[1] = 4 - i;
+			
+			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
+				anzahl4++;
+			}
+			
+			pos[0] = i;
+			pos[1] = i;
+			
+			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
+				anzahl5++;
+			}
+			
+			pos[0] = i + 1;
+			pos[1] = i + 1;
+			
+			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
+				anzahl6++;
+			}
+			
+			pos[0] = i;
+			pos[1] = 4 - i;
+			
+			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
+				anzahl7++;
+			}
+			
+			pos[0] = i + 1;
+			pos[1] = 3 - i;
+			
+			if(this.controlSpiel.getIstDran().getSymbol() == this.controlSpiel.getSpielfeld().getSpielstein(pos).getSymbol()) {
+				anzahl8++;
+			}
+			
+		}
+		
+		if(anzahl >= 4 || anzahl2 >= 4 || anzahl3 >= 4 || anzahl4 >= 4 || anzahl5 >= 4 || anzahl6 >= 4 || anzahl7 >= 4 || anzahl8 >= 4) {
+			return true;
+		} else {
+			anzahl = 0;
+			anzahl2 = 0;
+			anzahl3 = 0;
+			anzahl4 = 0;
+			anzahl5 = 0;
+			anzahl6 = 0;
+			anzahl7 = 0;
+			anzahl8 = 0;
 		}
 		
 		return false;
