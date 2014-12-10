@@ -12,6 +12,13 @@ public class ControlSpeichern {
 	Spieler spieler2;
 	Spielfeld  spielfeld;
 	String typ;
+	private Spieler istDran;
+	private int runde;
+	private Spielstein[][] spielbrett;
+	private Date speicherDatum;
+	String modus;
+	
+
 	/**
 	 * @return the speicherDatum
 	 */
@@ -26,11 +33,6 @@ public class ControlSpeichern {
 		this.speicherDatum = speicherDatum;
 	}
 
-	String modus;
-	private Spieler istDran;
-	private int runde;
-	private Spielstein[][] spielbrett;
-	private Date speicherDatum;
 
 	public Spielfeld getSpielfeld() {
 		return spielfeld;

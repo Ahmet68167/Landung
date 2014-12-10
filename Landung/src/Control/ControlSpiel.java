@@ -272,15 +272,15 @@ public class ControlSpiel {
         List<String> list = leseListeSpielstaende();
 		ControlSpeichern conSp = new ControlSpeichern();
 		FileHandler fileHandler = new FileHandler();
+		Date date ;
 		this.main.getOutput().print("\nbSpielstaende\n-------------");
 		int i = 0;
 		for (String str : list) {
-	
-			
+						
 			conSp = fileHandler.load(str, conSp);
 			this.main.getOutput().print(
 			        "[" + i + "] Spielstand vom "
-			                + conSp.getSpeicherDatum().getDate());
+			                + conSp.getSpeicherDatum().toGMTString());
 			i++;
 		}
 		this.main.getOutput().print("\n-------------\n");

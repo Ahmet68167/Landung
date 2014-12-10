@@ -4,56 +4,70 @@
   <void property="istDran">
    <object class="model.spieler.MenschSpieler" id="MenschSpieler0">
     <void property="name">
-     <string>asdf</string>
+     <string>a</string>
     </void>
     <void property="spielSteinListe">
      <object class="java.util.LinkedList">
       <void method="add">
        <object class="model.spielstein.Spielstein">
         <void property="symbol">
-         <char>O</char>
+         <char>X</char>
         </void>
        </object>
       </void>
       <void method="add">
        <object class="model.spielstein.Spielstein">
         <void property="symbol">
-         <char>O</char>
+         <char>X</char>
         </void>
        </object>
       </void>
       <void method="add">
        <object class="model.spielstein.Spielstein">
         <void property="symbol">
-         <char>O</char>
+         <char>X</char>
         </void>
        </object>
       </void>
       <void method="add">
        <object class="model.spielstein.Spielstein">
         <void property="symbol">
-         <char>O</char>
+         <char>X</char>
         </void>
        </object>
       </void>
       <void method="add">
        <object class="model.spielstein.Spielstein">
         <void property="symbol">
-         <char>O</char>
+         <char>X</char>
         </void>
        </object>
       </void>
       <void method="add">
        <object class="model.spielstein.Spielstein">
         <void property="symbol">
-         <char>O</char>
+         <char>X</char>
         </void>
        </object>
       </void>
       <void method="add">
        <object class="model.spielstein.Spielstein">
         <void property="symbol">
-         <char>O</char>
+         <char>X</char>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>X</char>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>X</char>
         </void>
        </object>
       </void>
@@ -67,51 +81,40 @@
   <void property="runde">
    <int>1</int>
   </void>
+  <void property="speicherDatum">
+   <object class="java.util.Date">
+    <long>1418206390571</long>
+   </object>
+  </void>
   <void property="spielbrett">
    <array class="[Lmodel.spielstein.Spielstein;" length="5" id="SpielsteinArrayArray0">
     <void index="0">
      <array class="model.spielstein.Spielstein" length="5">
       <void index="0">
-       <object class="model.spielstein.Spielstein">
-        <void property="symbol">
-         <char>X</char>
-        </void>
-       </object>
-      </void>
-      <void index="1">
        <object class="model.spielstein.Spielstein" id="Spielstein0">
         <void property="symbol">
          <char>·</char>
         </void>
        </object>
       </void>
+      <void index="1">
+       <object idref="Spielstein0"/>
+      </void>
       <void index="2">
        <object idref="Spielstein0"/>
       </void>
       <void index="3">
-       <object class="model.spielstein.Spielstein">
-        <void property="symbol">
-         <char>O</char>
-        </void>
-       </object>
+       <object idref="Spielstein0"/>
       </void>
       <void index="4">
-       <object class="model.spielstein.Spielstein">
-        <void property="symbol">
-         <char>O</char>
-        </void>
-       </object>
+       <object idref="Spielstein0"/>
       </void>
      </array>
     </void>
     <void index="1">
      <array class="model.spielstein.Spielstein" length="5">
       <void index="0">
-       <object class="model.spielstein.Spielstein">
-        <void property="symbol">
-         <char>X</char>
-        </void>
-       </object>
+       <object idref="Spielstein0"/>
       </void>
       <void index="1">
        <object idref="Spielstein0"/>
@@ -187,67 +190,81 @@
    </array>
   </void>
   <void property="spieler1">
+   <object idref="MenschSpieler0"/>
+  </void>
+  <void property="spieler2">
    <object class="model.spieler.MenschSpieler">
     <void property="name">
-     <string>a</string>
+     <string>asdf</string>
     </void>
     <void property="spielSteinListe">
      <object class="java.util.LinkedList">
       <void method="add">
        <object class="model.spielstein.Spielstein">
         <void property="symbol">
-         <char>X</char>
+         <char>O</char>
         </void>
        </object>
       </void>
       <void method="add">
        <object class="model.spielstein.Spielstein">
         <void property="symbol">
-         <char>X</char>
+         <char>O</char>
         </void>
        </object>
       </void>
       <void method="add">
        <object class="model.spielstein.Spielstein">
         <void property="symbol">
-         <char>X</char>
+         <char>O</char>
         </void>
        </object>
       </void>
       <void method="add">
        <object class="model.spielstein.Spielstein">
         <void property="symbol">
-         <char>X</char>
+         <char>O</char>
         </void>
        </object>
       </void>
       <void method="add">
        <object class="model.spielstein.Spielstein">
         <void property="symbol">
-         <char>X</char>
+         <char>O</char>
         </void>
        </object>
       </void>
       <void method="add">
        <object class="model.spielstein.Spielstein">
         <void property="symbol">
-         <char>X</char>
+         <char>O</char>
         </void>
        </object>
       </void>
       <void method="add">
        <object class="model.spielstein.Spielstein">
         <void property="symbol">
-         <char>X</char>
+         <char>O</char>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>O</char>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>O</char>
         </void>
        </object>
       </void>
      </object>
     </void>
    </object>
-  </void>
-  <void property="spieler2">
-   <object idref="MenschSpieler0"/>
   </void>
   <void property="spielfeld">
    <object class="model.spielfeld.Spielfeld">
