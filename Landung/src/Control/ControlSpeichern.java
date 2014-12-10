@@ -2,6 +2,7 @@ package Control;
 
 import model.spieler.Spieler;
 import model.spielfeld.Spielfeld;
+import model.spielstein.Spielstein;
 
 public class ControlSpeichern {
 	
@@ -12,6 +13,7 @@ public class ControlSpeichern {
 	String modus;
 	private Spieler istDran;
 	private int runde;
+	private Spielstein[][] spielbrett;
 	
 	/**
 	 * @return the spielfeld
@@ -105,6 +107,18 @@ public class ControlSpeichern {
 
 	public void setIstDran(Spieler istDran) {
 	   this.istDran = istDran;	    
+    }
+
+	/**
+	 * @return the spielbrett
+	 */
+	public Spielstein[][] getSpielbrett() {
+		return spielbrett;
+	}
+
+	public void setSpielbrett(Spielstein[][] spielbrett) {
+	  this.spielbrett = spielbrett;
+	    
     }
 
 }

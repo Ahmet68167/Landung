@@ -88,7 +88,9 @@ public class ControlSpiel {
 		conSp.setSpieler2(spieler2);
 		conSp.setSpielfeld(spielfeld);
 		conSp.setRunde(this.rundeSpiel);
+		conSp.setSpielbrett(spielfeld.getSpielbrett());
 		conSp.setIstDran(this.istDran);
+		
 		FileHandler filehandler = new FileHandler();
 		filehandler.save("save.game",conSp );
 	}
@@ -104,6 +106,7 @@ public class ControlSpiel {
 		this.spielfeld = conSp.getSpielfeld();
 		this.rundeSpiel = conSp.getRunde();
 		this.istDran    = conSp.getIstDran();
+		this.spielfeld.setSpielbrett(conSp.getSpielbrett());
 		
 		
 
