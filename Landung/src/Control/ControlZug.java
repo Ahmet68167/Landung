@@ -56,8 +56,8 @@ public class ControlZug {
     		if(eingabe.length() == 2) { 			
     			start = getKoordinaten(eingabe);
         		
-    		//	if(!this.controlSpiel.getSpielfeld().isEmpty(start)){
-    		//		return false;}
+    			if(!this.controlSpiel.getSpielfeld().isEmpty(start)){
+    				return false;}
       			
     			this.controlSpiel.getSpielfeld().setzeSpielstein(this.controlSpiel.getIstDran().getSpielstein(), start);
     			return true;
