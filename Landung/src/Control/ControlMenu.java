@@ -59,11 +59,11 @@ public class ControlMenu {
 
 		if (input.equals("a")) {
 			Control.STATUS = Control.STATUS.BESTOFONE;
-			
+			this.control.checkInput("");
 			// Best of Three
 		} else if (input.equals("b")) {
 			Control.STATUS = Control.STATUS.BESTOFTHREE;
-	
+			this.control.checkInput("");
 		} else if (input.equals("c")) {
 			Control.STATUS = Control.STATUS.NEUESSPIEL;
 		}
