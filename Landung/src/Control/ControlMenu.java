@@ -56,11 +56,14 @@ public class ControlMenu {
 		this.gegenKI = true;
 		this.gegenMensch = false;
 		// Best of One
+
 		if (input.equals("a")) {
 			Control.STATUS = Control.STATUS.BESTOFONE;
+			
 			// Best of Three
 		} else if (input.equals("b")) {
 			Control.STATUS = Control.STATUS.BESTOFTHREE;
+	
 		} else if (input.equals("c")) {
 			Control.STATUS = Control.STATUS.NEUESSPIEL;
 		}
@@ -92,9 +95,11 @@ public class ControlMenu {
 		this.gegenKI     = false;
 	
 		if (input.equals("a")) {
-			Control.STATUS =Control.STATUS.BESTOFONE;	
+			Control.STATUS =Control.STATUS.BESTOFONE;			
+			this.control.checkInput("");
 		} else if (input.equals("b")) {
 			Control.STATUS =Control.STATUS.BESTOFTHREE;
+			this.control.checkInput("");
 		} else if (input.equals("c")) {
 			Control.STATUS = Control.STATUS.NEUESSPIEL;
 		}

@@ -14,7 +14,7 @@ public class Control {
 		this.controlSpiel = new ControlSpiel(main);
 	}
 	public void checkInput(String input) {		
-		
+
 		this.setupControle();
 		this.controleMenu.checkInput(input);
 		this.controlSpiel.starteSpiel(input);

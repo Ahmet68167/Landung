@@ -193,10 +193,13 @@ public class ControlSpiel {
 	}
 
 	private void setSpielerNamen(String input) {
+		
 
-		if (this.nameSpieler1 == null && input.length() > 0) {
+		if (this.nameSpieler1 == null && input.length() > 2) {
+
 			this.nameSpieler1 = input;
-		} else if (this.nameSpieler2 == null && input.length() > 0) {
+		} else if (this.nameSpieler2 == null && input.length() > 2) {
+	
 			this.nameSpieler2 = input;
 		}
 	}
@@ -210,6 +213,16 @@ public class ControlSpiel {
 		case SPIELENDE:
 			break;
 		case LADEN:
+		
+			break;
+		case SPIELVORBEREITUNG:
+			if (this.nameSpieler1 == null) {
+				this.main.getOutput().print("Bitte Namen für Spieler 1 eingeben:");
+			
+			} else if (this.nameSpieler2 == null) {
+				this.main.getOutput().print("Bitte Namen für Spieler 2 eingeben:");
+			
+			}
 			break;
 		default: // Fehler ungültiger Status;
 			break;
@@ -245,7 +258,7 @@ public class ControlSpiel {
 			} else {
 				this.istDran = this.spieler2;
 			}
-			this.main.getOutput().print("Startspieler: "+this.istDran);
+			this.main.getOutput().print("Startspieler: "+this.istDran.getName());
 			Control.STATUS = Control.STATUS.SPIELRUNDE;
 		}
 	}
