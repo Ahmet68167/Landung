@@ -4,7 +4,8 @@ import model.spielstein.Spielstein;
 
 public class Spielfeld {
 	
-	private final Spielstein LEER = new Spielstein('·');
+	private final char EMPTY = '·';
+	private final Spielstein LEER = new Spielstein(EMPTY);
 	private int groesse;
 	private Spielstein[][] spielbrett;
 	
@@ -79,7 +80,7 @@ public class Spielfeld {
 	}
 	
 	public boolean isEmpty(int[] pos) {
-		return this.spielbrett[pos[0]][pos[1]] == LEER;
+		return this.spielbrett[pos[0]][pos[1]].getSymbol() == EMPTY;
 	}
 	
 	public int getAnzahlLeererFelder() {
