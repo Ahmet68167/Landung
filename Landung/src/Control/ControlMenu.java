@@ -92,10 +92,10 @@ public class ControlMenu {
 		} else if (input.equals("a")) {
 			Control.STATUS = Control.STATUS.NEUESSPIEL;
 
-		} else if (input.equals("d")) {
+		} else if (input.equals("e")) {
 			Control.STATUS= Control.STATUS.ENDE;
 		
-		}else if(input.equals("e")){
+		}else if(input.equals("d")){
 			this.spielanleitung();
 		}
 
@@ -166,8 +166,9 @@ public class ControlMenu {
 			this.main.getOutput().print("[a]  Neues Spiel", "console");
 			this.main.getOutput().print("[b]  Laden", "console");
 			this.main.getOutput().print("[c]  Highscore", "console");
-			this.main.getOutput().print("[d]  Beenden", "console");
-			this.main.getOutput().print("[e]  Spielanleitung", "console");
+			this.main.getOutput().print("[d]  Spielanleitung", "console");
+			this.main.getOutput().print("[e]  Beenden", "console");
+			
 			break;
 		case NEUESSPIEL:
 			this.main.getOutput().print(Control.STATUS.getName(), "console");

@@ -27,8 +27,8 @@ public class ControlZugTest {
 		spielfeld = new Spielfeld();
 		x = new Spielstein('X');
 		o = new Spielstein('O');
-		spieler1 = new MenschSpieler("Ahmet", x.getSpielsteinListe());
-		spieler2 = new MenschSpieler("Klaus", o.getSpielsteinListe());
+		spieler1 = new MenschSpieler();
+		spieler2 = new MenschSpieler();
 
 	}
 
@@ -44,7 +44,7 @@ public class ControlZugTest {
 
 	@Test
 	public void testIstZugMoeglich() {
-		ZugPruefung istMoeglich = new ZugPruefung();
+	//	ZugPruefungTest istMoeglich = new ZugPruefung();
 
 		// Spieler1
 		int[] a2 = { 0, 1 };

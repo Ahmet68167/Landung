@@ -114,6 +114,7 @@ public class ControlSpiel implements InterfaceEngine {
 				this.main.setSpielBeendet(true);
 				int punkte = this.spielfeld.getAnzahlLeererFelder();
 				this.istDran.setPunkte(punkte);
+				this.istDran.setGesamtpunkte(this.istDran.getGesamtpunkte() + punkte);;
 				this.main.getHighscore().neuerHighScore(this.istDran.getName(), punkte);
 				this.main.getOutput().print(""+this.istDran.getName()+" hat "+punkte+" Punkte erreicht ");
 				
