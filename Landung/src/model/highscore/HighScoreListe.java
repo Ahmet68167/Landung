@@ -46,7 +46,7 @@ public class HighScoreListe {
 	}
 
 	public String toString() {
-		String txt = "";
+		String txt = "----------------";
 
 		if (this.liste.size() != 0) {
 
@@ -54,8 +54,11 @@ public class HighScoreListe {
 				txt += "Platz " + (i + 1) + " " + this.liste.get(i) + "\n";
 			}
 		} else {
-			txt = "kein Eintrag";
+			txt += "\nkein Eintrag\n";
+			
 		}
+		txt += "----------------\n";
+		
 		return txt;
 	}
 
