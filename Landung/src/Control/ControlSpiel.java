@@ -334,7 +334,7 @@ public class ControlSpiel implements InterfaceEngine {
 		ControlSpeichern conSp = new ControlSpeichern();
 		FileHandler fileHandler = new FileHandler();
 		Date date;
-		this.main.getOutput().print("\nbSpielstaende\n-------------");
+		this.main.getOutput().print("\nSpielstaende\n-------------");
 		int i = 0;
 		for (String str : list) {
 			conSp = fileHandler.load(str, conSp);

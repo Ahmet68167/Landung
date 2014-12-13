@@ -10,7 +10,7 @@ public enum ControlEnum {
 	        "Spieler namen eingeben"), SPIELVORBEREITUNG("Spielvorbereitung"), SPIELEINSTELLUNGEN(
 	        "Spieleinstellungen"), SPIELRUNDE("Spielrunde"), SPIELRUNDENENDE(
 	        "Ende der Spielrunde"), SPIELENDE("Spiel beendet"), SPEICHERN(
-	        "Spiel speichern"), LADENAUSWAHL("Liste Spielstaende");
+	        "Spiel speichern"), LADENAUSWAHL("Liste Spielstaende"), SPIELANLEITUNG("Spielanleitung");
 
 	private String name;
 

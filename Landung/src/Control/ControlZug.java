@@ -47,9 +47,7 @@ public class ControlZug {
 				}
 			}
 		}
-		
-		
-
+	
 		return true;
 
 	}
@@ -74,7 +72,8 @@ public class ControlZug {
 		} else if (this.controlSpiel.getRundeZug() >= 19) {
 			return ziehenEntf(start, ziel, entf, eingabe);
 		}
-
+		
+	
 		return false;
 	}
 

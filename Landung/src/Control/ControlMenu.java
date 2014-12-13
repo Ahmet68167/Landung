@@ -9,10 +9,12 @@ public class ControlMenu {
 	private boolean bestOfOne = false;
 	private boolean bestOfThree = false;
 	private Control control;
+	private Spielanleitung spielanleitung;
 	
 	public ControlMenu(Main main, Control control) {
 		this.control = control;
-		this.main = main;	    
+		this.main = main;
+		this.spielanleitung = new Spielanleitung();
 	}
 	public void checkInput(String input) {
 
@@ -36,7 +38,10 @@ public class ControlMenu {
 				break;
 			case BESTOFTHREE:
 				this.bestOfThree(input);
-				break;		
+				break;	
+			case SPIELANLEITUNG:
+				this.spielanleitung();
+				break;
 
 			default: // Fehler ungültiger Status;
 				break;
@@ -45,6 +50,13 @@ public class ControlMenu {
 
 	}
 
+	private void spielanleitung() {
+	   
+		this.main.getOutput().print(this.spielanleitung.getSpielanleitung());
+		Control.STATUS = Control.STATUS.HAUPTMENU;
+		this.checkInput("");
+	    
+    }
 	public ControlEnum getSTATUS() {
 		return Control.STATUS;
 	}
@@ -83,6 +95,8 @@ public class ControlMenu {
 		} else if (input.equals("d")) {
 			Control.STATUS= Control.STATUS.ENDE;
 		
+		}else if(input.equals("e")){
+			this.spielanleitung();
 		}
 
 	}
@@ -153,6 +167,7 @@ public class ControlMenu {
 			this.main.getOutput().print("[b]  Laden", "console");
 			this.main.getOutput().print("[c]  Highscore", "console");
 			this.main.getOutput().print("[d]  Beenden", "console");
+			this.main.getOutput().print("[e]  Spielanleitung", "console");
 			break;
 		case NEUESSPIEL:
 			this.main.getOutput().print(Control.STATUS.getName(), "console");
