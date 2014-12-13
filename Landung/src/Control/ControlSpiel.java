@@ -104,17 +104,21 @@ public class ControlSpiel implements InterfaceEngine {
 
 			break;
 		case SPIELRUNDENENDE:
-	
 			this.rundeSpiel--;
+			System.out.println("test");
+			
 			if (this.rundeSpiel == 0) {
 				
-				Control.STATUS = Control.STATUS.HAUPTMENU;	
+				Control.STATUS = Control.STATUS.HAUPTMENU;					
 				this.resetSpiel();
-				
+				this.main.getControl().checkInput("");
+	
 				
 			}else{
 				Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
 			}
+			
+			
 			break;
 		default: // Fehler ungültiger Status;
 			break;

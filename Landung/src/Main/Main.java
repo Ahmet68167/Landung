@@ -37,15 +37,14 @@ public class Main {
 		
 		while (true) {
 			this.control.printStatus();
-			if(!this.spielBeendet){
-			this.control.checkInput(this.input.read());}
+			
+			this.control.checkInput(this.input.read());
+			
 			if (control.isBeendet()) {
 				this.output.print("Spiel beendet");
 				break;
 			}
-			if(this.spielBeendet){
-				this.spielBeendet = false;
-			}
+			
 		}
 	}
 
@@ -61,6 +60,20 @@ public class Main {
 	 */
 	public Input getInput() {
 		return input;
+	}
+
+	/**
+	 * @return the control
+	 */
+	public Control getControl() {
+		return control;
+	}
+
+	/**
+	 * @param control the control to set
+	 */
+	public void setControl(Control control) {
+		this.control = control;
 	}
 
 	/**
