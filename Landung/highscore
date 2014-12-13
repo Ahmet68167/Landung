@@ -31,5 +31,35 @@
     </void>
    </object>
   </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>asdf</string>
+    </void>
+    <void property="punkte">
+     <int>23</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>asf</string>
+    </void>
+    <void property="punkte">
+     <int>23</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>asf</string>
+    </void>
+    <void property="punkte">
+     <int>23</int>
+    </void>
+   </object>
+  </void>
  </object>
 </java>

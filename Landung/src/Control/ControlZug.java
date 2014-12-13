@@ -15,6 +15,7 @@ public class ControlZug {
 
 	public boolean naechsterZug(String eingabe) {
 
+
 		if (!istZugMoeglich() && this.controlSpiel.getRundeZug() > 2) {
 			this.controlSpiel.naechsterSpieler();
 			this.controlSpiel.main.getOutput()
