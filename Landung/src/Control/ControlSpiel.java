@@ -108,6 +108,8 @@ public class ControlSpiel implements InterfaceEngine {
 			if (this.rundeSpiel == 0) {
 				
 				Control.STATUS = Control.STATUS.HAUPTMENU;
+			}else{
+				Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
 			}
 			break;
 		default: // Fehler ungültiger Status;
@@ -249,11 +251,16 @@ public class ControlSpiel implements InterfaceEngine {
 
 			break;
 		case SPIELVORBEREITUNG:
+		
 			if (this.nameSpieler1 == null) {
+				this.main.getOutput().print(
+				        "Info: mindestens 3 Buchstaben.");
 				this.main.getOutput().print(
 				        "Bitte Namen für Spieler 1 eingeben:");
 
 			} else if (this.nameSpieler2 == null) {
+				this.main.getOutput().print(
+				        "Info: mindestens 3 Buchstaben.");
 				this.main.getOutput().print(
 				        "Bitte Namen für Spieler 2 eingeben:");
 

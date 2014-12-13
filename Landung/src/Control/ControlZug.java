@@ -20,7 +20,7 @@ public class ControlZug {
 			this.controlSpiel.main.getOutput()
 			        .print(this.controlSpiel.getIstDran().getName()
 			                + " hat gewonnen.");
-			Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
+			Control.STATUS = Control.STATUS.SPIELRUNDENENDE;
 		} else {
 			if (macheZug(eingabe)) {
 
@@ -28,7 +28,7 @@ public class ControlZug {
 					this.controlSpiel.main.getOutput().print(
 					        this.controlSpiel.getIstDran().getName()
 					                + " hat gewonnen.");
-					Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
+					Control.STATUS = Control.STATUS.SPIELRUNDENENDE;
 				} else {
 					this.controlSpiel.setRundeZug(this.controlSpiel
 					        .getRundeZug() + 1);
