@@ -34,6 +34,7 @@ public class ControlSpiel implements InterfaceEngine {
 	private String filename = "saveFile";
 	private boolean isTunierspiel = false;
 	private String letzterBefehl;
+	private boolean isZugErfolgtreich;
 
 	/**
 	 * @return the rundeZug
@@ -78,8 +79,11 @@ public class ControlSpiel implements InterfaceEngine {
 			} else {
 				this.letzterBefehl = input;
 				this.main.getOutput().print("Letzter Befehl:" + input);
-				this.controlZug.naechsterZug(input);
-				this.main.getOutput().print(this.spielfeld.toString());
+				this.isZugErfolgtreich = this.controlZug.naechsterZug(input);
+				
+				if (this.isZugErfolgtreich) {
+					this.main.getOutput().print(this.spielfeld.toString());
+				}
 			}
 
 			break;
@@ -199,13 +203,12 @@ public class ControlSpiel implements InterfaceEngine {
 	}
 
 	private void setSpielerNamen(String input) {
-		
 
 		if (this.nameSpieler1 == null && input.length() > 2) {
 
 			this.nameSpieler1 = input;
 		} else if (this.nameSpieler2 == null && input.length() > 2) {
-	
+
 			this.nameSpieler2 = input;
 		}
 	}
@@ -219,15 +222,17 @@ public class ControlSpiel implements InterfaceEngine {
 		case SPIELENDE:
 			break;
 		case LADEN:
-		
+
 			break;
 		case SPIELVORBEREITUNG:
 			if (this.nameSpieler1 == null) {
-				this.main.getOutput().print("Bitte Namen für Spieler 1 eingeben:");
-			
+				this.main.getOutput().print(
+				        "Bitte Namen für Spieler 1 eingeben:");
+
 			} else if (this.nameSpieler2 == null) {
-				this.main.getOutput().print("Bitte Namen für Spieler 2 eingeben:");
-			
+				this.main.getOutput().print(
+				        "Bitte Namen für Spieler 2 eingeben:");
+
 			}
 			break;
 		default: // Fehler ungültiger Status;
@@ -264,9 +269,10 @@ public class ControlSpiel implements InterfaceEngine {
 			} else {
 				this.istDran = this.spieler2;
 			}
-		
+
 			Control.STATUS = Control.STATUS.SPIELRUNDE;
-			this.starteSpiel("");;
+			this.starteSpiel("");
+			;
 		}
 	}
 
@@ -323,57 +329,56 @@ public class ControlSpiel implements InterfaceEngine {
 	protected void setRundeSpiel(int rundeSpiel) {
 		this.rundeSpiel = rundeSpiel;
 	}
-	
-	/////////// Interface Methoden /////////////////
+
+	// ///////// Interface Methoden /////////////////
 
 	@Override
-    public void youAreSecond() {
-	   
-	    
-    }
+	public void youAreSecond() {
+
+	}
 
 	@Override
-    public boolean isRunning() {
-	 if(Control.STATUS == Control.STATUS.SPIELRUNDE){
-		 return true;
-	 }
-	    return false;
-    }
+	public boolean isRunning() {
+		if (Control.STATUS == Control.STATUS.SPIELRUNDE) {
+			return true;
+		}
+		return false;
+	}
 
 	@Override
-    public int whoWon() {
-	    // TODO Auto-generated method stub
-	    return 0;
-    }
+	public int whoWon() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 	@Override
-    public boolean takeYourMove(String gegnerZug) {
-	   	this.starteSpiel(gegnerZug);
-	    return false;
-    }
+	public boolean takeYourMove(String gegnerZug) {
+		this.starteSpiel(gegnerZug);
+		return false;
+	}
 
 	@Override
-    public String getMyMove() {
-	    
-	    return this.letzterBefehl;
-    }
+	public String getMyMove() {
+
+		return this.letzterBefehl;
+	}
 
 	@Override
-    public boolean canYouMove() {
-	    // TODO Auto-generated method stub
-	    return false;
-    }
+	public boolean canYouMove() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 	@Override
-    public boolean canIMove() {
-	    // TODO Auto-generated method stub
-	    return false;
-    }
+	public boolean canIMove() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 	@Override
-    public void printBoard() {
+	public void printBoard() {
 		this.main.getOutput().print(this.spielfeld.toString());
-	    
-    }
+
+	}
 
 }
