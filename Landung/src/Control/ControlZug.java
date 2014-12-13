@@ -22,7 +22,7 @@ public class ControlZug {
 			                + " hat gewonnen.");
 			Control.STATUS = Control.STATUS.SPIELRUNDENENDE;
 			this.controlSpiel.starteSpiel("");
-			
+
 		} else {
 			if (macheZug(eingabe)) {
 
@@ -32,11 +32,11 @@ public class ControlZug {
 					                + " hat gewonnen.");
 					Control.STATUS = Control.STATUS.SPIELRUNDENENDE;
 					this.controlSpiel.starteSpiel("");
-				
+
 				} else {
 					this.controlSpiel.setRundeZug(this.controlSpiel
 					        .getRundeZug() + 1);
-					this.controlSpiel.naechsterSpieler();
+					this.controlSpiel.naechsterSpieler();					
 				}
 			} else {
 				if (eingabe.length() > 0) {
@@ -46,14 +46,11 @@ public class ControlZug {
 				}
 			}
 		}
-		return true;
-	}
+		
+		
 
-	private boolean hattSpielsteine(Spieler spieler) {
-		if (spieler.getSpielSteinListeSize() > 0) {
-			return true;
-		}
-		return false;
+		return true;
+
 	}
 
 	public boolean macheZug(String eingabe) {
@@ -64,13 +61,13 @@ public class ControlZug {
 			return false;
 		if (this.controlSpiel.getRundeZug() < 3) {
 			return sonderregel(start, eingabe);
-		
+
 		} else if (this.controlSpiel.getRundeZug() >= 3
 		        && this.controlSpiel.getRundeZug() < 19) {
-			
-			if(this.controlSpiel.getRundeZug() == 4 && isSonderregel)
+
+			if (this.controlSpiel.getRundeZug() == 4 && isSonderregel)
 				return sonderregel(start, eingabe);
-			
+
 			return ziehenSetzen(start, ziel, eingabe);
 
 		} else if (this.controlSpiel.getRundeZug() >= 19) {
@@ -81,7 +78,8 @@ public class ControlZug {
 	}
 
 	/**
-	 * @param isSonderregel the isSonderregel to set
+	 * @param isSonderregel
+	 *            the isSonderregel to set
 	 */
 	public void setSonderregel(boolean isSonderregel) {
 		this.isSonderregel = isSonderregel;
@@ -395,7 +393,7 @@ public class ControlZug {
 
 		return this.isSonderregel;
 	}
-	
+
 	public boolean sonderregel(int[] start, String eingabe) {
 		if (eingabe.length() == 2) {
 			start = getKoordinaten(eingabe);
@@ -410,8 +408,8 @@ public class ControlZug {
 		}
 		return false;
 	}
-	
-	public boolean ziehenSetzen(int[] start,int[] ziel,String eingabe) {
+
+	public boolean ziehenSetzen(int[] start, int[] ziel, String eingabe) {
 		if (eingabe.length() == 4) {
 			start[0] = getKoordinaten(eingabe)[0];
 			start[1] = getKoordinaten(eingabe)[1];
@@ -429,8 +427,9 @@ public class ControlZug {
 		}
 		return false;
 	}
-	
-	public boolean ziehenEntf(int[] start, int[] ziel, int[] entf, String eingabe) {
+
+	public boolean ziehenEntf(int[] start, int[] ziel, int[] entf,
+	        String eingabe) {
 		if (eingabe.length() == 6) {
 			start[0] = getKoordinaten(eingabe)[0];
 			start[1] = getKoordinaten(eingabe)[1];
@@ -445,14 +444,13 @@ public class ControlZug {
 			ziel = zieheZug(start, ziel);
 
 			if (this.controlSpiel.getSpielfeld().fetchSpielstein(entf)
-			        .getSymbol() != this.controlSpiel.getIstDran()
-			        .getSymbol())
+			        .getSymbol() != this.controlSpiel.getIstDran().getSymbol())
 				return false;
 
 			ziel = zieheZug(start, ziel);
 			this.controlSpiel.getSpielfeld().setzeSpielstein(
-			        this.controlSpiel.getSpielfeld().entferneSpielstein(
-			                entf), ziel);
+			        this.controlSpiel.getSpielfeld().entferneSpielstein(entf),
+			        ziel);
 			return true;
 		}
 		return false;

@@ -69,11 +69,11 @@ public class ControlSpiel implements InterfaceEngine {
 
 			break;
 		case SPIELVORBEREITUNG:
-			if (this.rundeSpiel > 0) {			
+			if (this.rundeSpiel > 0) {
 				this.setSpielerNamen(input);
 				this.initSpielMaterial();
 				this.startSpieler();
-		
+
 			} else {
 				Control.STATUS = Control.STATUS.HAUPTMENU;
 			}
@@ -82,22 +82,22 @@ public class ControlSpiel implements InterfaceEngine {
 		case SPIELRUNDE:
 			if (input.equals("speichern")) {
 				this.spielSpeichern();
-			}else if(this.rundeZug == 4  && !this.isSonderRegelGeprueft) {
-				if(input.equals("j")){
+			} else if (this.rundeZug == 4 && !this.isSonderRegelGeprueft) {
+				if (input.equals("j")) {
 					this.controlZug.setSonderregel(true);
 					this.isSonderRegelGeprueft = true;
-				}else{
+				} else {
 					this.controlZug.setSonderregel(false);
 					this.isSonderRegelGeprueft = true;
 				}
-					
-			}else {
-			
+
+			} else {
+
 				this.letzterBefehl = input;
 				this.main.getOutput().print("Letzter Befehl:" + input);
 				this.isZugErfolgtreich = this.controlZug.naechsterZug(input);
 
-				if (this.isZugErfolgtreich && this.spielfeld!= null) {
+				if (this.isZugErfolgtreich && this.spielfeld != null) {
 					this.main.getOutput().print(this.spielfeld.toString());
 				}
 			}
@@ -105,36 +105,41 @@ public class ControlSpiel implements InterfaceEngine {
 			break;
 		case SPIELRUNDENENDE:
 			this.rundeSpiel--;
-			System.out.println("test");
-			
+
 			if (this.rundeSpiel == 0) {
-				
-				Control.STATUS = Control.STATUS.HAUPTMENU;					
-				this.resetSpiel();
+
+				Control.STATUS = Control.STATUS.HAUPTMENU;
+			
 				this.main.getControl().checkInput("");
-	
+				this.main.setSpielBeendet(true);
+				int punkte = this.spielfeld.getAnzahlLeererFelder();
+				this.istDran.setPunkte(punkte);
+				this.main.getHighscore().neuerHighScore(this.istDran.getName(), punkte);
+				this.main.getOutput().print("Spieler "+this.istDran.getName()+" hat "+punkte+" erreicht ");
 				
-			}else{
+				this.resetSpiel();
+			} else {
 				Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
 			}
-			
-			
+
 			break;
 		default: // Fehler ungültiger Status;
 			break;
 		}
 	}
+
 	private void resetSpiel() {
 		this.rundeSpiel = 1;
-		this.rundeZug   = 1;
-		this.spieler1   = null;
-		this.spieler2   = null;
-		this.spielfeld  = null;
+		this.rundeZug = 1;
+		this.spieler1 = null;
+		this.spieler2 = null;
+		this.spielfeld = null;
 		this.nameSpieler1 = null;
 		this.nameSpieler2 = null;
 		this.controlZug.setSonderregel(false);
-		this.isSonderRegelGeprueft = false;	    
-    }
+		this.isSonderRegelGeprueft = false;
+	}
+
 	private void spielSpeichern() {
 		int num = this.leseListeSpielstaende().size();
 		ControlSpeichern conSp = new ControlSpeichern();
@@ -152,6 +157,7 @@ public class ControlSpiel implements InterfaceEngine {
 		filehandler.save(this.filename + "" + num, conSp);
 		this.main.getOutput().print("Spiel gespeichert");
 	}
+
 	private void ladeSpiel(String num) {
 
 		String name = this.filename + num;
@@ -215,7 +221,7 @@ public class ControlSpiel implements InterfaceEngine {
 			if (modus.equals("BOO")) {
 				this.rundeSpiel = 1;
 			} else if (modus.equals("BOOT")) {
-				
+
 				this.rundeSpiel = 3;
 			}
 		}
@@ -256,7 +262,7 @@ public class ControlSpiel implements InterfaceEngine {
 
 		case SPIELRUNDE: // ;
 			this.main.getOutput().print("Spieler: " + istDran.getName());
-			if (this.rundeZug == 4 &&  !this.isSonderRegelGeprueft) {
+			if (this.rundeZug == 4 && !this.isSonderRegelGeprueft) {
 
 				this.main
 				        .getOutput()
@@ -269,16 +275,14 @@ public class ControlSpiel implements InterfaceEngine {
 
 			break;
 		case SPIELVORBEREITUNG:
-		
+
 			if (this.nameSpieler1 == null) {
-				this.main.getOutput().print(
-				        "Info: mindestens 3 Buchstaben.");
+				this.main.getOutput().print("Info: mindestens 3 Buchstaben.");
 				this.main.getOutput().print(
 				        "Bitte Namen für Spieler 1 eingeben:");
 
 			} else if (this.nameSpieler2 == null) {
-				this.main.getOutput().print(
-				        "Info: mindestens 3 Buchstaben.");
+				this.main.getOutput().print("Info: mindestens 3 Buchstaben.");
 				this.main.getOutput().print(
 				        "Bitte Namen für Spieler 2 eingeben:");
 

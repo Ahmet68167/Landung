@@ -27,24 +27,28 @@ public class Main {
 	}
 
 	/**
-	 * @param spielBeendet the spielBeendet to set
+	 * @param spielBeendet
+	 *            the spielBeendet to set
 	 */
 	public void setSpielBeendet(boolean spielBeendet) {
 		this.spielBeendet = spielBeendet;
 	}
 
 	private void run() {
-		
+
 		while (true) {
 			this.control.printStatus();
-			
-			this.control.checkInput(this.input.read());
+
+	
+
+				this.control.checkInput(this.input.read());
+		
 			
 			if (control.isBeendet()) {
 				this.output.print("Spiel beendet");
 				break;
 			}
-			
+
 		}
 	}
 
@@ -70,7 +74,8 @@ public class Main {
 	}
 
 	/**
-	 * @param control the control to set
+	 * @param control
+	 *            the control to set
 	 */
 	public void setControl(Control control) {
 		this.control = control;
