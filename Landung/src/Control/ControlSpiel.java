@@ -128,6 +128,8 @@ public class ControlSpiel implements InterfaceEngine {
 		this.spielfeld  = null;
 		this.nameSpieler1 = null;
 		this.nameSpieler2 = null;
+		this.controlZug.setSonderregel(false);
+		this.isSonderRegelGeprueft = false;
 	    
     }
 
