@@ -12,7 +12,7 @@ import model.spieler.Spieler;
 import model.spielfeld.Spielfeld;
 import model.spielstein.Spielstein;
 
-public class ControlSpiel {
+public class ControlSpiel implements InterfaceEngine {
 
 	Main main;
 	private ControlZug controlZug;
@@ -317,5 +317,55 @@ public class ControlSpiel {
 	protected void setRundeSpiel(int rundeSpiel) {
 		this.rundeSpiel = rundeSpiel;
 	}
+	
+	/////////// Interface Methoden /////////////////
+
+	@Override
+    public void youAreSecond() {
+	    // TODO Auto-generated method stub
+	    
+    }
+
+	@Override
+    public boolean isRunning() {
+	    // TODO Auto-generated method stub
+	    return false;
+    }
+
+	@Override
+    public int whoWon() {
+	    // TODO Auto-generated method stub
+	    return 0;
+    }
+
+	@Override
+    public boolean takeYourMove(String gegnerZug) {
+	    // TODO Auto-generated method stub
+	    return false;
+    }
+
+	@Override
+    public String getMyMove() {
+	    // TODO Auto-generated method stub
+	    return null;
+    }
+
+	@Override
+    public boolean canYouMove() {
+	    // TODO Auto-generated method stub
+	    return false;
+    }
+
+	@Override
+    public boolean canIMove() {
+	    // TODO Auto-generated method stub
+	    return false;
+    }
+
+	@Override
+    public void printBoard() {
+	    // TODO Auto-generated method stub
+	    
+    }
 
 }
