@@ -236,7 +236,7 @@ public class ControlSpiel implements InterfaceEngine {
 
 		case SPIELRUNDE: // ;
 			this.main.getOutput().print("Spieler: " + istDran.getName());
-			if (this.rundeZug == 4 && !this.controlZug.getIsSonderregel()) {
+			if (this.rundeZug == 4 &&  !this.isSonderRegelGeprueft) {
 
 				this.main
 				        .getOutput()
