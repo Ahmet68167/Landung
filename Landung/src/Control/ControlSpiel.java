@@ -35,7 +35,7 @@ public class ControlSpiel implements InterfaceEngine {
 	private boolean isTunierspiel = false;
 	private String letzterBefehl;
 	private boolean isZugErfolgtreich;
-	private boolean isSonderRegelGeprueft;
+	private boolean isSonderRegelGeprueft = false;
 
 	/**
 	 * @return the rundeZug
@@ -82,7 +82,7 @@ public class ControlSpiel implements InterfaceEngine {
 		case SPIELRUNDE:
 			if (input.equals("speichern")) {
 				this.spielSpeichern();
-			}else if(this.rundeZug == 4 && this.istDran.equals(spieler2) && !this.isSonderRegelGeprueft) {
+			}else if(this.rundeZug == 4  && !this.isSonderRegelGeprueft) {
 				if(input.equals("j")){
 					this.controlZug.setSonderregel(true);
 					this.isSonderRegelGeprueft = true;
