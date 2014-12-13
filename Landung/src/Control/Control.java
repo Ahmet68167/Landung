@@ -7,6 +7,7 @@ public class Control {
 	private ControlSpiel controlSpiel;
 	private Main main;
 	static ControlEnum STATUS;
+	
 	public Control(Main main) {
 		this.main = main;
 		this.STATUS = STATUS.HAUPTMENU;

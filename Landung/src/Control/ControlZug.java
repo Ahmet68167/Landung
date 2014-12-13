@@ -21,7 +21,7 @@ public class ControlZug {
 			        .print(this.controlSpiel.getIstDran().getName()
 			                + " hat gewonnen.");
 			Control.STATUS = Control.STATUS.SPIELRUNDENENDE;
-			this.controlSpiel.starteSpiel("");
+			this.controlSpiel.main.setSpielBeendet(true);
 		} else {
 			if (macheZug(eingabe)) {
 
@@ -29,10 +29,8 @@ public class ControlZug {
 					this.controlSpiel.main.getOutput().print(
 					        this.controlSpiel.getIstDran().getName()
 					                + " hat gewonnen.");
-					Control.STATUS = Control.STATUS.SPIELRUNDENENDE;
-					
-					this.controlSpiel.starteSpiel("");
-					
+					Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
+					this.controlSpiel.main.setSpielBeendet(true);
 				} else {
 					this.controlSpiel.setRundeZug(this.controlSpiel
 					        .getRundeZug() + 1);
