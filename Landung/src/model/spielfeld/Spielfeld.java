@@ -16,7 +16,6 @@ public class Spielfeld {
 		this.spielbrett = spielbrett;
 	}
 
-
 	public Spielfeld(int groesse) {
 		this.groesse = groesse;
 		initialisiereSpielbrett();
@@ -41,7 +40,6 @@ public class Spielfeld {
 		}
 	}
 
-	
 	public void setzeSpielstein(Spielstein spielstein, int[] pos) {
 		this.spielbrett[pos[0]][pos[1]] = spielstein;
 	}

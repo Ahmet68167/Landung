@@ -6,7 +6,7 @@ import model.spielstein.Spielstein;
 
 public abstract class Spieler {
 
-	private List<Spielstein> spielSteinListe;
+	private Spielstein spielstein;
 	private String name;
 	private int punkte;
 	private int gesamtpunkte;
@@ -14,62 +14,29 @@ public abstract class Spieler {
 	public Spieler() {
 		
 	}	
-	public Spieler(String name, List list) {
+	public Spieler(String name, Spielstein spielstein) {
 		this.name = name;
-		this.spielSteinListe = list;
+		this.spielstein = spielstein;
 		this.punkte = 0;
 		this.gesamtpunkte = 0;
 	}
 
-	public int getSpielSteinListeSize() {
-		return spielSteinListe.size();
-	}
-
-	public void addSpielstein(Spielstein spielstein) {
-		this.spielSteinListe.add(spielstein);
-	}
-
 	public Spielstein getSpielstein() {
-		return this.spielSteinListe.remove(0);
+		return this.spielstein;
 	}
 	
 	public char getSymbol() {
-		return this.spielSteinListe.get(0).getSymbol();
-	}
-
-	public boolean pruefeSpielstein(Spielstein spielstein){	
-	
-		return this.spielSteinListe.contains(spielstein);
+		return this.spielstein.getSymbol();
 	}
 
 	public String getName() {
 		return this.name;
 	}
 
-	/**
-	 * @return the spielSteinListe
-	 */
-	public List<Spielstein> getSpielSteinListe() {
-		return spielSteinListe;
-	}
-	/**
-	 * @param spielSteinListe the spielSteinListe to set
-	 */
-	public void setSpielSteinListe(List<Spielstein> spielSteinListe) {
-		this.spielSteinListe = spielSteinListe;
-	}
-	/**
-	 * @param name the name to set
-	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-	/**
-	 * @param gesamtpunkte the gesamtpunkte to set
-	 */
-	public void setGesamtpunkte(int gesamtpunkte) {
-		this.gesamtpunkte = gesamtpunkte;
-	}
+
 	public int getPunkte() {
 		return this.punkte;
 	}
@@ -78,12 +45,13 @@ public abstract class Spieler {
 		this.punkte = punkte;
 	}
 
+	public void setGesamtpunkte(int gesamtpunkte) {
+		this.gesamtpunkte = gesamtpunkte;
+	}
+	
 	public int getGesamtpunkte() {
 		return this.gesamtpunkte;
 	}
 
-	public void getGesamtpunkte(int gesamtpunkte) {
-		this.gesamtpunkte = gesamtpunkte;
-	}
 
 }

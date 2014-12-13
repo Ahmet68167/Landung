@@ -232,9 +232,9 @@ public class ControlSpiel implements InterfaceEngine {
 		if (nameSpieler1 != null && nameSpieler2 != null) {
 
 			this.spieler1 = new MenschSpieler(nameSpieler1,
-			        getSpielsteinListe(this.symbol1));
+			       new Spielstein(this.symbol1));
 			this.spieler2 = new MenschSpieler(nameSpieler2,
-			        getSpielsteinListe(this.symbol2));
+			        new Spielstein(this.symbol2));
 		}
 		if (this.spielfeld == null) {
 			this.spielfeld = new Spielfeld();

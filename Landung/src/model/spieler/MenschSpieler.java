@@ -1,6 +1,6 @@
 package model.spieler;
 
-import java.util.List;
+import model.spielstein.Spielstein;
 
 public class MenschSpieler extends Spieler {
 
@@ -8,8 +8,8 @@ public class MenschSpieler extends Spieler {
 		
 	}
 	
-	public MenschSpieler(String name, List list) {
-		super(name, list);
+	public MenschSpieler(String name, Spielstein spielstein) {
+		super(name, spielstein);
 	}
 
 }

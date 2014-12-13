@@ -1,6 +1,6 @@
 package model.spieler;
 
-import java.util.List;
+import model.spielstein.Spielstein;
 
 public class KISpieler extends Spieler {
 
@@ -10,8 +10,8 @@ public class KISpieler extends Spieler {
 		
 	}
 	
-	public KISpieler(String name, List list, int schwierigkeitsstufe) {
-		super(name, list);
+	public KISpieler(String name, Spielstein spielstein, int schwierigkeitsstufe) {
+		super(name, spielstein);
 		this.schwierigkeitsstufe = schwierigkeitsstufe;
 	}
 	
