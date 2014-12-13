@@ -127,6 +127,7 @@ public class ControlSpiel implements InterfaceEngine {
 			this.spielfeld.setSpielbrett(conSp.getSpielbrett());
 
 			Control.STATUS = Control.STATUS.SPIELRUNDE;
+			this.starteSpiel("");
 		} else {
 			this.main.getOutput().print("kein Spiel geladen");
 			Control.STATUS = Control.STATUS.HAUPTMENU;
