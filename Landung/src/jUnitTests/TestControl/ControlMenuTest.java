@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import Control.Control;
+import Control.ControlMenu;
+
 public class ControlMenuTest {
 
 	@Test
@@ -37,7 +40,7 @@ public class ControlMenuTest {
 	}
 
 	@Test
-	public void testIsBestOfOne() {
+	public void testIsBestOfOne() {		
 		fail("Not yet implemented");
 	}
 
