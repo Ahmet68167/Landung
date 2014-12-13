@@ -46,10 +46,6 @@ public class Spielanleitung {
 				+ "\n\tSpielbrett jeweils einen Punkt\n"
 				+ "-----------------------------------------------------------------------------------------------\n";
 	
-
-
-
-
 		return erg;
 	}
 }
