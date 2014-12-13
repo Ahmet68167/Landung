@@ -8,10 +8,6 @@ public class ControlZug {
 
 	private ControlSpiel controlSpiel;
 	private boolean isSonderregel = false;
-	
-	public ControlZug() {
-		
-	}
 
 	public ControlZug(ControlSpiel controlSpiel) {
 		this.controlSpiel = controlSpiel;
