@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_25" class="java.beans.XMLDecoder">
+ <object class="Control.ControlSpeichern">
+  <void property="istDran">
+   <object class="model.spieler.MenschSpieler" id="MenschSpieler0">
+    <void property="name">
+     <string>bob</string>
+    </void>
+    <void property="spielSteinListe">
+     <object class="java.util.LinkedList">
+      <void method="add">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>O</char>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>O</char>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>O</char>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>O</char>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>O</char>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>O</char>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>O</char>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>O</char>
+        </void>
+       </object>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void property="modus">
+   <string>BOO</string>
+  </void>
+  <void property="rundeSpiel">
+   <int>1</int>
+  </void>
+  <void property="rundeZug">
+   <int>4</int>
+  </void>
+  <void property="speicherDatum">
+   <object class="java.util.Date">
+    <long>1418284083694</long>
+   </object>
+  </void>
+  <void property="spielbrett">
+   <array class="[Lmodel.spielstein.Spielstein;" length="5" id="SpielsteinArrayArray0">
+    <void index="0">
+     <array class="model.spielstein.Spielstein" length="5">
+      <void index="0">
+       <object class="model.spielstein.Spielstein" id="Spielstein0">
+        <void property="symbol">
+         <char>·</char>
+        </void>
+       </object>
+      </void>
+      <void index="1">
+       <object idref="Spielstein0"/>
+      </void>
+      <void index="2">
+       <object idref="Spielstein0"/>
+      </void>
+      <void index="3">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>X</char>
+        </void>
+       </object>
+      </void>
+      <void index="4">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>X</char>
+        </void>
+       </object>
+      </void>
+     </array>
+    </void>
+    <void index="1">
+     <array class="model.spielstein.Spielstein" length="5">
+      <void index="0">
+       <object idref="Spielstein0"/>
+      </void>
+      <void index="1">
+       <object idref="Spielstein0"/>
+      </void>
+      <void index="2">
+       <object idref="Spielstein0"/>
+      </void>
+      <void index="3">
+       <object idref="Spielstein0"/>
+      </void>
+      <void index="4">
+       <object idref="Spielstein0"/>
+      </void>
+     </array>
+    </void>
+    <void index="2">
+     <array class="model.spielstein.Spielstein" length="5">
+      <void index="0">
+       <object idref="Spielstein0"/>
+      </void>
+      <void index="1">
+       <object idref="Spielstein0"/>
+      </void>
+      <void index="2">
+       <object idref="Spielstein0"/>
+      </void>
+      <void index="3">
+       <object idref="Spielstein0"/>
+      </void>
+      <void index="4">
+       <object idref="Spielstein0"/>
+      </void>
+     </array>
+    </void>
+    <void index="3">
+     <array class="model.spielstein.Spielstein" length="5">
+      <void index="0">
+       <object idref="Spielstein0"/>
+      </void>
+      <void index="1">
+       <object idref="Spielstein0"/>
+      </void>
+      <void index="2">
+       <object idref="Spielstein0"/>
+      </void>
+      <void index="3">
+       <object idref="Spielstein0"/>
+      </void>
+      <void index="4">
+       <object idref="Spielstein0"/>
+      </void>
+     </array>
+    </void>
+    <void index="4">
+     <array class="model.spielstein.Spielstein" length="5">
+      <void index="0">
+       <object idref="Spielstein0"/>
+      </void>
+      <void index="1">
+       <object idref="Spielstein0"/>
+      </void>
+      <void index="2">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>O</char>
+        </void>
+       </object>
+      </void>
+      <void index="3">
+       <object idref="Spielstein0"/>
+      </void>
+      <void index="4">
+       <object idref="Spielstein0"/>
+      </void>
+     </array>
+    </void>
+   </array>
+  </void>
+  <void property="spieler1">
+   <object class="model.spieler.MenschSpieler">
+    <void property="name">
+     <string>christian</string>
+    </void>
+    <void property="spielSteinListe">
+     <object class="java.util.LinkedList">
+      <void method="add">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>X</char>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>X</char>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>X</char>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>X</char>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>X</char>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>X</char>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="model.spielstein.Spielstein">
+        <void property="symbol">
+         <char>X</char>
+        </void>
+       </object>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void property="spieler2">
+   <object idref="MenschSpieler0"/>
+  </void>
+  <void property="spielfeld">
+   <object class="model.spielfeld.Spielfeld">
+    <void property="spielbrett">
+     <object idref="SpielsteinArrayArray0"/>
+    </void>
+   </object>
+  </void>
+  <void property="typ">
+   <string>MENSCH</string>
+  </void>
+ </object>
+</java>
