@@ -97,13 +97,14 @@ public class ControlSpiel implements InterfaceEngine {
 				this.main.getOutput().print("Letzter Befehl:" + input);
 				this.isZugErfolgtreich = this.controlZug.naechsterZug(input);
 
-				if (this.isZugErfolgtreich) {
+				if (this.isZugErfolgtreich && this.spielfeld!= null) {
 					this.main.getOutput().print(this.spielfeld.toString());
 				}
 			}
 
 			break;
 		case SPIELRUNDENENDE:
+	
 			this.rundeSpiel--;
 			if (this.rundeSpiel == 0) {
 				
@@ -119,7 +120,6 @@ public class ControlSpiel implements InterfaceEngine {
 			break;
 		}
 	}
-
 	private void resetSpiel() {
 		this.rundeSpiel = 1;
 		this.rundeZug   = 1;
@@ -129,10 +129,8 @@ public class ControlSpiel implements InterfaceEngine {
 		this.nameSpieler1 = null;
 		this.nameSpieler2 = null;
 		this.controlZug.setSonderregel(false);
-		this.isSonderRegelGeprueft = false;
-	    
+		this.isSonderRegelGeprueft = false;	    
     }
-
 	private void spielSpeichern() {
 		int num = this.leseListeSpielstaende().size();
 		ControlSpeichern conSp = new ControlSpeichern();
@@ -150,7 +148,6 @@ public class ControlSpiel implements InterfaceEngine {
 		filehandler.save(this.filename + "" + num, conSp);
 		this.main.getOutput().print("Spiel gespeichert");
 	}
-
 	private void ladeSpiel(String num) {
 
 		String name = this.filename + num;
@@ -214,6 +211,7 @@ public class ControlSpiel implements InterfaceEngine {
 			if (modus.equals("BOO")) {
 				this.rundeSpiel = 1;
 			} else if (modus.equals("BOOT")) {
+				
 				this.rundeSpiel = 3;
 			}
 		}
