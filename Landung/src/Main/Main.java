@@ -1,6 +1,5 @@
 package Main;
 
-
 import model.highscore.HighScoreListe;
 
 import Control.Control;
@@ -13,28 +12,48 @@ public class Main {
 	private Output output;
 	private Control control;
 	private HighScoreListe highscore;
+	private boolean spielBeendet;
 
 	public Main() {
 		this.init();
 		this.run();
 	}
 
+	/**
+	 * @return the spielBeendet
+	 */
+	public boolean isSpielBeendet() {
+		return spielBeendet;
+	}
+
+	/**
+	 * @param spielBeendet the spielBeendet to set
+	 */
+	public void setSpielBeendet(boolean spielBeendet) {
+		this.spielBeendet = spielBeendet;
+	}
+
 	private void run() {
 		
 		while (true) {
 			this.control.printStatus();
-			this.control.checkInput(this.input.read());
+			if(!this.spielBeendet){
+			this.control.checkInput(this.input.read());}
 			if (control.isBeendet()) {
 				this.output.print("Spiel beendet");
 				break;
 			}
+			if(this.spielBeendet){
+				this.spielBeendet = false;
+			}
 		}
 	}
+
 	private void init() {
 		this.input = new Input();
-		this.output = new Output();		
+		this.output = new Output();
 		this.highscore = new HighScoreListe();
-		this.control = new Control(this);				
+		this.control = new Control(this);
 	}
 
 	/**
