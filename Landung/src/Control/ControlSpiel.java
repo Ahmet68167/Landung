@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.net.ssl.SSLEngineResult.Status;
+
 import speichern.FileHandler;
 import Main.Main;
 import model.spieler.MenschSpieler;
@@ -30,6 +32,8 @@ public class ControlSpiel implements InterfaceEngine {
 	private Spieler istDran;
 	private int rundeZug = 1;
 	private String filename = "saveFile";
+	private boolean isTunierspiel = false;
+	private String letzterBefehl;
 
 	/**
 	 * @return the rundeZug
@@ -72,6 +76,7 @@ public class ControlSpiel implements InterfaceEngine {
 			if (input.equals("speichern")) {
 				this.spielSpeichern();
 			} else {
+				this.letzterBefehl = input;
 				this.main.getOutput().print("Letzter Befehl:" + input);
 				this.controlZug.naechsterZug(input);
 				this.main.getOutput().print(this.spielfeld.toString());
@@ -323,13 +328,15 @@ public class ControlSpiel implements InterfaceEngine {
 
 	@Override
     public void youAreSecond() {
-	    // TODO Auto-generated method stub
+	   
 	    
     }
 
 	@Override
     public boolean isRunning() {
-	    // TODO Auto-generated method stub
+	 if(Control.STATUS == Control.STATUS.SPIELRUNDE){
+		 return true;
+	 }
 	    return false;
     }
 
@@ -341,14 +348,14 @@ public class ControlSpiel implements InterfaceEngine {
 
 	@Override
     public boolean takeYourMove(String gegnerZug) {
-	    // TODO Auto-generated method stub
+	   	this.starteSpiel(gegnerZug);
 	    return false;
     }
 
 	@Override
     public String getMyMove() {
-	    // TODO Auto-generated method stub
-	    return null;
+	    
+	    return this.letzterBefehl;
     }
 
 	@Override
@@ -365,7 +372,7 @@ public class ControlSpiel implements InterfaceEngine {
 
 	@Override
     public void printBoard() {
-	    // TODO Auto-generated method stub
+		this.main.getOutput().print(this.spielfeld.toString());
 	    
     }
 

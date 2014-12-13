@@ -13,6 +13,8 @@ public class ControlZug {
     }
 
 	public void naechsterZug(String eingabe) {
+		
+		
 		if(!istZugMoeglich() && this.controlSpiel.getRundeZug() > 2) {
     		this.controlSpiel.naechsterSpieler();
     		this.controlSpiel.main.getOutput().print(this.controlSpiel.getIstDran().getName() + " hat gewonnen.");
@@ -30,6 +32,9 @@ public class ControlZug {
     				this.controlSpiel.setRundeZug(this.controlSpiel.getRundeZug() + 1);
     				this.controlSpiel.naechsterSpieler();
     			}
+    		}
+    		else{
+    			this.controlSpiel.main.getOutput().print("Fehler: ungültiger Zug");
     		}
     	}
 		
