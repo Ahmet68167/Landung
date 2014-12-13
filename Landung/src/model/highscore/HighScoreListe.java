@@ -46,7 +46,7 @@ public class HighScoreListe {
 	}
 
 	public String toString() {
-		String txt = "----------------";
+		String txt = "----------------\n";
 
 		if (this.liste.size() != 0) {
 

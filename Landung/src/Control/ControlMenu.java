@@ -83,8 +83,6 @@ public class ControlMenu {
 		} else if (input.equals("d")) {
 			Control.STATUS= Control.STATUS.ENDE;
 		
-		}else {
-			this.main.getOutput().print("Fehler: ungültige Eingabe");
 		}
 
 	}
