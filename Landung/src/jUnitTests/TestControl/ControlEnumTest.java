@@ -4,7 +4,13 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+
 public class ControlEnumTest {
+	
+	@Test
+	public void testControlEnum(){
+		fail("Not yet implemented");
+	}
 
 	@Test
 	public void testGetName() {
