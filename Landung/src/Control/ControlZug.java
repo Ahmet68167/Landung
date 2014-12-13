@@ -14,26 +14,35 @@ public class ControlZug {
 
 	public boolean naechsterZug(String eingabe) {
 
-		if (!istZugMoeglich() && this.controlSpiel.getRundeZug() > 2) {
+		if (this.controlSpiel.getRundeZug() == 3) {
+
+			if (eingabe.equals("j")) {
+				return true;
+			} else if (eingabe.equals("n")) {
+				return true;
+			} else {
+				this.controlSpiel.main
+				        .getOutput()
+				        .print("Wollen Sie die Sonderregel verwenden ? Ja [j] oder Nein [n] .");
+				return false;
+			}
+		}
+
+		else if (!istZugMoeglich() && this.controlSpiel.getRundeZug() > 2) {
 			this.controlSpiel.naechsterSpieler();
 			this.controlSpiel.main.getOutput()
 			        .print(this.controlSpiel.getIstDran().getName()
 			                + " hat gewonnen.");
 			Control.STATUS = Control.STATUS.HAUPTMENU;
-
 		} else {
-
 			if (macheZug(eingabe)) {
 
 				if (gewonnen()) {
-
 					this.controlSpiel.main.getOutput().print(
 					        this.controlSpiel.getIstDran().getName()
 					                + " hat gewonnen.");
 					Control.STATUS = Control.STATUS.HAUPTMENU;
-
 				} else {
-
 					this.controlSpiel.setRundeZug(this.controlSpiel
 					        .getRundeZug() + 1);
 					this.controlSpiel.naechsterSpieler();
@@ -53,19 +62,15 @@ public class ControlZug {
 		if (spieler.getSpielSteinListeSize() > 0) {
 			return true;
 		}
-
 		return false;
 	}
 
 	public boolean macheZug(String eingabe) {
-
 		int[] start = new int[2];
 		int[] ziel = new int[2];
 		int[] entf = new int[2];
-
 		if (!gueltigeEingabe(eingabe))
 			return false;
-
 		if (this.controlSpiel.getRundeZug() < 3) {
 
 			if (eingabe.length() == 2) {
@@ -80,20 +85,6 @@ public class ControlZug {
 				return true;
 			}
 			return false;
-
-		} else if (this.controlSpiel.getRundeZug() == 3) {
-
-			if (eingabe.equals("j")) {
-				return true;
-			} else if (eingabe.equals("n")) {
-				return true;
-			} else {
-				this.controlSpiel.main
-				        .getOutput()
-				        .print("Wollen Sie die Sonderregel verwenden ? Ja [j] oder Nein [n] .");
-
-				return false;
-			}
 
 		} else if (this.controlSpiel.getRundeZug() >= 3
 		        && this.controlSpiel.getRundeZug() < 19) {

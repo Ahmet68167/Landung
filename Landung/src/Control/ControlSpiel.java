@@ -347,7 +347,7 @@ public class ControlSpiel implements InterfaceEngine {
 
 	@Override
 	public int whoWon() {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
