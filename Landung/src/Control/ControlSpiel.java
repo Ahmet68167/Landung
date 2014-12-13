@@ -107,7 +107,10 @@ public class ControlSpiel implements InterfaceEngine {
 			this.rundeSpiel--;
 			if (this.rundeSpiel == 0) {
 				
-				Control.STATUS = Control.STATUS.HAUPTMENU;
+				Control.STATUS = Control.STATUS.HAUPTMENU;	
+				this.resetSpiel();
+				
+				
 			}else{
 				Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
 			}
@@ -116,6 +119,17 @@ public class ControlSpiel implements InterfaceEngine {
 			break;
 		}
 	}
+
+	private void resetSpiel() {
+		this.rundeSpiel = 1;
+		this.rundeZug   = 1;
+		this.spieler1   = null;
+		this.spieler2   = null;
+		this.spielfeld  = null;
+		this.nameSpieler1 = null;
+		this.nameSpieler2 = null;
+	    
+    }
 
 	private void spielSpeichern() {
 		int num = this.leseListeSpielstaende().size();
