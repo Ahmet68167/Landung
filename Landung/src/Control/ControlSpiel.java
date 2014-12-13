@@ -18,7 +18,7 @@ public class ControlSpiel implements InterfaceEngine {
 
 	Main main;
 	private ControlZug controlZug;
-	private int rundeSpiel = 0;
+	private int rundeSpiel = 1;
 	Spieler spieler1;
 	Spieler spieler2;
 	private String nameSpieler1;
@@ -68,11 +68,11 @@ public class ControlSpiel implements InterfaceEngine {
 
 			break;
 		case SPIELVORBEREITUNG:
-			if (this.rundeSpiel > 0) {
+			if (this.rundeSpiel > 0) {			
 				this.setSpielerNamen(input);
 				this.initSpielMaterial();
 				this.startSpieler();
-				this.rundeSpiel--;
+		
 			} else {
 				Control.STATUS = Control.STATUS.HAUPTMENU;
 			}
@@ -95,6 +95,7 @@ public class ControlSpiel implements InterfaceEngine {
 		case SPIELRUNDENENDE:
 			this.rundeSpiel--;
 			if (this.rundeSpiel == 0) {
+				
 				Control.STATUS = Control.STATUS.HAUPTMENU;
 			}
 			break;
@@ -190,6 +191,8 @@ public class ControlSpiel implements InterfaceEngine {
 	}
 
 	private void initSpielMaterial() {
+		
+	
 		if (nameSpieler1 != null && nameSpieler2 != null) {
 
 			this.spieler1 = new MenschSpieler(nameSpieler1,
@@ -223,7 +226,7 @@ public class ControlSpiel implements InterfaceEngine {
 
 		case SPIELRUNDE: // ;
 			this.main.getOutput().print("Spieler: " + istDran.getName());
-			if (this.rundeZug == 3 && !this.controlZug.getIsSonderregel()) {
+			if (this.rundeZug == 4 && !this.controlZug.getIsSonderregel()) {
 
 				this.main
 				        .getOutput()
