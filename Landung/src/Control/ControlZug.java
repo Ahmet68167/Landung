@@ -7,6 +7,7 @@ import model.spieler.Spieler;
 public class ControlZug {
 
 	private ControlSpiel controlSpiel;
+	private boolean isSonderregel = false;
 
 	public ControlZug(ControlSpiel controlSpiel) {
 		this.controlSpiel = controlSpiel;
@@ -17,18 +18,15 @@ public class ControlZug {
 		if (this.controlSpiel.getRundeZug() == 3) {
 
 			if (eingabe.equals("j")) {
+				this.isSonderregel = true;
 				return true;
 			} else if (eingabe.equals("n")) {
+				this.isSonderregel = true;
 				return true;
 			} else {
-				this.controlSpiel.main
-				        .getOutput()
-				        .print("Wollen Sie die Sonderregel verwenden ? Ja [j] oder Nein [n] .");
 				return false;
 			}
-		}
-
-		else if (!istZugMoeglich() && this.controlSpiel.getRundeZug() > 2) {
+		} else	if (!istZugMoeglich() && this.controlSpiel.getRundeZug() > 2) {
 			this.controlSpiel.naechsterSpieler();
 			this.controlSpiel.main.getOutput()
 			        .print(this.controlSpiel.getIstDran().getName()
@@ -438,6 +436,11 @@ public class ControlZug {
 		}
 
 		return koordinaten;
+	}
+
+	public boolean getIsSonderregel() {
+
+		return this.isSonderregel;
 	}
 
 }

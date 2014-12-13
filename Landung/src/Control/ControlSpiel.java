@@ -218,6 +218,12 @@ public class ControlSpiel implements InterfaceEngine {
 
 		case SPIELRUNDE: // ;
 			this.main.getOutput().print("Spieler: " + istDran.getName());
+			if(this.rundeZug == 3 && !this.controlZug.getIsSonderregel()){
+	
+				this.main
+		        .getOutput()
+		        .print("Wollen Sie die Sonderregel verwenden ? Ja [j] oder Nein [n] .");
+			}
 			break;
 		case SPIELENDE:
 			break;
