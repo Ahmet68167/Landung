@@ -13,9 +13,7 @@ public class ControlZug {
     }
 
 	public void naechsterZug(String eingabe) {
-	
 		if(!istZugMoeglich() && this.controlSpiel.getRundeZug() > 2) {
-			
     		this.controlSpiel.naechsterSpieler();
     		this.controlSpiel.main.getOutput().print(this.controlSpiel.getIstDran().getName() + " hat gewonnen.");
     		Control.STATUS =Control.STATUS.HAUPTMENU;
@@ -50,6 +48,9 @@ public class ControlZug {
     	int[] start = new int[2];
     	int[] ziel = new int[2];
     	int[] entf = new int[2];
+    	
+    	if(!gueltigeEingabe(eingabe))
+    		return false;
     	
     	if(this.controlSpiel.getRundeZug() < 3) {
     
@@ -143,11 +144,11 @@ public class ControlZug {
 		if(this.controlSpiel.getSpielfeld().fetchSpielstein(start).getSymbol() != 
 				this.controlSpiel.getIstDran().getSymbol())				
 			return false;
-	
+		
 		// Pruefe ziel
 		if(!this.controlSpiel.getSpielfeld().isEmpty(ziel))
 			return false;
-		
+
 		// Teste Vertikal
 		if(start[0] == ziel[0] && Math.abs(start[1] - ziel[1]) > 2) {
 			if(start[1] - ziel[1] < 0)
