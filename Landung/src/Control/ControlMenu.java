@@ -1,7 +1,4 @@
 package Control;
-
-
-
 import Main.Main;
 
 public class ControlMenu {
@@ -136,7 +133,7 @@ public class ControlMenu {
 
 	private void ladeHighscore() {
 		
-		this.main.getOutput().print(""+this.main.getHighscore().toString());
+		this.main.getOutput().print("Highscore\n"+this.main.getHighscore().toString());
 		Control.STATUS= Control.STATUS.HAUPTMENU;
 
 	}

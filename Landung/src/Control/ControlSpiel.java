@@ -258,8 +258,9 @@ public class ControlSpiel {
 			} else {
 				this.istDran = this.spieler2;
 			}
-			this.main.getOutput().print("Startspieler: "+this.istDran.getName());
+		
 			Control.STATUS = Control.STATUS.SPIELRUNDE;
+			this.starteSpiel("");;
 		}
 	}
 
