@@ -63,6 +63,8 @@ public class ControlMenu {
 			this.control.checkInput("");
 		} else if (input.equals("c")) {
 			Control.STATUS = Control.STATUS.NEUESSPIEL;
+		}else {
+			this.main.getOutput().print("Fehler: ungültige Eingabe");
 		}
 	}
 
@@ -81,6 +83,8 @@ public class ControlMenu {
 		} else if (input.equals("d")) {
 			Control.STATUS= Control.STATUS.ENDE;
 		
+		}else {
+			this.main.getOutput().print("Fehler: ungültige Eingabe");
 		}
 
 	}
@@ -99,6 +103,8 @@ public class ControlMenu {
 			this.control.checkInput("");
 		} else if (input.equals("c")) {
 			Control.STATUS = Control.STATUS.NEUESSPIEL;
+		}else {
+			this.main.getOutput().print("Fehler: ungültige Eingabe");
 		}
 
 	}
@@ -111,6 +117,8 @@ public class ControlMenu {
 			Control.STATUS = Control.STATUS.SvsKI;
 		} else if (input.equals("c")) {
 			Control.STATUS= Control.STATUS.HAUPTMENU;
+		}else {
+			this.main.getOutput().print("Fehler: ungültige Eingabe");
 		}
 		
 	}

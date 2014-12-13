@@ -68,9 +68,14 @@ public class ControlSpiel implements InterfaceEngine {
 
 			break;
 		case SPIELVORBEREITUNG:
-			this.setSpielerNamen(input);
-			this.initSpielMaterial();
-			this.startSpieler();
+			if (this.rundeSpiel > 0) {
+				this.setSpielerNamen(input);
+				this.initSpielMaterial();
+				this.startSpieler();
+				this.rundeSpiel--;
+			} else {
+				Control.STATUS = Control.STATUS.HAUPTMENU;
+			}
 
 			break;
 		case SPIELRUNDE:
@@ -80,7 +85,7 @@ public class ControlSpiel implements InterfaceEngine {
 				this.letzterBefehl = input;
 				this.main.getOutput().print("Letzter Befehl:" + input);
 				this.isZugErfolgtreich = this.controlZug.naechsterZug(input);
-				
+
 				if (this.isZugErfolgtreich) {
 					this.main.getOutput().print(this.spielfeld.toString());
 				}
@@ -218,11 +223,11 @@ public class ControlSpiel implements InterfaceEngine {
 
 		case SPIELRUNDE: // ;
 			this.main.getOutput().print("Spieler: " + istDran.getName());
-			if(this.rundeZug == 3 && !this.controlZug.getIsSonderregel()){
-	
+			if (this.rundeZug == 3 && !this.controlZug.getIsSonderregel()) {
+
 				this.main
-		        .getOutput()
-		        .print("Wollen Sie die Sonderregel verwenden ? Ja [j] oder Nein [n] .");
+				        .getOutput()
+				        .print("Wollen Sie die Sonderregel verwenden ? Ja [j] oder Nein [n] .");
 			}
 			break;
 		case SPIELENDE:
@@ -353,7 +358,7 @@ public class ControlSpiel implements InterfaceEngine {
 
 	@Override
 	public int whoWon() {
-		
+
 		return 0;
 	}
 
