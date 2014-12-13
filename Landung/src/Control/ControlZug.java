@@ -64,7 +64,7 @@ public class ControlZug {
 		} else if (this.controlSpiel.getRundeZug() >= 3
 		        && this.controlSpiel.getRundeZug() < 19) {
 			
-			if(this.controlSpiel.getRundeZug() == 3 && isSonderregel)
+			if(this.controlSpiel.getRundeZug() == 4 && isSonderregel)
 				return sonderregel(start, eingabe);
 			
 			return ziehenSetzen(start, ziel, eingabe);
@@ -74,6 +74,13 @@ public class ControlZug {
 		}
 
 		return false;
+	}
+
+	/**
+	 * @param isSonderregel the isSonderregel to set
+	 */
+	public void setSonderregel(boolean isSonderregel) {
+		this.isSonderregel = isSonderregel;
 	}
 
 	public boolean istZugMoeglich() {
