@@ -66,6 +66,8 @@ public class Control implements IGame{
 		@Override
 		public void youAreSecond() {
 			this.controlSpiel.naechsterSpieler();
+			
+		
 		}
 
 		@Override

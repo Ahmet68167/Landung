@@ -40,6 +40,8 @@ public class ControlSpiel {
 	private boolean isSonderRegelGeprueft = false;
 	private boolean isKiSpiel;
 	private ControlKI controlKI;
+	private String letzterBefehler_1="";
+	private String letzterBefehler_2="";
 
 	/**
 	 * @return the rundeZug
@@ -80,9 +82,14 @@ public class ControlSpiel {
 
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
+		
 		if (this.isKiSpiel ) {
 			if(input == null || input == ""){
 			input = this.controlKI.getKIBefehl();
+	
+			}else{
+			    this.letzterBefehl = input;
+
 			}
 	
 		}
@@ -124,16 +131,14 @@ public class ControlSpiel {
 			} else {
 
 				// //////// KI SPIEL
-			
-
-					this.letzterBefehl = input;
-			
-
+				
+				
 					this.isZugErfolgtreich = this.controlZug
 					        .naechsterZug(input);
 
 					if (this.isZugErfolgtreich && this.spielfeld != null
 					        && !this.isKiSpiel) {
+						this.letzterBefehl = input;
 						this.main.getOutput().print("Letzter Befehl:" + input);
 						this.main.getOutput().print(this.spielfeld.toString());
 					}
