@@ -2,25 +2,26 @@ package Control;
 
 import java.util.regex.Pattern;
 
+import InputOutput.Output;
 import model.spieler.Spieler;
 
 public class ControlZug {
 
 	private ControlSpiel controlSpiel;
 	private boolean isSonderregel = false;
+	private Output output;
 
 	public ControlZug(ControlSpiel controlSpiel) {
 		this.controlSpiel = controlSpiel;
+		this.output = new Output();
 	}
 
 	public boolean naechsterZug(String eingabe) {
 
-
 		if (!istZugMoeglich() && this.controlSpiel.getRundeZug() > 2) {
 			this.controlSpiel.naechsterSpieler();
-		//	this.controlSpiel.main.getOutput()
-			//        .print(this.controlSpiel.getIstDran().getName()
-			         //       + " hat gewonnen.");
+			this.output.print(this.controlSpiel.getIstDran().getName()
+			        + " hat gewonnen.");
 			Control.STATUS = Control.STATUS.SPIELRUNDENENDE;
 			this.controlSpiel.starteSpiel("");
 
@@ -28,26 +29,25 @@ public class ControlZug {
 			if (macheZug(eingabe)) {
 
 				if (gewonnen()) {
-				//	this.controlSpiel.main.getOutput().print(
-					//        this.controlSpiel.getIstDran().getName()
-					  //              + " hat gewonnen.");
+					this.output.print(this.controlSpiel.getIstDran().getName()
+					        + " hat gewonnen.");
 					Control.STATUS = Control.STATUS.SPIELRUNDENENDE;
 					this.controlSpiel.starteSpiel("");
 
 				} else {
 					this.controlSpiel.setRundeZug(this.controlSpiel
 					        .getRundeZug() + 1);
-					this.controlSpiel.naechsterSpieler();					
+					this.controlSpiel.naechsterSpieler();
 				}
 			} else {
 				if (eingabe.length() > 0) {
-				//	this.controlSpiel.main.getOutput().print(
-					//        "Fehler: ungültiger Zug");
+					 this.output.print(
+					 "Fehler: ungültiger Zug");
 					return false;
 				}
 			}
 		}
-	
+
 		return true;
 
 	}
@@ -72,8 +72,7 @@ public class ControlZug {
 		} else if (this.controlSpiel.getRundeZug() >= 19) {
 			return ziehenEntf(start, ziel, entf, eingabe);
 		}
-		
-	
+
 		return false;
 	}
 
