@@ -18,9 +18,9 @@ public class ControlZug {
 
 		if (!istZugMoeglich() && this.controlSpiel.getRundeZug() > 2) {
 			this.controlSpiel.naechsterSpieler();
-			this.controlSpiel.main.getOutput()
-			        .print(this.controlSpiel.getIstDran().getName()
-			                + " hat gewonnen.");
+		//	this.controlSpiel.main.getOutput()
+			//        .print(this.controlSpiel.getIstDran().getName()
+			         //       + " hat gewonnen.");
 			Control.STATUS = Control.STATUS.SPIELRUNDENENDE;
 			this.controlSpiel.starteSpiel("");
 
@@ -28,9 +28,9 @@ public class ControlZug {
 			if (macheZug(eingabe)) {
 
 				if (gewonnen()) {
-					this.controlSpiel.main.getOutput().print(
-					        this.controlSpiel.getIstDran().getName()
-					                + " hat gewonnen.");
+				//	this.controlSpiel.main.getOutput().print(
+					//        this.controlSpiel.getIstDran().getName()
+					  //              + " hat gewonnen.");
 					Control.STATUS = Control.STATUS.SPIELRUNDENENDE;
 					this.controlSpiel.starteSpiel("");
 
@@ -41,8 +41,8 @@ public class ControlZug {
 				}
 			} else {
 				if (eingabe.length() > 0) {
-					this.controlSpiel.main.getOutput().print(
-					        "Fehler: ungültiger Zug");
+				//	this.controlSpiel.main.getOutput().print(
+					//        "Fehler: ungültiger Zug");
 					return false;
 				}
 			}
