@@ -8,13 +8,15 @@ import java.util.List;
 import javax.net.ssl.SSLEngineResult.Status;
 
 import speichern.FileHandler;
+import tunier.IGame;
 import Main.Main;
+import model.spieler.KISpieler;
 import model.spieler.MenschSpieler;
 import model.spieler.Spieler;
 import model.spielfeld.Spielfeld;
 import model.spielstein.Spielstein;
 
-public class ControlSpiel implements InterfaceEngine {
+public class ControlSpiel {
 
 	Main main;
 	private ControlZug controlZug;
@@ -36,6 +38,8 @@ public class ControlSpiel implements InterfaceEngine {
 	private String letzterBefehl;
 	private boolean isZugErfolgtreich;
 	private boolean isSonderRegelGeprueft = false;
+	private boolean isKiSpiel;
+	private ControlKI controlKI;
 
 	/**
 	 * @return the rundeZug
@@ -57,6 +61,24 @@ public class ControlSpiel implements InterfaceEngine {
 		this.controlZug = new ControlZug(this);
 	}
 
+	// Für KI Spiel ///////////////////////////////////////
+	public ControlSpiel() {
+
+		this.isKiSpiel = true;
+		this.controlZug = new ControlZug(this);
+		this.controlKI = new ControlKI(this);
+		this.nameSpieler1 = "KI_1";
+		this.nameSpieler2 = "KI_2";
+		this.spieler1 = new KISpieler(nameSpieler1,
+		        new Spielstein(this.symbol1), 1);
+		this.spieler2 = new KISpieler(nameSpieler2,
+		        new Spielstein(this.symbol2), 1);
+
+	
+
+	}
+
+	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
 
 		switch (Control.STATUS) {
@@ -69,7 +91,7 @@ public class ControlSpiel implements InterfaceEngine {
 
 			break;
 		case SPIELVORBEREITUNG:
-			System.out.println(this.rundeSpiel);
+
 			if (this.rundeSpiel > 0) {
 				this.setSpielerNamen(input);
 				this.initSpielMaterial();
@@ -94,12 +116,22 @@ public class ControlSpiel implements InterfaceEngine {
 
 			} else {
 
-				this.letzterBefehl = input;
-				this.main.getOutput().print("Letzter Befehl:" + input);
-				this.isZugErfolgtreich = this.controlZug.naechsterZug(input);
+				////////// KI SPIEL
+				if (this.isKiSpiel) {
+					input = this.controlKI.getKIBefehl();
+					this.isZugErfolgtreich = this.controlZug
+					        .naechsterZug(input);
+				} else {
 
-				if (this.isZugErfolgtreich && this.spielfeld != null) {
-					this.main.getOutput().print(this.spielfeld.toString());
+					this.letzterBefehl = input;
+					this.main.getOutput().print("Letzter Befehl:" + input);
+
+					this.isZugErfolgtreich = this.controlZug
+					        .naechsterZug(input);
+
+					if (this.isZugErfolgtreich && this.spielfeld != null) {
+						this.main.getOutput().print(this.spielfeld.toString());
+					}
 				}
 			}
 
@@ -107,31 +139,41 @@ public class ControlSpiel implements InterfaceEngine {
 		case SPIELRUNDENENDE:
 			this.rundeSpiel--;
 
-			
 			if (this.rundeSpiel == 0) {
 
 				Control.STATUS = Control.STATUS.HAUPTMENU;
-			
+
 				this.main.getControl().checkInput("");
-			
+
 				int punkte = this.spielfeld.getAnzahlLeererFelder();
 				this.istDran.setPunkte(punkte);
-				this.istDran.setGesamtpunkte(this.istDran.getGesamtpunkte() + punkte);;
-				this.main.getHighscore().neuerHighScore(this.istDran.getName(), punkte);
-				this.main.getOutput().print(""+this.istDran.getName()+" hat "+punkte+" Punkte erreicht ");
-				
+				this.istDran.setGesamtpunkte(this.istDran.getGesamtpunkte()
+				        + punkte);
+				;
+				this.main.getHighscore().neuerHighScore(this.istDran.getName(),
+				        punkte);
+				this.main.getOutput().print(
+				        "" + this.istDran.getName() + " hat "
+				                + this.istDran.getGesamtpunkte()
+				                + " Punkte erreicht ");
+
 				this.resetSpiel();
 			} else {
-				Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;			
-				
+				Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
+
 				int punkte = this.spielfeld.getAnzahlLeererFelder();
 				this.istDran.setPunkte(punkte);
-				this.istDran.setGesamtpunkte(this.istDran.getGesamtpunkte() + punkte);;
-				this.main.getHighscore().neuerHighScore(this.istDran.getName(), punkte);
-				this.main.getOutput().print(""+this.istDran.getName()+" hat "+punkte+" Punkte erreicht ");
+				this.istDran.setGesamtpunkte(this.istDran.getGesamtpunkte()
+				        + punkte);
+
+				this.main.getHighscore().neuerHighScore(this.istDran.getName(),
+				        punkte);
+				this.main.getOutput().print(
+				        "" + this.istDran.getName() + " hat "
+				                + this.istDran.getGesamtpunkte()
+				                + " Punkte erreicht ");
 				this.resetRunde();
-				this.main.getControl().checkInput("");
-			
+
 			}
 
 			break;
@@ -141,7 +183,8 @@ public class ControlSpiel implements InterfaceEngine {
 	}
 
 	/**
-	 * @param spielfeld the spielfeld to set
+	 * @param spielfeld
+	 *            the spielfeld to set
 	 */
 	public void setSpielfeld(Spielfeld spielfeld) {
 		this.spielfeld = spielfeld;
@@ -158,8 +201,9 @@ public class ControlSpiel implements InterfaceEngine {
 		this.controlZug.setSonderregel(false);
 		this.isSonderRegelGeprueft = false;
 	}
+
 	private void resetRunde() {
-	
+
 		this.rundeZug = 1;
 
 		this.spielfeld = null;
@@ -259,10 +303,10 @@ public class ControlSpiel implements InterfaceEngine {
 
 		if (nameSpieler1 != null && nameSpieler2 != null) {
 
-			this.spieler1 = new MenschSpieler(nameSpieler1,
-			       new Spielstein(this.symbol1));
-			this.spieler2 = new MenschSpieler(nameSpieler2,
-			        new Spielstein(this.symbol2));
+			this.spieler1 = new MenschSpieler(nameSpieler1, new Spielstein(
+			        this.symbol1));
+			this.spieler2 = new MenschSpieler(nameSpieler2, new Spielstein(
+			        this.symbol2));
 		}
 		if (this.spielfeld == null) {
 			this.spielfeld = new Spielfeld();
@@ -409,57 +453,6 @@ public class ControlSpiel implements InterfaceEngine {
 	 */
 	protected void setRundeSpiel(int rundeSpiel) {
 		this.rundeSpiel = rundeSpiel;
-	}
-
-	// ///////// Interface Methoden /////////////////
-
-	@Override
-	public void youAreSecond() {
-
-	}
-
-	@Override
-	public boolean isRunning() {
-		if (Control.STATUS == Control.STATUS.SPIELRUNDE) {
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public int whoWon() {
-
-		return 0;
-	}
-
-	@Override
-	public boolean takeYourMove(String gegnerZug) {
-		this.starteSpiel(gegnerZug);
-		return false;
-	}
-
-	@Override
-	public String getMyMove() {
-
-		return this.letzterBefehl;
-	}
-
-	@Override
-	public boolean canYouMove() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean canIMove() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public void printBoard() {
-		this.main.getOutput().print(this.spielfeld.toString());
-
 	}
 
 }

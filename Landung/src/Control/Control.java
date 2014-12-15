@@ -1,8 +1,9 @@
 package Control;
 
+import tunier.IGame;
 import Main.Main;
 
-public class Control {
+public class Control implements IGame{
 	private ControlMenu controleMenu;
 	private ControlSpiel controlSpiel;
 	private Main main;
@@ -14,6 +15,13 @@ public class Control {
 		this.controleMenu = new ControlMenu(main,this);
 		this.controlSpiel = new ControlSpiel(main);
 	}
+	
+	// Für KI Spiel
+	public Control(){
+		this.controlSpiel = new ControlSpiel();
+		this.STATUS = STATUS.SPIELVORBEREITUNG;
+	}
+	
 	public void checkInput(String input) {		
 
 		this.setupControle();
@@ -49,4 +57,55 @@ public class Control {
 			}
 		}
 	}
+	
+	// ///////// Interface Methoden /////////////////
+
+		@Override
+		public void youAreSecond() {
+
+		}
+
+		@Override
+		public boolean isRunning() {
+			if (Control.STATUS == Control.STATUS.SPIELRUNDE) {
+				return true;
+			}
+			return false;
+		}
+
+		@Override
+		public int whoWon() {
+
+			return 0;
+		}
+
+		@Override
+		public boolean takeYourMove(String gegnerZug) {
+			this.controlSpiel.starteSpiel(gegnerZug);
+			return false;
+		}
+
+		@Override
+		public String getMyMove() {
+
+			return "";
+		}
+
+		@Override
+		public boolean canYouMove() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public boolean canIMove() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public void printBoard() {
+			this.main.getOutput().print(this.controlSpiel.getSpielfeld().toString());
+
+		}
 }
