@@ -73,14 +73,20 @@ public class ControlSpiel {
 		        new Spielstein(this.symbol1), 1);
 		this.spieler2 = new KISpieler(nameSpieler2,
 		        new Spielstein(this.symbol2), 1);
-
-	
+		this.istDran = this.spieler1;
+		this.spielfeld = new Spielfeld();
 
 	}
 
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
-
+		if (this.isKiSpiel ) {
+			input = this.controlKI.getKIBefehl();
+	
+		}
+		
+		
+		System.out.println("TEST "+	input);
 		switch (Control.STATUS) {
 		case LADENAUSWAHL:
 			this.printListeSpielstaende();
@@ -116,23 +122,21 @@ public class ControlSpiel {
 
 			} else {
 
-				////////// KI SPIEL
-				if (this.isKiSpiel) {
-					input = this.controlKI.getKIBefehl();
-					this.isZugErfolgtreich = this.controlZug
-					        .naechsterZug(input);
-				} else {
+				// //////// KI SPIEL
+			
 
 					this.letzterBefehl = input;
-					this.main.getOutput().print("Letzter Befehl:" + input);
+			
 
 					this.isZugErfolgtreich = this.controlZug
 					        .naechsterZug(input);
 
-					if (this.isZugErfolgtreich && this.spielfeld != null) {
+					if (this.isZugErfolgtreich && this.spielfeld != null
+					        && !this.isKiSpiel) {
+						this.main.getOutput().print("Letzter Befehl:" + input);
 						this.main.getOutput().print(this.spielfeld.toString());
 					}
-				}
+				
 			}
 
 			break;
@@ -180,6 +184,28 @@ public class ControlSpiel {
 		default: // Fehler ungültiger Status;
 			break;
 		}
+	}
+
+	/**
+	 * @return the controlKI
+	 */
+	public ControlKI getControlKI() {
+		return controlKI;
+	}
+
+	/**
+	 * @param controlKI
+	 *            the controlKI to set
+	 */
+	public void setControlKI(ControlKI controlKI) {
+		this.controlKI = controlKI;
+	}
+
+	/**
+	 * @return the letzterBefehl
+	 */
+	public String getLetzterBefehl() {
+		return letzterBefehl;
 	}
 
 	/**

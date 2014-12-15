@@ -45,6 +45,8 @@ public class Tournament {
 		while (running) {
 			try {
 
+				first.printBoard();
+				second.printBoard();
 				// run a turn
 				IGame current = runSingleTurn(first, second);
 				
@@ -65,6 +67,12 @@ public class Tournament {
 				running = false;
 				System.out.println(e.getError());
 			}
+			try {
+	            Thread.sleep(500);
+            } catch (InterruptedException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+            }
 		}
 
 		return null;

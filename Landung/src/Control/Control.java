@@ -1,12 +1,14 @@
 package Control;
 
 import tunier.IGame;
+import InputOutput.Output;
 import Main.Main;
 
 public class Control implements IGame{
 	private ControlMenu controleMenu;
 	private ControlSpiel controlSpiel;
 	private Main main;
+	private Output output;
 	static ControlEnum STATUS;
 	
 	public Control(Main main) {
@@ -18,6 +20,7 @@ public class Control implements IGame{
 	
 	// Für KI Spiel
 	public Control(){
+		this.output = new Output();
 		this.controlSpiel = new ControlSpiel();
 		this.STATUS = STATUS.SPIELVORBEREITUNG;
 	}
@@ -62,7 +65,7 @@ public class Control implements IGame{
 
 		@Override
 		public void youAreSecond() {
-
+			this.controlSpiel.naechsterSpieler();
 		}
 
 		@Override
@@ -81,31 +84,32 @@ public class Control implements IGame{
 
 		@Override
 		public boolean takeYourMove(String gegnerZug) {
+		
 			this.controlSpiel.starteSpiel(gegnerZug);
-			return false;
+			return true;
 		}
 
 		@Override
 		public String getMyMove() {
-
-			return "";
+			
+			return this.controlSpiel.getLetzterBefehl();
 		}
 
 		@Override
 		public boolean canYouMove() {
 			// TODO Auto-generated method stub
-			return false;
+			return true;
 		}
 
 		@Override
 		public boolean canIMove() {
 			// TODO Auto-generated method stub
-			return false;
+			return true;
 		}
 
 		@Override
 		public void printBoard() {
-			this.main.getOutput().print(this.controlSpiel.getSpielfeld().toString());
+			this.output.print(this.controlSpiel.getSpielfeld().toString());
 
 		}
 }
