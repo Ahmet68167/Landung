@@ -81,12 +81,13 @@ public class ControlSpiel {
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
 		if (this.isKiSpiel ) {
+			if(input == null || input == ""){
 			input = this.controlKI.getKIBefehl();
+			}
 	
 		}
 		
-		
-		System.out.println("TEST "+	input);
+
 		switch (Control.STATUS) {
 		case LADENAUSWAHL:
 			this.printListeSpielstaende();
