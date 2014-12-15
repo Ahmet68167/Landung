@@ -21,6 +21,8 @@ public class ControlZugTest {
 	private Spielstein o;
 	private Spieler spieler1;
 	private Spieler spieler2;
+	private ControlZug controlZug;
+	private ControlSpiel controlSpiel;
 
 	@Before
 	public void initialize() {
@@ -29,7 +31,7 @@ public class ControlZugTest {
 		o = new Spielstein('O');
 		spieler1 = new MenschSpieler();
 		spieler2 = new MenschSpieler();
-
+		controlZug = new ControlZug(controlSpiel);
 	}
 
 	@Test
@@ -76,22 +78,18 @@ public class ControlZugTest {
 		spielfeld.setzeSpielstein(o, b1);
 		spielfeld.setzeSpielstein(o, c1);
 
-		assertFalse(istMoeglich.istZugMoeglich());
+		assertFalse(controlZug.istZugMoeglich());
 
 		spielfeld.leeren();
 
 		// Muss hier true ergeben
 		spielfeld.setzeSpielstein(spieler1.getSpielstein(), a2);
 		spielfeld.setzeSpielstein(spieler2.getSpielstein(), e2);
-		assertTrue(istMoeglich.istZugMoeglich());
+		assertTrue(controlZug.istZugMoeglich());
 	}
 
 	@Test
 	public void testGueltigerZug() {
-		ZugPruefung gueltigerZug1 = new ZugPruefung();
-		ZugPruefung gueltigerZug2 = new ZugPruefung();
-		
-		ZugPruefung ungueZug1 = new ZugPruefung();
 		
 		//Spieler1
 		int[] e5 = {4,4};
@@ -103,13 +101,13 @@ public class ControlZugTest {
 		int[] e5e2 = {4,1};
 		int[] e5e1 = {4,0};
 		
-		spielfeld.setzeSpielstein(spieler1.getSpielstein(), e5);
-		spielfeld.setzeSpielstein(spieler2.getSpielstein(), a2);
+		spielfeld.setzeSpielstein(x,e5);
+		spielfeld.setzeSpielstein(o, a2);
 		System.out.println(spielfeld);
 		
-		assertFalse(ungueZug1.gueltigerZug(e5, a2));
-		assertTrue(gueltigerZug1.gueltigerZug(e5, e5e2));
-		assertTrue(gueltigerZug2.gueltigerZug(e5, e5e1));
+		assertFalse(controlZug.gueltigerZug(e5, a2));
+		assertTrue(controlZug.gueltigerZug(e5, e5e2));
+		assertTrue(controlZug.gueltigerZug(e5, e5e1));
 	}
 
 	@Ignore
