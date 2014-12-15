@@ -41,8 +41,8 @@ public class ControlZug {
 				}
 			} else {
 				if (eingabe.length() > 0) {
-					 this.output.print(
-					 "Fehler: ungültiger Zug");
+				//	 this.output.print(
+			//		 "Fehler: ungültiger Zug");
 					return false;
 				}
 			}

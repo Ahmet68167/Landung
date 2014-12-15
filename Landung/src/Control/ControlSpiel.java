@@ -85,7 +85,7 @@ public class ControlSpiel {
 		
 		if (this.isKiSpiel ) {
 			if(input == null || input == ""){
-			input = this.controlKI.getKIBefehl();
+			input = this.controlKI.getKIBefehl(this.rundeZug);
 	
 			}else{
 			    this.letzterBefehl = input;
@@ -135,6 +135,15 @@ public class ControlSpiel {
 				
 					this.isZugErfolgtreich = this.controlZug
 					        .naechsterZug(input);
+					
+					if(this.isKiSpiel && !this.isZugErfolgtreich){
+						while(!this.isZugErfolgtreich){
+							input = this.controlKI.getKIBefehl(this.rundeZug);
+							this.isZugErfolgtreich = this.controlZug
+							        .naechsterZug(input);
+						
+						}
+					}
 
 					if (this.isZugErfolgtreich && this.spielfeld != null
 					        && !this.isKiSpiel) {

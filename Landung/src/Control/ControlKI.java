@@ -3,29 +3,51 @@ package Control;
 import java.util.ArrayList;
 
 public class ControlKI {
-	
-	public ControlKI(ControlSpiel controlSpiel) {
-	    // TODO Auto-generated constructor stub
-    }
 
-	public String getKIBefehl(){
+	private ArrayList<String> randMoveList;
+
+
+	public ControlKI(ControlSpiel controlSpiel) {
+
+		this.randMoveList = new ArrayList<>();
+
+		this.fillWithAllMoves();
+
 		
-		ArrayList<String> move = new ArrayList<>();
-		move.add("a1");
-		move.add("a2");
-		move.add("a3");
-		move.add("a4");
-		move.add("a5");
-		move.add("b1");
-		move.add("b2");
-		move.add("b3");
-		move.add("b4");
-		move.add("b5");
-		
-		int rand =(int) Math.round( Math.random() *9);
-		
-	
-		return move.get(rand);
 	}
 
+	public String getKIBefehl(int runde) {
+
+		return this.randMoveList.get((int) (Math.random() * this.randMoveList.size()-1));
+	}
+
+	private void fillWithAllMoves(){
+		
+		String tmp="";
+		for(int i = 0; i < 5;i++ ){
+			tmp = ""+(char) (97+i);
+			for(int k = 0; k< 5;k++){
+				 randMoveList.add(tmp+""+(k+1));
+			}
+		}
+		
+		for(int i = 0; i < 5;i++ ){
+		
+			for(int k = 0; k< 5;k++){
+		
+				for(int j = 0; j<5;j++){
+					
+					for(int l= 0;l<5;l++){
+						tmp = ""+(char) (97+i);
+						tmp +=""+(k+1);
+						tmp +=""+(char) (97+j);
+						this.randMoveList.add(tmp+""+(l+1));
+						
+					}
+				}
+			}
+			
+		}
+		
+	}
 }
