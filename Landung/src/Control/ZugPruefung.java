@@ -10,8 +10,8 @@ public class ZugPruefung {
 	public static Spielfeld spielfeld = new Spielfeld();
 	static Spielstein x = new Spielstein('X');
 	static Spielstein o = new Spielstein('O');
-	static Spieler spieler1 = new MenschSpieler("Ahmet", x.getSpielsteinListe());
-	static Spieler spieler2 = new MenschSpieler("Klaus", o.getSpielsteinListe());
+	static Spieler spieler1 = new MenschSpieler();
+	static Spieler spieler2 = new MenschSpieler();
 	
 	public static void main(String[] args) {
 		ZugPruefung op = new ZugPruefung();
