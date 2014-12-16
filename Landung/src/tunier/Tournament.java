@@ -13,7 +13,7 @@ public class Tournament {
 		points[0] = 0;
 		points[1] = 0;
 		
-		run(2);
+		run(1);
 	}
 
 	private void run(int matches){
@@ -45,8 +45,7 @@ public class Tournament {
 		// game loop
 		while (running) {
 			try {
-
-			
+				
 				
 				first.printBoard();
 				second.printBoard();
@@ -74,7 +73,7 @@ public class Tournament {
 				System.out.println(e.getError());
 			}
 			try {
-	            Thread.sleep(1000);
+	            Thread.sleep(1);
             } catch (InterruptedException e) {
 	            // TODO Auto-generated catch block
 	            e.printStackTrace();
