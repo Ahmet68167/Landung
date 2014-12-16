@@ -13,7 +13,7 @@ public class Tournament {
 		points[0] = 0;
 		points[1] = 0;
 		
-		run(100);
+		run(2);
 	}
 
 	private void run(int matches){
@@ -46,11 +46,14 @@ public class Tournament {
 		while (running) {
 			try {
 
+			
 				
 				first.printBoard();
 				second.printBoard();
 				// run a turn
 				IGame current = runSingleTurn(first, second);
+				
+				
 				
 				//if we have a winner
 				if(current != null){
