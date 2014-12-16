@@ -116,7 +116,8 @@ public class ControlSpiel {
 
 		}
 
-		System.out.println(input);
+	
+		
 		
 		switch (Control.STATUS) {
 		case LADENAUSWAHL:
@@ -140,6 +141,8 @@ public class ControlSpiel {
 
 			break;
 		case SPIELRUNDE:
+			
+
 			if (input.equals("speichern")) {
 				this.spielSpeichern();
 			} else if (this.rundeZug == 4 && !this.isSonderRegelGeprueft) {
@@ -157,11 +160,14 @@ public class ControlSpiel {
 
 				this.isZugErfolgtreich = this.controlZug.naechsterZug(input);
 
+				
+		
 				if (this.isKiSpiel && !this.isZugErfolgtreich) {
 					while (!this.isZugErfolgtreich) {
 						input = this.controlKI.getKIBefehl(this.rundeZug);
 						this.isZugErfolgtreich = this.controlZug
 						        .naechsterZug(input);
+			
 
 					}
 				}
@@ -181,7 +187,7 @@ public class ControlSpiel {
 
 			if (this.rundeSpiel == 0) {
 
-				Control.STATUS = Control.STATUS.HAUPTMENU;
+				Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
 
 				if (!this.isKiSpiel) {
 
@@ -204,25 +210,7 @@ public class ControlSpiel {
 				
 				}
 				
-			} else {
-				Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
-
-				if (!this.isKiSpiel) {
-
-					int punkte = this.spielfeld.getAnzahlLeererFelder();
-					this.istDran.setPunkte(punkte);
-					this.istDran.setGesamtpunkte(this.istDran.getGesamtpunkte()
-					        + punkte);
-
-					this.main.getHighscore().neuerHighScore(
-					        this.istDran.getName(), punkte);
-					this.main.getOutput().print(
-					        "" + this.istDran.getName() + " hat "
-					                + this.istDran.getGesamtpunkte()
-					                + " Punkte erreicht ");
-				}
-				this.resetRunde();
-
+			
 			}
 
 			break;
