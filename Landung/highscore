@@ -484,6 +484,76 @@
   <void method="add">
    <object class="model.highscore.HighScore">
     <void property="name">
+     <string>asdflkj</string>
+    </void>
+    <void property="punkte">
+     <int>23</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>asdfklj</string>
+    </void>
+    <void property="punkte">
+     <int>23</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>asljkf</string>
+    </void>
+    <void property="punkte">
+     <int>23</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>alsdkjf</string>
+    </void>
+    <void property="punkte">
+     <int>23</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>asdf</string>
+    </void>
+    <void property="punkte">
+     <int>23</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>asdf</string>
+    </void>
+    <void property="punkte">
+     <int>23</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>asdf</string>
+    </void>
+    <void property="punkte">
+     <int>23</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
      <string>KI</string>
     </void>
     <void property="punkte">

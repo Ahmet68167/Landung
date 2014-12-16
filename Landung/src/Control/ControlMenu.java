@@ -228,6 +228,12 @@ public class ControlMenu {
 	protected boolean isBestOfThree() {
 		return bestOfThree;
 	}
+	void reset(){
+		this.gegenKI     = false;
+		this.gegenMensch = false;
+		this.bestOfOne   = false;
+		this.bestOfThree = false;
+	}
 
 
 }

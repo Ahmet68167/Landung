@@ -5,8 +5,8 @@ import InputOutput.Output;
 import Main.Main;
 
 public class Control {
-	private ControlMenu controleMenu;
-	private ControlSpiel controlSpiel;
+	ControlMenu controleMenu;
+	ControlSpiel controlSpiel;
 	private Main main;
 	private Output output;
 	static ControlEnum STATUS;
@@ -16,13 +16,6 @@ public class Control {
 		this.STATUS = STATUS.HAUPTMENU;
 		this.controleMenu = new ControlMenu(main, this);
 		this.controlSpiel = new ControlSpiel(main);
-	}
-
-	// Für KI Spiel
-	public Control() {
-		this.output = new Output();
-		this.controlSpiel = new ControlSpiel();
-		this.STATUS = STATUS.SPIELVORBEREITUNG;
 	}
 
 	public void checkInput(String input) {

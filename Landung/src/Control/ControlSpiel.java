@@ -34,28 +34,9 @@ public class ControlSpiel {
 	private Spieler istDran;
 	private int rundeZug = 1;
 	private String filename = "saveFile";
-	private boolean isTunierspiel = false;
 	private String letzterBefehl;
 	private boolean isZugErfolgtreich;
 	private boolean isSonderRegelGeprueft = false;
-	/**
-	 * @return the hasWon
-	 */
-	public int getHasWon() {
-		return hasWon;
-	}
-
-	/**
-	 * @param hasWon the hasWon to set
-	 */
-	public void setHasWon() {
-		 if(2 * this.getRundeZug()  % 2 == 0){
-			 this.hasWon = 1;
-		 }else{
-			 this.hasWon = 2;
-		 }
-		
-	}
 
 	private boolean isKiSpiel;
 	private ControlKI controlKI;
@@ -117,6 +98,7 @@ public class ControlSpiel {
 		}
 
 		
+		
 		switch (Control.STATUS) {
 		case LADENAUSWAHL:
 			this.printListeSpielstaende();
@@ -139,8 +121,6 @@ public class ControlSpiel {
 
 			break;
 		case SPIELRUNDE:
-			
-
 			if (input.equals("speichern")) {
 				this.spielSpeichern();
 			} else if (this.rundeZug == 4 && !this.isSonderRegelGeprueft) {
@@ -153,9 +133,7 @@ public class ControlSpiel {
 				}
 
 			} else {
-
 				// //////// KI SPIEL
-
 				this.isZugErfolgtreich = this.controlZug.naechsterZug(input);
 
 				if (this.isKiSpiel && !this.isZugErfolgtreich) {
@@ -163,17 +141,14 @@ public class ControlSpiel {
 						input = this.controlKI.getKIBefehl(this.rundeZug);
 						this.isZugErfolgtreich = this.controlZug
 						        .naechsterZug(input);
-
 					}
 				}
-
 				if (this.isZugErfolgtreich && this.spielfeld != null
 				        && !this.isKiSpiel) {
 					this.letzterBefehl = input;
 					this.main.getOutput().print("Letzter Befehl:" + input);
 					this.main.getOutput().print(this.spielfeld.toString());
 				}
-
 			}
 
 			break;
@@ -181,7 +156,6 @@ public class ControlSpiel {
 			this.rundeSpiel--;
 
 			if (this.rundeSpiel == 0) {
-
 				Control.STATUS = Control.STATUS.HAUPTMENU;
 
 				if (!this.isKiSpiel) {
@@ -278,7 +252,10 @@ public class ControlSpiel {
 		this.nameSpieler2 = null;
 		this.controlZug.setSonderregel(false);
 		this.isSonderRegelGeprueft = false;
-		this.main.getControl().
+		this.main.getControl().controleMenu.reset();
+		this.typ = null;
+		this.modus = null;
+		
 	}
 
 	private void resetRunde() {
