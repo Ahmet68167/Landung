@@ -168,7 +168,7 @@ public class ControlMenu {
 			this.main.getOutput().print("[c]  Highscore", "console");
 			this.main.getOutput().print("[d]  Spielanleitung", "console");
 			this.main.getOutput().print("[e]  Beenden", "console");
-			this.main.getOutput().print("\n Info: Speichern nur wärend des Spiels.\n Druch Eingabe von \"speichern\"", "console");
+			this.main.getOutput().print("\n Info:\t Speichern nur wärend des Spiels.\n\t Druch Eingabe von \"speichern\"", "console");
 			break;
 		case NEUESSPIEL:
 			this.main.getOutput().print(Control.STATUS.getName(), "console");
