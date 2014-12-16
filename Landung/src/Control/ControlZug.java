@@ -25,7 +25,8 @@ public class ControlZug {
 		System.out.println(zuege);
 		*/
 		
-		if (!istZugMoeglich() && this.controlSpiel.getRundeZug() > 2) {
+		if (!istZugMoeglich() && ((2 < this.controlSpiel.getRundeZug() && this.controlSpiel.getRundeZug() < 4 || this.controlSpiel.getRundeZug() > 4)
+				|| (this.controlSpiel.getRundeZug() == 4 && !isSonderregel))) {
 			this.controlSpiel.naechsterSpieler();
 			this.output.print(this.controlSpiel.getIstDran().getName()
 			        + " hat gewonnen.");
