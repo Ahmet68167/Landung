@@ -1,15 +1,17 @@
 package Control;
 
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.regex.Pattern;
 
 import InputOutput.Output;
-import model.spieler.Spieler;
 
 public class ControlZug {
 
 	private ControlSpiel controlSpiel;
 	private boolean isSonderregel = false;
 	private Output output;
+	private Map<Integer, String> zuege;
 
 	public ControlZug(ControlSpiel controlSpiel) {
 		this.controlSpiel = controlSpiel;
@@ -18,11 +20,13 @@ public class ControlZug {
 
 	public boolean naechsterZug(String eingabe) {
 
+		alleZuege();
+		System.out.println(zuege);
+		
 		if (!istZugMoeglich() && this.controlSpiel.getRundeZug() > 2) {
 			this.controlSpiel.naechsterSpieler();
 			this.output.print(this.controlSpiel.getIstDran().getName()
 			        + " hat gewonnen.");
-
 			Control.STATUS = Control.STATUS.SPIELRUNDENENDE;
 			this.controlSpiel.starteSpiel("");
 
@@ -42,9 +46,9 @@ public class ControlZug {
 				}
 			} else {
 				if (eingabe.length() > 0) {
-			
+					if (!this.controlSpiel.isKiSpiel()) {
 						this.output.print("Fehler: ungültiger Zug");
-					
+					}
 					return false;
 				}
 			}
@@ -109,6 +113,37 @@ public class ControlZug {
 		}
 
 		return false;
+	}
+	
+	public void alleZuege() {
+		int[] start = new int[2];
+		int[] ziel = new int[2];
+		zuege = new TreeMap<>();
+
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 5; j++) {
+				for (int k = 0; k < 5; k++) {
+					for (int m = 0; m < 5; m++) {
+
+						start[0] = i;
+						start[1] = j;
+						ziel[0] = k;
+						ziel[1] = m;
+						
+						if(this.controlSpiel.getRundeZug() < 3) {
+							if(this.controlSpiel.getSpielfeld().isEmpty(start)) {
+								zuege.put(i+j+k+m, "" + ziel[0] + ziel[1]);
+							}
+							
+						} else {
+							if (gueltigerZug(start, ziel))
+								zuege.put(i+j+k+m, "" + start[0] + start[1] + ziel[0] + ziel[1]);
+						}
+					}
+				}
+			}
+		}
+		
 	}
 
 	public boolean gueltigerZug(int[] start, int[] ziel) {
