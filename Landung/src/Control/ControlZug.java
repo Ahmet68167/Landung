@@ -20,8 +20,10 @@ public class ControlZug {
 
 	public boolean naechsterZug(String eingabe) {
 
+		/*
 		alleZuege();
 		System.out.println(zuege);
+		*/
 		
 		if (!istZugMoeglich() && this.controlSpiel.getRundeZug() > 2) {
 			this.controlSpiel.naechsterSpieler();
@@ -62,6 +64,7 @@ public class ControlZug {
 		int[] start = new int[2];
 		int[] ziel = new int[2];
 		int[] entf = new int[2];
+		
 		if (!gueltigeEingabe(eingabe))
 			return false;
 		if (this.controlSpiel.getRundeZug() < 3) {
@@ -132,7 +135,7 @@ public class ControlZug {
 						
 						if(this.controlSpiel.getRundeZug() < 3) {
 							if(this.controlSpiel.getSpielfeld().isEmpty(start)) {
-								zuege.put((i*5)+(j*4)+k+m, "" + start[0] + start[1]);
+								zuege.put((i*5)+(j*4)+k*+m, "" + start[0] + start[1]);
 							}
 							
 						} else {

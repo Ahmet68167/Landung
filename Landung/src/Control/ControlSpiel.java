@@ -185,7 +185,6 @@ public class ControlSpiel {
 					this.istDran.setPunkte(punkte);
 					this.istDran.setGesamtpunkte(this.istDran.getGesamtpunkte()
 					        + punkte);
-
 					this.main.getHighscore().neuerHighScore(
 					        this.istDran.getName(), punkte);
 					this.main.getOutput().print(
