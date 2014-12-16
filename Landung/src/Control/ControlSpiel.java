@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.net.ssl.SSLEngineResult.Status;
-
 import speichern.FileHandler;
-import tunier.IGame;
+
 import Main.Main;
 import model.spieler.KISpieler;
 import model.spieler.MenschSpieler;
@@ -40,9 +38,6 @@ public class ControlSpiel {
 
 	private boolean isKiSpiel;
 	private ControlKI controlKI;
-	private String letzterBefehler_1 = "";
-	private String letzterBefehler_2 = "";
-	private int hasWon=0;
 
 	/**
 	 * @return the rundeZug
@@ -66,8 +61,6 @@ public class ControlSpiel {
 
 	// Für KI Spiel ///////////////////////////////////////
 	public ControlSpiel() {
-		
-
 
 		this.isKiSpiel = true;
 		this.controlZug = new ControlZug(this);
@@ -85,7 +78,7 @@ public class ControlSpiel {
 
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
-	
+
 		if (this.isKiSpiel) {
 			if (input == null || input == "") {
 				input = this.controlKI.getKIBefehl(this.rundeZug);
@@ -97,8 +90,6 @@ public class ControlSpiel {
 
 		}
 
-		
-		
 		switch (Control.STATUS) {
 		case LADENAUSWAHL:
 			this.printListeSpielstaende();
@@ -127,7 +118,7 @@ public class ControlSpiel {
 				if (input.equals("j")) {
 					this.controlZug.setSonderregel(true);
 					this.isSonderRegelGeprueft = true;
-				} else if (input.equals("n")){
+				} else if (input.equals("n")) {
 					this.controlZug.setSonderregel(false);
 					this.isSonderRegelGeprueft = true;
 				}
@@ -158,40 +149,37 @@ public class ControlSpiel {
 			if (this.rundeSpiel == 0) {
 				Control.STATUS = Control.STATUS.HAUPTMENU;
 
-				if (!this.isKiSpiel) {
+				this.main.getControl().checkInput("");
 
-					this.main.getControl().checkInput("");
+				int punkte = this.spielfeld.getAnzahlLeererFelder();
+				this.istDran.setPunkte(punkte);
+				this.istDran.setGesamtpunkte(this.istDran.getGesamtpunkte()
+				        + punkte);
 
-					int punkte = this.spielfeld.getAnzahlLeererFelder();
-					this.istDran.setPunkte(punkte);
-					this.istDran.setGesamtpunkte(this.istDran.getGesamtpunkte()
-					        + punkte);
+				this.main.getHighscore().neuerHighScore(this.istDran.getName(),
+				        punkte);
+				this.main.getOutput().print(
+				        "" + this.istDran.getName() + " hat "
+				                + this.istDran.getGesamtpunkte()
+				                + " Punkte erreicht ");
+				this.resetSpiel();
 
-					this.main.getHighscore().neuerHighScore(
-					        this.istDran.getName(), punkte);
-					this.main.getOutput().print(
-					        "" + this.istDran.getName() + " hat "
-					                + this.istDran.getGesamtpunkte()
-					                + " Punkte erreicht ");
-					this.resetSpiel();
-				}
-				
 			} else {
 				Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
 
-				if (!this.isKiSpiel) {
+				int punkte = this.spielfeld.getAnzahlLeererFelder();
+				this.istDran.setPunkte(punkte);
 
-					int punkte = this.spielfeld.getAnzahlLeererFelder();
-					this.istDran.setPunkte(punkte);
-					this.istDran.setGesamtpunkte(this.istDran.getGesamtpunkte()
-					        + punkte);
-					this.main.getHighscore().neuerHighScore(
-					        this.istDran.getName(), punkte);
-					this.main.getOutput().print(
-					        "" + this.istDran.getName() + " hat "
-					                + this.istDran.getGesamtpunkte()
-					                + " Punkte erreicht ");
-				}
+				this.istDran.setGesamtpunkte(this.istDran.getGesamtpunkte()
+				        + punkte);
+				this.main.getHighscore().neuerHighScore(this.istDran.getName(),
+				        punkte);
+
+				this.main.getOutput().print(
+				        "" + this.istDran.getName() + " hat "
+				                + this.istDran.getGesamtpunkte()
+				                + " Punkte erreicht ");
+
 				this.resetRunde();
 
 			}
@@ -201,8 +189,6 @@ public class ControlSpiel {
 			break;
 		}
 	}
-
-
 
 	/**
 	 * @return the isKiSpiel
@@ -254,7 +240,7 @@ public class ControlSpiel {
 		this.main.getControl().controleMenu.reset();
 		this.typ = null;
 		this.modus = null;
-		
+
 	}
 
 	private void resetRunde() {
@@ -355,11 +341,22 @@ public class ControlSpiel {
 	private void initSpielMaterial() {
 
 		if (nameSpieler1 != null && nameSpieler2 != null) {
+			int tmp = 0;
+			if (this.spieler1 != null) {
+				tmp = this.spieler1.getGesamtpunkte();
+			}
 
 			this.spieler1 = new MenschSpieler(nameSpieler1, new Spielstein(
 			        this.symbol1));
+			this.spieler1.setGesamtpunkte(tmp);
+
+			if (this.spieler2 != null) {
+				tmp = this.spieler2.getGesamtpunkte();
+			}
+
 			this.spieler2 = new MenschSpieler(nameSpieler2, new Spielstein(
 			        this.symbol2));
+			this.spieler2.setGesamtpunkte(tmp);
 		}
 		if (this.spielfeld == null) {
 			this.spielfeld = new Spielfeld();
