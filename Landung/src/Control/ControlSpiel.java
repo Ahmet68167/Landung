@@ -38,10 +38,30 @@ public class ControlSpiel {
 	private String letzterBefehl;
 	private boolean isZugErfolgtreich;
 	private boolean isSonderRegelGeprueft = false;
+	/**
+	 * @return the hasWon
+	 */
+	public int getHasWon() {
+		return hasWon;
+	}
+
+	/**
+	 * @param hasWon the hasWon to set
+	 */
+	public void setHasWon() {
+		 if(2 * this.getRundeZug()  % 2 == 0){
+			 this.hasWon = 1;
+		 }else{
+			 this.hasWon = 2;
+		 }
+		
+	}
+
 	private boolean isKiSpiel;
 	private ControlKI controlKI;
-	private String letzterBefehler_1="";
-	private String letzterBefehler_2="";
+	private String letzterBefehler_1 = "";
+	private String letzterBefehler_2 = "";
+	private int hasWon=0;
 
 	/**
 	 * @return the rundeZug
@@ -82,19 +102,20 @@ public class ControlSpiel {
 
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
-		
-		if (this.isKiSpiel ) {
-			if(input == null || input == ""){
-			input = this.controlKI.getKIBefehl(this.rundeZug);
-	
-			}else{
-			    this.letzterBefehl = input;
+
+		if (this.isKiSpiel) {
+			if (input == null || input == "") {
+				input = this.controlKI.getKIBefehl(this.rundeZug);
+
+			} else {
+				this.letzterBefehl = input;
 
 			}
-	
-		}
-		
 
+		}
+
+		System.out.println(input);
+		
 		switch (Control.STATUS) {
 		case LADENAUSWAHL:
 			this.printListeSpielstaende();
@@ -131,27 +152,25 @@ public class ControlSpiel {
 			} else {
 
 				// //////// KI SPIEL
-				
-				
-					this.isZugErfolgtreich = this.controlZug
-					        .naechsterZug(input);
-					
-					if(this.isKiSpiel && !this.isZugErfolgtreich){
-						while(!this.isZugErfolgtreich){
-							input = this.controlKI.getKIBefehl(this.rundeZug);
-							this.isZugErfolgtreich = this.controlZug
-							        .naechsterZug(input);
-						
-						}
-					}
 
-					if (this.isZugErfolgtreich && this.spielfeld != null
-					        && !this.isKiSpiel) {
-						this.letzterBefehl = input;
-						this.main.getOutput().print("Letzter Befehl:" + input);
-						this.main.getOutput().print(this.spielfeld.toString());
+				this.isZugErfolgtreich = this.controlZug.naechsterZug(input);
+
+				if (this.isKiSpiel && !this.isZugErfolgtreich) {
+					while (!this.isZugErfolgtreich) {
+						input = this.controlKI.getKIBefehl(this.rundeZug);
+						this.isZugErfolgtreich = this.controlZug
+						        .naechsterZug(input);
+
 					}
-				
+				}
+
+				if (this.isZugErfolgtreich && this.spielfeld != null
+				        && !this.isKiSpiel) {
+					this.letzterBefehl = input;
+					this.main.getOutput().print("Letzter Befehl:" + input);
+					this.main.getOutput().print(this.spielfeld.toString());
+				}
+
 			}
 
 			break;
@@ -162,35 +181,43 @@ public class ControlSpiel {
 
 				Control.STATUS = Control.STATUS.HAUPTMENU;
 
-				this.main.getControl().checkInput("");
+				if (!this.isKiSpiel) {
 
-				int punkte = this.spielfeld.getAnzahlLeererFelder();
-				this.istDran.setPunkte(punkte);
-				this.istDran.setGesamtpunkte(this.istDran.getGesamtpunkte()
-				        + punkte);
-				;
-				this.main.getHighscore().neuerHighScore(this.istDran.getName(),
-				        punkte);
-				this.main.getOutput().print(
-				        "" + this.istDran.getName() + " hat "
-				                + this.istDran.getGesamtpunkte()
-				                + " Punkte erreicht ");
+					this.main.getControl().checkInput("");
 
-				this.resetSpiel();
+					int punkte = this.spielfeld.getAnzahlLeererFelder();
+					this.istDran.setPunkte(punkte);
+					this.istDran.setGesamtpunkte(this.istDran.getGesamtpunkte()
+					        + punkte);
+
+					this.main.getHighscore().neuerHighScore(
+					        this.istDran.getName(), punkte);
+					this.main.getOutput().print(
+					        "" + this.istDran.getName() + " hat "
+					                + this.istDran.getGesamtpunkte()
+					                + " Punkte erreicht ");
+					this.resetSpiel();
+				}else{
+					this.resetKISpiel();
+				}
+				
 			} else {
 				Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
 
-				int punkte = this.spielfeld.getAnzahlLeererFelder();
-				this.istDran.setPunkte(punkte);
-				this.istDran.setGesamtpunkte(this.istDran.getGesamtpunkte()
-				        + punkte);
+				if (!this.isKiSpiel) {
 
-				this.main.getHighscore().neuerHighScore(this.istDran.getName(),
-				        punkte);
-				this.main.getOutput().print(
-				        "" + this.istDran.getName() + " hat "
-				                + this.istDran.getGesamtpunkte()
-				                + " Punkte erreicht ");
+					int punkte = this.spielfeld.getAnzahlLeererFelder();
+					this.istDran.setPunkte(punkte);
+					this.istDran.setGesamtpunkte(this.istDran.getGesamtpunkte()
+					        + punkte);
+
+					this.main.getHighscore().neuerHighScore(
+					        this.istDran.getName(), punkte);
+					this.main.getOutput().print(
+					        "" + this.istDran.getName() + " hat "
+					                + this.istDran.getGesamtpunkte()
+					                + " Punkte erreicht ");
+				}
 				this.resetRunde();
 
 			}
@@ -199,6 +226,25 @@ public class ControlSpiel {
 		default: // Fehler ungültiger Status;
 			break;
 		}
+	}
+
+	private void resetKISpiel() {
+		this.rundeSpiel = 1;
+		this.rundeZug = 1;
+		
+		this.spielfeld = new Spielfeld();
+	
+		this.controlZug.setSonderregel(false);
+		this.isSonderRegelGeprueft = false;
+		this.hasWon = 0;
+	    
+    }
+
+	/**
+	 * @return the isKiSpiel
+	 */
+	public boolean isKiSpiel() {
+		return isKiSpiel;
 	}
 
 	/**

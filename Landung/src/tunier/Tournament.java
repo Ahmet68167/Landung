@@ -25,6 +25,7 @@ public class Tournament {
 			} else if(winner == games[1]){
 				points[1]++;
 			}
+		
 		}
 		
 		System.out.println("Points A:"+points[0]);
@@ -45,6 +46,7 @@ public class Tournament {
 		while (running) {
 			try {
 
+				
 				first.printBoard();
 				second.printBoard();
 				// run a turn
