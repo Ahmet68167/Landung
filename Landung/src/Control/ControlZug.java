@@ -132,12 +132,12 @@ public class ControlZug {
 						
 						if(this.controlSpiel.getRundeZug() < 3) {
 							if(this.controlSpiel.getSpielfeld().isEmpty(start)) {
-								zuege.put(i+j+k+m, "" + ziel[0] + ziel[1]);
+								zuege.put((i*5)+(j*4)+k+m, "" + start[0] + start[1]);
 							}
 							
 						} else {
 							if (gueltigerZug(start, ziel))
-								zuege.put(i+j+k+m, "" + start[0] + start[1] + ziel[0] + ziel[1]);
+								zuege.put((i*5)+(j*4)+k+m, "" + start[0] + start[1] + ziel[0] + ziel[1]);
 						}
 					}
 				}
