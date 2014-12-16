@@ -25,12 +25,6 @@ public abstract class Spieler {
 		return this.spielstein;
 	}
 	
-	/**
-	 * @param spielstein the spielstein to set
-	 */
-	public void setSpielstein(Spielstein spielstein) {
-		this.spielstein = spielstein;
-	}
 	public char getSymbol() {
 		return this.spielstein.getSymbol();
 	}

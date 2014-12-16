@@ -21,7 +21,7 @@ public enum ControlEnum {
 	/**
 	 * @return the name
 	 */
-	protected String getName() {
+	public String getName() {
 		return name;
 	}
 

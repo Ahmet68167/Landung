@@ -85,6 +85,8 @@ public class ControlSpiel {
 
 	// Für KI Spiel ///////////////////////////////////////
 	public ControlSpiel() {
+		
+
 
 		this.isKiSpiel = true;
 		this.controlZug = new ControlZug(this);
@@ -102,7 +104,7 @@ public class ControlSpiel {
 
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
-
+	
 		if (this.isKiSpiel) {
 			if (input == null || input == "") {
 				input = this.controlKI.getKIBefehl(this.rundeZug);
@@ -114,7 +116,6 @@ public class ControlSpiel {
 
 		}
 
-		System.out.println(input);
 		
 		switch (Control.STATUS) {
 		case LADENAUSWAHL:
@@ -138,13 +139,15 @@ public class ControlSpiel {
 
 			break;
 		case SPIELRUNDE:
+			
+
 			if (input.equals("speichern")) {
 				this.spielSpeichern();
 			} else if (this.rundeZug == 4 && !this.isSonderRegelGeprueft) {
 				if (input.equals("j")) {
 					this.controlZug.setSonderregel(true);
 					this.isSonderRegelGeprueft = true;
-				} else {
+				} else if (input.equals("n")){
 					this.controlZug.setSonderregel(false);
 					this.isSonderRegelGeprueft = true;
 				}
@@ -197,9 +200,6 @@ public class ControlSpiel {
 					                + this.istDran.getGesamtpunkte()
 					                + " Punkte erreicht ");
 					this.resetSpiel();
-				}else{
-					this.resetKISpiel();
-				
 				}
 				
 			} else {
@@ -229,17 +229,7 @@ public class ControlSpiel {
 		}
 	}
 
-	private void resetKISpiel() {
-		this.rundeSpiel = 1;
-		this.rundeZug = 1;
-		
-		this.spielfeld = new Spielfeld();
-	
-		this.controlZug.setSonderregel(false);
-		this.isSonderRegelGeprueft = false;
-		this.hasWon = 0;
-	    
-    }
+
 
 	/**
 	 * @return the isKiSpiel
@@ -288,14 +278,13 @@ public class ControlSpiel {
 		this.nameSpieler2 = null;
 		this.controlZug.setSonderregel(false);
 		this.isSonderRegelGeprueft = false;
+		this.main.getControl().
 	}
 
 	private void resetRunde() {
 
 		this.rundeZug = 1;
-
 		this.spielfeld = null;
-
 		this.controlZug.setSonderregel(false);
 		this.isSonderRegelGeprueft = false;
 	}

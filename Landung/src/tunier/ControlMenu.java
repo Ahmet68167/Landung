@@ -91,7 +91,7 @@ public class ControlMenu {
 			Control.STATUS= Control.STATUS.ENDE;
 		
 		}else if(input.equals("d")){
-			this.spielanleitung();
+		
 		}
 
 	}

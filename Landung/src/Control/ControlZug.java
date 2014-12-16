@@ -22,7 +22,7 @@ public class ControlZug {
 			this.controlSpiel.naechsterSpieler();
 			this.output.print(this.controlSpiel.getIstDran().getName()
 			        + " hat gewonnen.");
-			this.controlSpiel.setHasWon();
+
 			Control.STATUS = Control.STATUS.SPIELRUNDENENDE;
 			this.controlSpiel.starteSpiel("");
 
@@ -42,9 +42,9 @@ public class ControlZug {
 				}
 			} else {
 				if (eingabe.length() > 0) {
-					if (!this.controlSpiel.isKiSpiel()) {
+			
 						this.output.print("Fehler: ungültiger Zug");
-					}
+					
 					return false;
 				}
 			}

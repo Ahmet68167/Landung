@@ -30,8 +30,7 @@ public class ControlZug {
 			if (macheZug(eingabe)) {
 
 				if (gewonnen()) {
-					this.output.print(this.controlSpiel.getIstDran().getName()
-					        + " hat gewonnen.");
+		
 					Control.STATUS = Control.STATUS.SPIELRUNDENENDE;
 					this.controlSpiel.starteSpiel("");
 

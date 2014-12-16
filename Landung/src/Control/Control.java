@@ -4,7 +4,7 @@ import tunier.IGame;
 import InputOutput.Output;
 import Main.Main;
 
-public class Control implements IGame {
+public class Control {
 	private ControlMenu controleMenu;
 	private ControlSpiel controlSpiel;
 	private Main main;
@@ -64,57 +64,4 @@ public class Control implements IGame {
 		}
 	}
 
-	// ///////// Interface Methoden /////////////////
-
-	@Override
-	public void youAreSecond() {
-		this.controlSpiel.naechsterSpieler();
-
-	}
-
-	@Override
-	public boolean isRunning() {
-		if (Control.STATUS == Control.STATUS.SPIELRUNDE) {
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public int whoWon() {
-
-		return this.controlSpiel.getHasWon();
-	}
-
-	@Override
-	public boolean takeYourMove(String gegnerZug) {
-
-		this.controlSpiel.starteSpiel(gegnerZug);
-		return true;
-	}
-
-	@Override
-	public String getMyMove() {
-
-		return this.controlSpiel.getLetzterBefehl();
-	}
-
-	@Override
-	public boolean canYouMove() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean canIMove() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public void printBoard() {
-		if (this.controlSpiel.getSpielfeld() != null) {
-			this.output.print(this.controlSpiel.getSpielfeld().toString());
-		}
-	}
 }

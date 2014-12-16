@@ -8,16 +8,10 @@ import Main.Main;
 public class Control implements IGame {
 	private ControlMenu controleMenu;
 	private ControlSpiel controlSpiel;
-	private Main main;
+
 	private Output output;
 	static ControlEnum STATUS;
 
-	public Control(Main main) {
-		this.main = main;
-		this.STATUS = STATUS.HAUPTMENU;
-		this.controleMenu = new ControlMenu(main, this);
-		this.controlSpiel = new ControlSpiel(main);
-	}
 
 	// Für KI Spiel
 	public Control() {
@@ -48,20 +42,9 @@ public class Control implements IGame {
 
 	protected void setupControle() {
 		if (STATUS == STATUS.SPIELVORBEREITUNG) {
-			if (this.controleMenu.isGegenKI()) {
-				if (this.controleMenu.isBestOfOne()) {
-					this.controlSpiel.setTypModus("KI", "BOO");
-				} else if (this.controleMenu.isBestOfThree()) {
-					this.controlSpiel.setTypModus("KI", "BOT");
-				}
-
-			} else if (this.controleMenu.isGegenMensch()) {
-				if (this.controleMenu.isBestOfOne()) {
-					this.controlSpiel.setTypModus("MENSCH", "BOO");
-				} else if (this.controleMenu.isBestOfThree()) {
-					this.controlSpiel.setTypModus("MENSCH", "BOT");
-				}
-			}
+		
+			this.controlSpiel.setTypModus("KI", "BOO");
+		
 		}
 	}
 
