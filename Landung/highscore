@@ -4,6 +4,46 @@
   <void method="add">
    <object class="model.highscore.HighScore">
     <void property="name">
+     <string>Steffen</string>
+    </void>
+    <void property="punkte">
+     <int>30</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>Steffen</string>
+    </void>
+    <void property="punkte">
+     <int>30</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>Steffen</string>
+    </void>
+    <void property="punkte">
+     <int>30</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>Steffen</string>
+    </void>
+    <void property="punkte">
+     <int>30</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
      <string>adsf</string>
     </void>
     <void property="punkte">
@@ -388,6 +428,146 @@
     </void>
     <void property="punkte">
      <int>22</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>stef</string>
+    </void>
+    <void property="punkte">
+     <int>22</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>Steffen</string>
+    </void>
+    <void property="punkte">
+     <int>11</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>Steffen</string>
+    </void>
+    <void property="punkte">
+     <int>7</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>Steffen</string>
+    </void>
+    <void property="punkte">
+     <int>7</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>Steffen</string>
+    </void>
+    <void property="punkte">
+     <int>7</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>Steffen</string>
+    </void>
+    <void property="punkte">
+     <int>7</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>Steffen</string>
+    </void>
+    <void property="punkte">
+     <int>7</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>Steffen</string>
+    </void>
+    <void property="punkte">
+     <int>7</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>Steffen</string>
+    </void>
+    <void property="punkte">
+     <int>7</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>Steffen</string>
+    </void>
+    <void property="punkte">
+     <int>7</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>Steffen</string>
+    </void>
+    <void property="punkte">
+     <int>7</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>Steffen</string>
+    </void>
+    <void property="punkte">
+     <int>7</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>Steffen</string>
+    </void>
+    <void property="punkte">
+     <int>7</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
+     <string>Steffen</string>
+    </void>
+    <void property="punkte">
+     <int>7</int>
     </void>
    </object>
   </void>

@@ -2,14 +2,27 @@ package jUnitTests.TestControl;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import Control.Control;
 import Control.ControlMenu;
+import Main.Main;
+
 
 public class ControlMenuTest {
+	
+	private Main main;
+	private Control control;
+	private ControlMenu menu;
+	
+	@Before
+	public void initControlMenu(){
+		menu = new ControlMenu(main, control);
+	}
 
-	@Test
+	@Ignore //Konstruktor
 	public void testControlMenu() {
 		fail("Not yet implemented");
 	}
@@ -21,7 +34,7 @@ public class ControlMenuTest {
 
 	@Test
 	public void testGetSTATUS() {
-		fail("Not yet implemented");
+		assertEquals(null, menu.getSTATUS());
 	}
 
 	@Test
