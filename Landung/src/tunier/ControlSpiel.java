@@ -40,6 +40,7 @@ public class ControlSpiel {
 	private String letzterBefehl;
 	private boolean isZugErfolgtreich;
 	private boolean isSonderRegelGeprueft = false;
+
 	/**
 	 * @return the hasWon
 	 */
@@ -48,22 +49,27 @@ public class ControlSpiel {
 	}
 
 	/**
-	 * @param hasWon the hasWon to set
+	 * @param i
+	 * @param spieler
+	 * @param hasWon
+	 *            the hasWon to set
 	 */
-	public void setHasWon() {
-		 if(2 * this.getRundeZug()  % 2 == 0){
-			 this.hasWon = 1;
-		 }else{
-			 this.hasWon = 2;
-		 }
-		
+	public void setHasWon(int i) {
+
+		this.hasWon = i;
+
 	}
 
 	private boolean isKiSpiel;
 	private ControlKI controlKI;
 	private String letzterBefehler_1 = "";
 	private String letzterBefehler_2 = "";
-	private int hasWon=0;
+	private int hasWon = 0;
+	public boolean gewonnen = false;
+	public boolean isSecond = false;
+	public String gegenerZug = "";
+	private boolean gotAMoveOrder;
+	private boolean gaveAMoveOrder;
 
 	/**
 	 * @return the rundeZug
@@ -105,29 +111,12 @@ public class ControlSpiel {
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
 
-		if (this.isKiSpiel) {
-			if (input == null || input == "") {
-				input = this.controlKI.getKIBefehl(this.rundeZug);
-
-			} else {
-				this.letzterBefehl = input;
-
-			}
-
+		if (this.gewonnen) {
+			setHasWon(1);
 		}
 
-	
-		
-		
 		switch (Control.STATUS) {
-		case LADENAUSWAHL:
-			this.printListeSpielstaende();
-			Control.STATUS = Control.STATUS.LADEN;
-			break;
-		case LADEN:
-			this.ladeSpiel(input);
 
-			break;
 		case SPIELVORBEREITUNG:
 
 			if (this.rundeSpiel > 0) {
@@ -141,42 +130,51 @@ public class ControlSpiel {
 
 			break;
 		case SPIELRUNDE:
-			
 
-			if (input.equals("speichern")) {
-				this.spielSpeichern();
-			} else if (this.rundeZug == 4 && !this.isSonderRegelGeprueft) {
-				if (input.equals("j")) {
-					this.controlZug.setSonderregel(true);
-					this.isSonderRegelGeprueft = true;
-				} else {
-					this.controlZug.setSonderregel(false);
-					this.isSonderRegelGeprueft = true;
-				}
+			if (this.rundeZug == 4 && !this.isSonderRegelGeprueft) {
 
-			} else {
+				this.controlZug.setSonderregel(true);
+				this.isSonderRegelGeprueft = true;
 
-				// //////// KI SPIEL
-
-				this.isZugErfolgtreich = this.controlZug.naechsterZug(input);
-
-				
-		
-				if (this.isKiSpiel && !this.isZugErfolgtreich) {
+			}
+			// //////// KI SPIEL
+			if (isSecond) {
+				if (!this.gotAMoveOrder) {
+					input = this.gegenerZug;
+					this.controlZug.naechsterZug(input);
+					this.gotAMoveOrder = true;
+				}else if(this.gotAMoveOrder){
+					input = this.controlKI.getKIBefehl(this.rundeZug);
+					this.isZugErfolgtreich = false;
 					while (!this.isZugErfolgtreich) {
 						input = this.controlKI.getKIBefehl(this.rundeZug);
 						this.isZugErfolgtreich = this.controlZug
 						        .naechsterZug(input);
-			
-
 					}
+					this.letzterBefehl = input;
+					this.gotAMoveOrder = false;
 				}
 
-				if (this.isZugErfolgtreich && this.spielfeld != null
-				        && !this.isKiSpiel) {
+			} else {
+
+				if (!this.gaveAMoveOrder) {
+					input = this.controlKI.getKIBefehl(this.rundeZug);
+					this.isZugErfolgtreich = false;
+					while (!this.isZugErfolgtreich) {
+						input = this.controlKI.getKIBefehl(this.rundeZug);
+						this.isZugErfolgtreich = this.controlZug
+						        .naechsterZug(input);
+					}
 					this.letzterBefehl = input;
-					this.main.getOutput().print("Letzter Befehl:" + input);
-					this.main.getOutput().print(this.spielfeld.toString());
+					this.gaveAMoveOrder = true;
+				}else if(this.gaveAMoveOrder){
+					
+					input = this.gegenerZug;
+					this.controlZug.naechsterZug(input);
+					this.gaveAMoveOrder = false;
+					
+					
+		
 				}
 
 			}
@@ -189,28 +187,8 @@ public class ControlSpiel {
 
 				Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
 
-				if (!this.isKiSpiel) {
+				this.resetKISpiel();
 
-					this.main.getControl().checkInput("");
-
-					int punkte = this.spielfeld.getAnzahlLeererFelder();
-					this.istDran.setPunkte(punkte);
-					this.istDran.setGesamtpunkte(this.istDran.getGesamtpunkte()
-					        + punkte);
-
-					this.main.getHighscore().neuerHighScore(
-					        this.istDran.getName(), punkte);
-					this.main.getOutput().print(
-					        "" + this.istDran.getName() + " hat "
-					                + this.istDran.getGesamtpunkte()
-					                + " Punkte erreicht ");
-					this.resetSpiel();
-				}else{
-					this.resetKISpiel();
-				
-				}
-				
-			
 			}
 
 			break;
@@ -219,17 +197,24 @@ public class ControlSpiel {
 		}
 	}
 
+	/**
+	 * @param letzterBefehl
+	 *            the letzterBefehl to set
+	 */
+	public void setLetzterBefehl(String letzterBefehl) {
+		this.letzterBefehl = letzterBefehl;
+	}
+
 	private void resetKISpiel() {
 		this.rundeSpiel = 1;
 		this.rundeZug = 1;
-		
 		this.spielfeld = new Spielfeld();
-	
 		this.controlZug.setSonderregel(false);
 		this.isSonderRegelGeprueft = false;
 		this.hasWon = 0;
-	    
-    }
+		this.gotAMoveOrder = false;
+		this.gaveAMoveOrder = false;
+	}
 
 	/**
 	 * @return the isKiSpiel
@@ -266,81 +251,6 @@ public class ControlSpiel {
 	 */
 	public void setSpielfeld(Spielfeld spielfeld) {
 		this.spielfeld = spielfeld;
-	}
-
-	private void resetSpiel() {
-		this.rundeSpiel = 1;
-		this.rundeZug = 1;
-		this.spieler1 = null;
-		this.spieler2 = null;
-		this.spielfeld = null;
-		this.nameSpieler1 = null;
-		this.nameSpieler2 = null;
-		this.controlZug.setSonderregel(false);
-		this.isSonderRegelGeprueft = false;
-	}
-
-	private void resetRunde() {
-
-		this.rundeZug = 1;
-
-		this.spielfeld = null;
-
-		this.controlZug.setSonderregel(false);
-		this.isSonderRegelGeprueft = false;
-	}
-
-	private void spielSpeichern() {
-		int num = this.leseListeSpielstaende().size();
-		ControlSpeichern conSp = new ControlSpeichern();
-		conSp.setModus(modus);
-		conSp.setTyp(typ);
-		conSp.setSpieler1(spieler1);
-		conSp.setSpieler2(spieler2);
-		conSp.setSpielfeld(spielfeld);
-		conSp.setRundeSpiel(this.rundeSpiel);
-		conSp.setRundeZug(this.rundeZug);
-		conSp.setSpielbrett(spielfeld.getSpielbrett());
-		conSp.setIstDran(this.istDran);
-		conSp.setSpeicherDatum(new Date());
-		FileHandler filehandler = new FileHandler();
-		filehandler.save(this.filename + "" + num, conSp);
-		this.main.getOutput().print("Spiel gespeichert");
-	}
-
-	private void ladeSpiel(String num) {
-
-		String name = this.filename + num;
-
-		if (fileExists(name)) {
-			this.main.getOutput().print("Spiel geladen");
-			ControlSpeichern conSp = new ControlSpeichern();
-			FileHandler fileHandler = new FileHandler();
-			conSp = fileHandler.load(name, conSp);
-			this.modus = conSp.getModus();
-			this.typ = conSp.getTyp();
-			this.spieler1 = conSp.getSpieler1();
-			this.spieler2 = conSp.getSpieler2();
-			this.spielfeld = conSp.getSpielfeld();
-			this.rundeSpiel = conSp.getRundeSpiel();
-			this.rundeZug = conSp.getRundeZug();
-			this.istDran = conSp.getIstDran();
-			this.spielfeld.setSpielbrett(conSp.getSpielbrett());
-
-			Control.STATUS = Control.STATUS.SPIELRUNDE;
-			this.starteSpiel("");
-		} else {
-			this.main.getOutput().print("kein Spiel geladen");
-			Control.STATUS = Control.STATUS.HAUPTMENU;
-		}
-	}
-
-	private boolean fileExists(String filename) {
-		File f = new File(filename);
-		if (f.exists() && !f.isDirectory()) {
-			return true;
-		}
-		return false;
 	}
 
 	/**

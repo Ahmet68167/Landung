@@ -19,21 +19,21 @@ public class ControlZug {
 	public boolean naechsterZug(String eingabe) {
 
 		if (!istZugMoeglich() && this.controlSpiel.getRundeZug() > 2) {
+
 			this.controlSpiel.naechsterSpieler();
 			this.output.print(this.controlSpiel.getIstDran().getName()
 			        + " hat gewonnen.");
-			this.controlSpiel.setHasWon();
-			Control.STATUS = Control.STATUS.SPIELRUNDENENDE;
-			this.controlSpiel.starteSpiel("");
-
+				Control.STATUS = Control.STATUS.SPIELRUNDENENDE;
+				this.controlSpiel.gewonnen = true;
+				this.controlSpiel.starteSpiel("");
 		} else {
 			if (macheZug(eingabe)) {
 
 				if (gewonnen()) {
-		
 					Control.STATUS = Control.STATUS.SPIELRUNDENENDE;
+				
+					this.controlSpiel.gewonnen = true;
 					this.controlSpiel.starteSpiel("");
-
 				} else {
 					this.controlSpiel.setRundeZug(this.controlSpiel
 					        .getRundeZug() + 1);

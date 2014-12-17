@@ -1,15 +1,9 @@
 package tunier;
-
 import tunier.IGame;
-
-
-
 
 public class Control implements IGame {
 
 	private ControlSpiel controlSpiel;
-
-	
 	static ControlEnum STATUS;
 
 
@@ -28,12 +22,7 @@ public class Control implements IGame {
 
 	public void printStatus() {
 		this.controlSpiel.printStatus();
-
-
 	}
-
-
-
 	protected void setupControle() {
 		if (STATUS == STATUS.SPIELVORBEREITUNG) {
 		
@@ -41,13 +30,11 @@ public class Control implements IGame {
 		
 		}
 	}
-
 	// ///////// Interface Methoden /////////////////
-
 	@Override
 	public void youAreSecond() {
-		this.controlSpiel.naechsterSpieler();
-
+		this.controlSpiel.isSecond = true;
+		
 	}
 
 	@Override
@@ -65,13 +52,15 @@ public class Control implements IGame {
 	}
 
 	@Override
-	public boolean takeYourMove(String gegnerZug) {
-		this.controlSpiel.starteSpiel(gegnerZug);
+	public boolean takeYourMove(String gegnerZug) {		
+		this.controlSpiel.gegenerZug = gegnerZug;
+        this.controlSpiel.starteSpiel("");
 		return true;
 	}
 
 	@Override
 	public String getMyMove() {
+	    this.controlSpiel.starteSpiel("");
 		return this.controlSpiel.getLetzterBefehl();
 	}
 

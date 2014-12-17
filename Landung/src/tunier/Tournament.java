@@ -7,19 +7,22 @@ public class Tournament {
 	public Tournament(IGame gameA, IGame gameB) {
 		games = new IGame[2];
 		games[0] = gameA;
-		games[1] = gameA;
+		games[1] = gameB;
 		
 		points = new int[2];
 		points[0] = 0;
 		points[1] = 0;
 		
-		run(1);
+		run(4);
 	}
 
 	private void run(int matches){
 		
 		for(int i=0;i<matches;i++){
 			IGame winner = runSingleGame(games[i%2]);
+			
+		
+	
 			if(winner == games[0]){
 				points[0]++;
 			} else if(winner == games[1]){
@@ -98,9 +101,11 @@ public class Tournament {
 
 		// if other responds with false, we can assume the games aren't in sync
 		areTurnsInSync(othersResponse);
-
+		System.out.println("Spiel1 "+actor.whoWon()+" Spiel2 "+other.whoWon());
 		// check if someone won (note: everything is in sync here)
 		if (actor.whoWon() == 1) {
+			
+		
 			// actor won (?)
 			return actor;
 		} else if (actor.whoWon() == -1) {
