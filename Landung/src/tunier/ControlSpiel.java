@@ -90,9 +90,8 @@ public class ControlSpiel {
 
 					}
 
-					if (!this.gewonnen && !this.verloren) {
-						this.letzterBefehl = input;
-					}
+					this.letzterBefehl = input;
+
 					this.gaveAMoveOrder = false;
 
 				}
@@ -111,10 +110,8 @@ public class ControlSpiel {
 						}
 					}
 
-					if (!this.gewonnen && !this.verloren) {
+					this.letzterBefehl = input;
 
-						this.letzterBefehl = input;
-					}
 					this.gaveAMoveOrder = true;
 
 				} else if (this.gaveAMoveOrder) {
