@@ -59,9 +59,7 @@ public class ControlSpiel {
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
 		
-		this.naechsterSpieler();
-		this.gewonnen = this.controlZug.gewonnen();
-		this.naechsterSpieler();
+
 
 		if (this.gewonnen) {
 			if (this.istDran.equals(spieler1)) {
