@@ -1,20 +1,23 @@
 package tunier;
 
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.regex.Pattern;
 
 import InputOutput.Output;
-import model.spieler.Spieler;
 
 public class ControlZug {
 
 	private ControlSpiel controlSpiel;
 	private boolean isSonderregel = false;
 	private Output output;
+	private Map<Integer, String> zuege;
 
 	public ControlZug(ControlSpiel controlSpiel) {
 		this.controlSpiel = controlSpiel;
 		this.output = new Output();
 	}
+
 
 	public boolean naechsterZug(String eingabe) {
 
@@ -50,10 +53,12 @@ public class ControlZug {
 
 	}
 
+
 	public boolean macheZug(String eingabe) {
 		int[] start = new int[2];
 		int[] ziel = new int[2];
 		int[] entf = new int[2];
+		
 		if (!gueltigeEingabe(eingabe))
 			return false;
 		if (this.controlSpiel.getRundeZug() < 3) {
@@ -106,6 +111,37 @@ public class ControlZug {
 
 		return false;
 	}
+	
+	public void alleZuege() {
+		int[] start = new int[2];
+		int[] ziel = new int[2];
+		zuege = new TreeMap<>();
+
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 5; j++) {
+				for (int k = 0; k < 5; k++) {
+					for (int m = 0; m < 5; m++) {
+
+						start[0] = i;
+						start[1] = j;
+						ziel[0] = k;
+						ziel[1] = m;
+						
+						if(this.controlSpiel.getRundeZug() < 3) {
+							if(this.controlSpiel.getSpielfeld().isEmpty(start)) {
+								zuege.put((i*5)+(j*4)+k*+m, "" + start[0] + start[1]);
+							}
+							
+						} else {
+							if (gueltigerZug(start, ziel))
+								zuege.put((i*5)+(j*4)+k+m, "" + start[0] + start[1] + ziel[0] + ziel[1]);
+						}
+					}
+				}
+			}
+		}
+		
+	}
 
 	public boolean gueltigerZug(int[] start, int[] ziel) {
 		// Pruefe start
@@ -142,7 +178,7 @@ public class ControlZug {
 			else if (start[0] - ziel[0] < 0 && start[1] - ziel[1] > 0)
 				return testeDiagonalUnten(start, ziel);
 			else if (start[0] - ziel[0] > 0 && start[1] - ziel[1] < 0)
-				return testeDiagonalUnten(start, ziel);
+				return testeDiagonalUnten(ziel, start);
 			else if (start[0] - ziel[0] > 0 && start[1] - ziel[1] > 0)
 				return testeDiagonalOben(ziel, start);
 		}
