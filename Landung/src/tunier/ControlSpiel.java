@@ -59,19 +59,11 @@ public class ControlSpiel {
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
 
-		switch (Control.STATUS) {
+		switch (Control.STATUS) {		
 		
-		
-
 		case SPIELRUNDE:
-			if (this.gewonnen) {
-				if (this.istDran.equals(spieler1)) {
-					setHasWon(1);
-				} else {
-					setHasWon(-1);
-				}
-				this.resetKISpiel();
-			}
+			
+
 
 			if (this.rundeZug == 4 && !this.isSonderRegelGeprueft) {
 				this.controlZug.setSonderregel(true);
@@ -98,10 +90,9 @@ public class ControlSpiel {
 						}
 
 					}
-
 					this.letzterBefehl = input;
-
-					this.gaveAMoveOrder = false;
+					this.gaveAMoveOrder = false;					
+			
 				}
 			}
 			if (isFirst) {
@@ -121,15 +112,25 @@ public class ControlSpiel {
 					this.letzterBefehl = input;
 
 					this.gaveAMoveOrder = true;
-
+				
 				} else if (this.gaveAMoveOrder) {
 					this.canYouMove = this.controlZug.naechsterZug(input);
 					this.letzterBefehl = null;
 					this.gaveAMoveOrder = false;
+				
 				}
 			}
 
-		
+			if (this.gewonnen) {
+				if (this.istDran.equals(spieler1)) {
+					setHasWon(1);
+				} else {
+					setHasWon(-1);
+				}
+				this.resetKISpiel();		
+			
+			}
+	
 			break;
 		default: // Fehler ungültiger Status;
 			break;

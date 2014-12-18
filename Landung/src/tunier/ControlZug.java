@@ -37,6 +37,7 @@ public class ControlZug {
 			if (macheZug(eingabe)) {
 
 				if (gewonnen()) {
+					
 					Control.STATUS = Control.STATUS.SPIELRUNDE;
 					this.controlSpiel.gewonnen = true;
 	
