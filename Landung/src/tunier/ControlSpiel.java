@@ -60,11 +60,9 @@ public class ControlSpiel {
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
 
-		switch (Control.STATUS) {		
-		
-		case SPIELRUNDE:
-			
+		switch (Control.STATUS) {
 
+		case SPIELRUNDE:
 
 			if (this.rundeZug == 4 && !this.isSonderRegelGeprueft) {
 				this.controlZug.setSonderregel(true);
@@ -85,15 +83,18 @@ public class ControlSpiel {
 						input = this.controlKI.getKIBefehl(this.rundeZug);
 						this.canIMove = this.controlZug.naechsterZug(input);
 
-						if (this.gewonnen &&  this.verloren) {
+						if (this.gewonnen || this.verloren) {
 							input = null;
 							break;
 						}
 
 					}
-					this.letzterBefehl = input;
-					this.gaveAMoveOrder = false;					
-			
+
+					if (!this.gewonnen && !this.verloren) {
+						this.letzterBefehl = input;
+					}
+					this.gaveAMoveOrder = false;
+
 				}
 			}
 			if (isFirst) {
@@ -104,21 +105,23 @@ public class ControlSpiel {
 						input = this.controlKI.getKIBefehl(this.rundeZug);
 						this.canIMove = this.controlZug.naechsterZug(input);
 
-						if (this.gewonnen &&  this.verloren) {
+						if (this.gewonnen || this.verloren) {
 							input = null;
 							break;
 						}
 					}
 
-					this.letzterBefehl = input;
+					if (!this.gewonnen && !this.verloren) {
 
+						this.letzterBefehl = input;
+					}
 					this.gaveAMoveOrder = true;
-				
+
 				} else if (this.gaveAMoveOrder) {
 					this.canYouMove = this.controlZug.naechsterZug(input);
 					this.letzterBefehl = null;
 					this.gaveAMoveOrder = false;
-				
+
 				}
 			}
 
@@ -128,10 +131,10 @@ public class ControlSpiel {
 				} else {
 					setHasWon(-1);
 				}
-				this.resetKISpiel();		
-			
+				this.resetKISpiel();
+
 			}
-	
+
 			break;
 		default: // Fehler ungültiger Status;
 			break;
@@ -290,7 +293,5 @@ public class ControlSpiel {
 	protected void setRundeZug(int rundeZug) {
 		this.rundeZug = rundeZug;
 	}
-
-
 
 }
