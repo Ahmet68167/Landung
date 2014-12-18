@@ -77,12 +77,16 @@ public class ControlSpiel {
 				this.isSonderRegelGeprueft = true;
 			}
 			// //////// KI SPIEL
+			
+		
 			if (isSecond) {
 
 				if (!this.gaveAMoveOrder) {
+					
 					this.canYouMove = this.controlZug.naechsterZug(input);
 					this.letzterBefehl = null;
 					this.gaveAMoveOrder = true;
+					
 				} else if (this.gaveAMoveOrder) {
 					this.canIMove = false;
 					while (!this.canYouMove) {
@@ -99,6 +103,7 @@ public class ControlSpiel {
 			 if(isFirst){
 				if (!this.gaveAMoveOrder) {
 					this.canIMove = false;
+					
 					while (!this.canIMove) {
 						input = this.controlKI.getKIBefehl(this.rundeZug);
 						this.canIMove = this.controlZug.naechsterZug(input);
