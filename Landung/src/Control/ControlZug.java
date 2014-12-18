@@ -185,7 +185,7 @@ public class ControlZug {
 			else if (start[0] - ziel[0] < 0 && start[1] - ziel[1] > 0)
 				return testeDiagonalUnten(start, ziel);
 			else if (start[0] - ziel[0] > 0 && start[1] - ziel[1] < 0)
-				return testeDiagonalUnten(start, ziel);
+				return testeDiagonalUnten(ziel, start);
 			else if (start[0] - ziel[0] > 0 && start[1] - ziel[1] > 0)
 				return testeDiagonalOben(ziel, start);
 		}
