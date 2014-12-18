@@ -18,8 +18,9 @@ public class ControlZug {
 
 	public boolean naechsterZug(String eingabe) {
 
-		if (!istZugMoeglich() && this.controlSpiel.getRundeZug() > 2) {
-
+		if (!istZugMoeglich() && ((2 < this.controlSpiel.getRundeZug() && this.controlSpiel.getRundeZug() < 4 || this.controlSpiel.getRundeZug() > 4)
+				|| (this.controlSpiel.getRundeZug() == 4 && !isSonderregel))) {
+		
 			this.controlSpiel.naechsterSpieler();
 			this.output.print(this.controlSpiel.getIstDran().getName()
 			        + " hat gewonnen.");
@@ -30,8 +31,7 @@ public class ControlZug {
 			if (macheZug(eingabe)) {
 
 				if (gewonnen()) {
-					Control.STATUS = Control.STATUS.SPIELRUNDE;
-				
+					Control.STATUS = Control.STATUS.SPIELRUNDE;				
 					this.controlSpiel.gewonnen = true;
 			
 				} else {

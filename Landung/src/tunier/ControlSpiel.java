@@ -34,6 +34,7 @@ public class ControlSpiel {
 	private boolean gaveAMoveOrder = false;
 	public boolean canYouMove = false;
 	public boolean canIMove = false;
+	public boolean isFirst = false;;
 
 	// Für KI Spiel ///////////////////////////////////////
 	public ControlSpiel() {
@@ -54,6 +55,7 @@ public class ControlSpiel {
 		this.setTypModus("KI", "BOO");
 		this.istDran = this.spieler1;
 	}
+
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
 
@@ -81,8 +83,7 @@ public class ControlSpiel {
 					this.canYouMove = this.controlZug.naechsterZug(input);
 					this.letzterBefehl = null;
 					this.gaveAMoveOrder = true;
-				}
-				else if (this.gaveAMoveOrder) {
+				} else if (this.gaveAMoveOrder) {
 					this.canIMove = false;
 					while (!this.canYouMove) {
 						input = this.controlKI.getKIBefehl(this.rundeZug);
@@ -93,15 +94,14 @@ public class ControlSpiel {
 					this.gaveAMoveOrder = false;
 				}
 
-			} else {
-
+			} 
+			
+			 if(isFirst){
 				if (!this.gaveAMoveOrder) {
-
 					this.canIMove = false;
 					while (!this.canIMove) {
 						input = this.controlKI.getKIBefehl(this.rundeZug);
 						this.canIMove = this.controlZug.naechsterZug(input);
-
 					}
 
 					this.letzterBefehl = input;
@@ -110,15 +110,11 @@ public class ControlSpiel {
 
 				} else if (this.gaveAMoveOrder) {
 					this.canYouMove = this.controlZug.naechsterZug(input);
-
 					this.letzterBefehl = null;
 					this.gaveAMoveOrder = false;
 				}
-
 			}
-
 			break;
-
 		default: // Fehler ungültiger Status;
 			break;
 		}
@@ -143,6 +139,7 @@ public class ControlSpiel {
 		this.istDran = this.spieler1;
 		this.canYouMove = false;
 		this.canIMove = false;
+		this.isFirst = false;
 	}
 
 	/**
@@ -184,18 +181,14 @@ public class ControlSpiel {
 
 	void setTypModus(String typ, String modus) {
 		if (this.typ == null && this.modus == null) {
-
 			this.typ = typ;
 			this.modus = modus;
-
 			if (typ.equals("KI")) {
 				this.nameSpieler1 = "KI";
 			}
-
 			if (modus.equals("BOO")) {
 				this.rundeSpiel = 1;
 			} else if (modus.equals("BOT")) {
-
 				this.rundeSpiel = 3;
 			}
 		}
@@ -263,7 +256,6 @@ public class ControlSpiel {
 		this.hasWon = i;
 
 	}
-
 
 	/**
 	 * @return the rundeZug

@@ -73,4 +73,10 @@ public class Control implements IGame {
 			System.out.println(this.controlSpiel.getSpielfeld().toString());
 		}
 	}
+
+	@Override
+    public void youAreFirst() {
+		this.controlSpiel.isFirst = true;
+	    
+    }
 }

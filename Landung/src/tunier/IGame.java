@@ -3,6 +3,12 @@ public interface IGame {
 	
 	/**
 	 * Signalisiert dem jeweiligen Programm, dass es
+	 * den ersten Zug macht
+	 */
+	public void youAreFirst();
+	
+	/**
+	 * Signalisiert dem jeweiligen Programm, dass es
 	 * den zweiten Zug macht
 	 */
 	public void youAreSecond();

@@ -45,6 +45,12 @@ public abstract class Spieler {
 		this.punkte = punkte;
 	}
 
+	/**
+	 * @param spielstein the spielstein to set
+	 */
+	public void setSpielstein(Spielstein spielstein) {
+		this.spielstein = spielstein;
+	}
 	public void setGesamtpunkte(int gesamtpunkte) {
 		this.gesamtpunkte = gesamtpunkte;
 	}
