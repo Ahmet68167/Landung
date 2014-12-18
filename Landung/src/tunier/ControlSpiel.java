@@ -77,36 +77,48 @@ public class ControlSpiel {
 				this.isSonderRegelGeprueft = true;
 			}
 			// //////// KI SPIEL
-			
-		
+
 			if (isSecond) {
 
 				if (!this.gaveAMoveOrder) {
-					
+
 					this.canYouMove = this.controlZug.naechsterZug(input);
 					this.letzterBefehl = null;
 					this.gaveAMoveOrder = true;
-					
+
 				} else if (this.gaveAMoveOrder) {
 					this.canIMove = false;
-					while (!this.canYouMove) {
+
+					while (!this.canYouMove ) {
 						input = this.controlKI.getKIBefehl(this.rundeZug);
 						this.canIMove = this.controlZug.naechsterZug(input);
+						
+						if(this.gewonnen){
+							input = null;
+							break;
+						}
 
 					}
-					this.letzterBefehl = input;
+				
+						this.letzterBefehl = input;
+				
 					this.gaveAMoveOrder = false;
 				}
 
-			} 
-			
-			 if(isFirst){
+			}
+
+			if (isFirst) {
 				if (!this.gaveAMoveOrder) {
 					this.canIMove = false;
-					
+
 					while (!this.canIMove) {
 						input = this.controlKI.getKIBefehl(this.rundeZug);
 						this.canIMove = this.controlZug.naechsterZug(input);
+						
+						if(this.gewonnen){
+							input = null;
+							break;
+						}
 					}
 
 					this.letzterBefehl = input;

@@ -18,34 +18,37 @@ public class ControlZug {
 		this.output = new Output();
 	}
 
-
 	public boolean naechsterZug(String eingabe) {
 
-		if (!istZugMoeglich() && ((2 < this.controlSpiel.getRundeZug() && this.controlSpiel.getRundeZug() < 4 || this.controlSpiel.getRundeZug() > 4)
-				|| (this.controlSpiel.getRundeZug() == 4 && !isSonderregel))) {
-		
+		if (!istZugMoeglich()
+		        && ((2 < this.controlSpiel.getRundeZug()
+		                && this.controlSpiel.getRundeZug() < 4 || this.controlSpiel
+		                .getRundeZug() > 4) || (this.controlSpiel.getRundeZug() == 4 && !isSonderregel))) {
+
 			this.controlSpiel.naechsterSpieler();
 			this.output.print(this.controlSpiel.getIstDran().getName()
 			        + " hat gewonnen.");
-				Control.STATUS = Control.STATUS.SPIELRUNDE;
-				this.controlSpiel.gewonnen = true;
-			
+			Control.STATUS = Control.STATUS.SPIELRUNDE;
+			this.controlSpiel.gewonnen = true;
+
+			return false;
+
 		} else {
 			if (macheZug(eingabe)) {
 
 				if (gewonnen()) {
-					Control.STATUS = Control.STATUS.SPIELRUNDE;				
+					Control.STATUS = Control.STATUS.SPIELRUNDE;
 					this.controlSpiel.gewonnen = true;
-			
+					return false;
 				} else {
 					this.controlSpiel.setRundeZug(this.controlSpiel
 					        .getRundeZug() + 1);
 					this.controlSpiel.naechsterSpieler();
 				}
 			} else {
-						
-					return false;
-				
+
+				return false;
+
 			}
 		}
 
@@ -53,12 +56,11 @@ public class ControlZug {
 
 	}
 
-
 	public boolean macheZug(String eingabe) {
 		int[] start = new int[2];
 		int[] ziel = new int[2];
 		int[] entf = new int[2];
-		
+
 		if (!gueltigeEingabe(eingabe))
 			return false;
 		if (this.controlSpiel.getRundeZug() < 3) {
@@ -111,7 +113,7 @@ public class ControlZug {
 
 		return false;
 	}
-	
+
 	public void alleZuege() {
 		int[] start = new int[2];
 		int[] ziel = new int[2];
@@ -126,21 +128,24 @@ public class ControlZug {
 						start[1] = j;
 						ziel[0] = k;
 						ziel[1] = m;
-						
-						if(this.controlSpiel.getRundeZug() < 3) {
-							if(this.controlSpiel.getSpielfeld().isEmpty(start)) {
-								zuege.put((i*5)+(j*4)+k*+m, "" + start[0] + start[1]);
+
+						if (this.controlSpiel.getRundeZug() < 3) {
+							if (this.controlSpiel.getSpielfeld().isEmpty(start)) {
+								zuege.put((i * 5) + (j * 4) + k * +m, ""
+								        + start[0] + start[1]);
 							}
-							
+
 						} else {
 							if (gueltigerZug(start, ziel))
-								zuege.put((i*5)+(j*4)+k+m, "" + start[0] + start[1] + ziel[0] + ziel[1]);
+								zuege.put((i * 5) + (j * 4) + k + m, ""
+								        + start[0] + start[1] + ziel[0]
+								        + ziel[1]);
 						}
 					}
 				}
 			}
 		}
-		
+
 	}
 
 	public boolean gueltigerZug(int[] start, int[] ziel) {

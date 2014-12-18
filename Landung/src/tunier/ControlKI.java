@@ -18,6 +18,11 @@ public class ControlKI {
 
 		return this.randMoveList.get((int) (Math.random()
 		        * this.randMoveList.size() - 1));
+		
+		
+		
+		
+		
 	}
 
 	private void fillWithAllMoves() {
