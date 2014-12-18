@@ -30,8 +30,8 @@ public class ControlZug {
 			        + " hat gewonnen.");
 			Control.STATUS = Control.STATUS.SPIELRUNDE;
 			this.controlSpiel.gewonnen = true;
-
-			return false;
+			
+	
 
 		} else {
 			if (macheZug(eingabe)) {
@@ -39,7 +39,7 @@ public class ControlZug {
 				if (gewonnen()) {
 					Control.STATUS = Control.STATUS.SPIELRUNDE;
 					this.controlSpiel.gewonnen = true;
-					return false;
+	
 				} else {
 					this.controlSpiel.setRundeZug(this.controlSpiel
 					        .getRundeZug() + 1);

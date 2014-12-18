@@ -46,8 +46,7 @@ public class Tournament {
 
 		// game loop
 		while (running) {
-			first.printBoard();
-			second.printBoard();
+		
 			try {
 
 				// run a turn

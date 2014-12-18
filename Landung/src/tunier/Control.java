@@ -53,7 +53,8 @@ public class Control implements IGame {
 
 	@Override
 	public String getMyMove() {
-	    this.controlSpiel.starteSpiel("");
+	    this.controlSpiel.starteSpiel("");    
+	 
 		return this.controlSpiel.getLetzterBefehl();
 	}
 

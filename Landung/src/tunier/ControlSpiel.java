@@ -58,25 +58,29 @@ public class ControlSpiel {
 
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
-		
-
-
-
 
 		switch (Control.STATUS) {
+		
+		
 
 		case SPIELRUNDE:
+			if (this.gewonnen) {
+				if (this.istDran.equals(spieler1)) {
+					setHasWon(1);
+				} else {
+					setHasWon(-1);
+				}
+				this.resetKISpiel();
+			}
 
 			if (this.rundeZug == 4 && !this.isSonderRegelGeprueft) {
 				this.controlZug.setSonderregel(true);
 				this.isSonderRegelGeprueft = true;
 			}
 			// //////// KI SPIEL
-
 			if (isSecond) {
 
 				if (!this.gaveAMoveOrder) {
-
 					this.canYouMove = this.controlZug.naechsterZug(input);
 					this.letzterBefehl = null;
 					this.gaveAMoveOrder = true;
@@ -84,24 +88,22 @@ public class ControlSpiel {
 				} else if (this.gaveAMoveOrder) {
 					this.canIMove = false;
 
-					while (!this.canYouMove ) {
+					while (!this.canYouMove) {
 						input = this.controlKI.getKIBefehl(this.rundeZug);
 						this.canIMove = this.controlZug.naechsterZug(input);
-						
-						if(this.gewonnen){
+
+						if (this.gewonnen) {
 							input = null;
 							break;
 						}
 
 					}
-				
-						this.letzterBefehl = input;
-				
+
+					this.letzterBefehl = input;
+
 					this.gaveAMoveOrder = false;
 				}
-
 			}
-
 			if (isFirst) {
 				if (!this.gaveAMoveOrder) {
 					this.canIMove = false;
@@ -109,8 +111,8 @@ public class ControlSpiel {
 					while (!this.canIMove) {
 						input = this.controlKI.getKIBefehl(this.rundeZug);
 						this.canIMove = this.controlZug.naechsterZug(input);
-						
-						if(this.gewonnen){
+
+						if (this.gewonnen) {
 							input = null;
 							break;
 						}
@@ -125,21 +127,8 @@ public class ControlSpiel {
 					this.letzterBefehl = null;
 					this.gaveAMoveOrder = false;
 				}
-				
-		
 			}
-			
-			
 
-			if (this.gewonnen) {
-				if (this.istDran.equals(spieler1)) {
-					setHasWon(1);
-				} else {
-					setHasWon(-1);
-				}
-				this.resetKISpiel();
-			}
-			
 		
 			break;
 		default: // Fehler ungültiger Status;
