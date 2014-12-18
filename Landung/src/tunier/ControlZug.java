@@ -25,6 +25,7 @@ public class ControlZug {
 		                && this.controlSpiel.getRundeZug() < 4 || this.controlSpiel
 		                .getRundeZug() > 4) || (this.controlSpiel.getRundeZug() == 4 && !isSonderregel))) {
 
+			this.controlSpiel.verloren = true;
 			this.controlSpiel.naechsterSpieler();
 			this.output.print(this.controlSpiel.getIstDran().getName()
 			        + " hat gewonnen.");

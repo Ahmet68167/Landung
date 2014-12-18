@@ -34,7 +34,8 @@ public class ControlSpiel {
 	private boolean gaveAMoveOrder = false;
 	public boolean canYouMove = false;
 	public boolean canIMove = false;
-	public boolean isFirst = false;;
+	public boolean isFirst = false;
+	public boolean verloren = false;
 
 	// Für KI Spiel ///////////////////////////////////////
 	public ControlSpiel() {
@@ -84,7 +85,7 @@ public class ControlSpiel {
 						input = this.controlKI.getKIBefehl(this.rundeZug);
 						this.canIMove = this.controlZug.naechsterZug(input);
 
-						if (this.gewonnen) {
+						if (this.gewonnen &&  this.verloren) {
 							input = null;
 							break;
 						}
@@ -103,7 +104,7 @@ public class ControlSpiel {
 						input = this.controlKI.getKIBefehl(this.rundeZug);
 						this.canIMove = this.controlZug.naechsterZug(input);
 
-						if (this.gewonnen) {
+						if (this.gewonnen &&  this.verloren) {
 							input = null;
 							break;
 						}
@@ -289,5 +290,7 @@ public class ControlSpiel {
 	protected void setRundeZug(int rundeZug) {
 		this.rundeZug = rundeZug;
 	}
+
+
 
 }
