@@ -58,6 +58,19 @@ public class ControlSpiel {
 
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
+		
+		this.naechsterSpieler();
+		this.gewonnen = this.controlZug.gewonnen();
+		this.naechsterSpieler();
+
+		if (this.gewonnen) {
+			if (this.istDran.equals(spieler1)) {
+				setHasWon(1);
+			} else {
+				setHasWon(-1);
+			}
+			this.resetKISpiel();
+		}
 
 
 		switch (Control.STATUS) {
@@ -128,14 +141,6 @@ public class ControlSpiel {
 			
 			
 			
-			if (this.gewonnen) {
-				if (this.istDran.equals(spieler1)) {
-					setHasWon(1);
-				} else {
-					setHasWon(-1);
-				}
-				this.resetKISpiel();
-			}
 			
 		
 			break;
