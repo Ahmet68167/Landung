@@ -11,25 +11,15 @@ public class Control implements IGame {
 	public Control() {
 
 		this.controlSpiel = new ControlSpiel();
-		this.STATUS = STATUS.SPIELVORBEREITUNG;
+		this.STATUS = STATUS.SPIELRUNDE;
 	}
 
 	public void checkInput(String input) {
-
-		this.setupControle();
 		this.controlSpiel.starteSpiel(input);
 	}
 
-	public void printStatus() {
-		this.controlSpiel.printStatus();
-	}
-	protected void setupControle() {
-		if (STATUS == STATUS.SPIELVORBEREITUNG) {
-		
-			this.controlSpiel.setTypModus("KI", "BOO");
-		
-		}
-	}
+
+
 	// ///////// Interface Methoden /////////////////
 	@Override
 	public void youAreSecond() {
@@ -52,10 +42,13 @@ public class Control implements IGame {
 	}
 
 	@Override
-	public boolean takeYourMove(String gegnerZug) {		
-		this.controlSpiel.gegenerZug = gegnerZug;
-        this.controlSpiel.starteSpiel("");
-		return true;
+	public boolean takeYourMove(String gegnerZug) {	
+
+        if(gegnerZug != null){
+        	this.controlSpiel.starteSpiel(gegnerZug);
+        	return true;
+        }
+		return false;
 	}
 
 	@Override
@@ -66,11 +59,13 @@ public class Control implements IGame {
 
 	@Override
 	public boolean canYouMove() {	
-		return true;
+	
+		return this.controlSpiel.canYouMove;
 	}
 	@Override
 	public boolean canIMove() {
-		return true;
+
+		return this.controlSpiel.canIMove;
 	}
 	@Override
 	public void printBoard() {

@@ -13,7 +13,7 @@ public class Tournament {
 		points[0] = 0;
 		points[1] = 0;
 		
-		run(4);
+		run(1);
 	}
 
 	private void run(int matches){
@@ -49,9 +49,8 @@ public class Tournament {
 		while (running) {
 			try {
 				
-				
-				first.printBoard();
-				second.printBoard();
+			
+
 				// run a turn
 				IGame current = runSingleTurn(first, second);
 				
@@ -69,14 +68,15 @@ public class Tournament {
 					second = temp;
 					
 				}
-				
+				first.printBoard();
+				second.printBoard();
 
 			} catch (NotInSyncException e) {
 				running = false;
 				System.out.println(e.getError());
 			}
 			try {
-	            Thread.sleep(1);
+	            Thread.sleep(5);
             } catch (InterruptedException e) {
 	            // TODO Auto-generated catch block
 	            e.printStackTrace();

@@ -23,29 +23,26 @@ public class ControlZug {
 			this.controlSpiel.naechsterSpieler();
 			this.output.print(this.controlSpiel.getIstDran().getName()
 			        + " hat gewonnen.");
-				Control.STATUS = Control.STATUS.SPIELRUNDENENDE;
+				Control.STATUS = Control.STATUS.SPIELRUNDE;
 				this.controlSpiel.gewonnen = true;
-				this.controlSpiel.starteSpiel("");
+			
 		} else {
 			if (macheZug(eingabe)) {
 
 				if (gewonnen()) {
-					Control.STATUS = Control.STATUS.SPIELRUNDENENDE;
+					Control.STATUS = Control.STATUS.SPIELRUNDE;
 				
 					this.controlSpiel.gewonnen = true;
-					this.controlSpiel.starteSpiel("");
+			
 				} else {
 					this.controlSpiel.setRundeZug(this.controlSpiel
 					        .getRundeZug() + 1);
 					this.controlSpiel.naechsterSpieler();
 				}
 			} else {
-				if (eingabe.length() > 0) {
-					if (!this.controlSpiel.isKiSpiel()) {
-						this.output.print("Fehler: ungültiger Zug");
-					}
+						
 					return false;
-				}
+				
 			}
 		}
 
