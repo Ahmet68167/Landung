@@ -123,16 +123,21 @@ public class ControlSpiel {
 					this.gaveAMoveOrder = false;
 				}
 				
-				if (this.gewonnen) {
-					if (this.istDran.equals(spieler1)) {
-						setHasWon(1);
-					} else {
-						setHasWon(-1);
-					}
-					this.resetKISpiel();
-				}
-				System.out.println("Runde " + this.rundeZug);
+		
 			}
+			
+			
+			
+			if (this.gewonnen) {
+				if (this.istDran.equals(spieler1)) {
+					setHasWon(1);
+				} else {
+					setHasWon(-1);
+				}
+				this.resetKISpiel();
+			}
+			
+		
 			break;
 		default: // Fehler ungültiger Status;
 			break;
@@ -159,6 +164,7 @@ public class ControlSpiel {
 		this.canYouMove = false;
 		this.canIMove = false;
 		this.isFirst = false;
+		this.hasWon = 0;
 	}
 
 	/**
