@@ -65,7 +65,7 @@ public class ControlSpiel {
 		switch (Control.STATUS) {
 
 		case SPIELRUNDE:
-
+			
 			if (this.rundeZug == 4 && !this.isSonderRegelGeprueft) {
 				this.controlZug.setSonderregel(true);
 				this.isSonderRegelGeprueft = true;
