@@ -29,10 +29,9 @@ public class Control implements IGame {
 
 	@Override
 	public boolean isRunning() {
-		if (Control.STATUS == Control.STATUS.SPIELRUNDE) {
+	
 			return true;
-		}
-		return false;
+	
 	}
 
 	@Override
@@ -48,7 +47,7 @@ public class Control implements IGame {
         	this.controlSpiel.starteSpiel(gegnerZug);
         	return true;
         }
-		return false;
+		return true;
 	}
 
 	@Override
@@ -61,12 +60,12 @@ public class Control implements IGame {
 	@Override
 	public boolean canYouMove() {	
 	
-		return this.controlSpiel.canYouMove;
+		return true;
 	}
 	@Override
 	public boolean canIMove() {
 
-		return this.controlSpiel.canIMove;
+		return true;
 	}
 	@Override
 	public void printBoard() {

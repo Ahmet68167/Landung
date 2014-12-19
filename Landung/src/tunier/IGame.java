@@ -1,4 +1,6 @@
 package tunier;
+
+
 public interface IGame {
 	
 	/**

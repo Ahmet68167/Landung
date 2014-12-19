@@ -29,8 +29,8 @@ public class ControlZug {
 			this.controlSpiel.naechsterSpieler();
 			this.output.print(this.controlSpiel.getIstDran().getName()
 			        + " hat gewonnen.");
-			Control.STATUS = Control.STATUS.SPIELRUNDE;
-			this.controlSpiel.gewonnen = true;
+			Control.STATUS = Control.STATUS.SPIELRUNDE;			
+	
 			
 	
 

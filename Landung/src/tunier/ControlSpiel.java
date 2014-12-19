@@ -60,15 +60,7 @@ public class ControlSpiel {
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
 		
-		if (this.gewonnen) {
-			if (this.istDran.equals(spieler1)) {
-				setHasWon(1);
-			} else {
-				setHasWon(-1);
-			}
-			this.resetKISpiel();
-
-		}
+		System.out.println(isFirst+" "+input);
 
 		switch (Control.STATUS) {
 
@@ -97,13 +89,9 @@ public class ControlSpiel {
 							input = null;
 							break;
 						}
-
 					}
-
 					this.letzterBefehl = input;
-
 					this.gaveAMoveOrder = false;
-
 				}
 			}
 			if (isFirst) {
@@ -119,9 +107,7 @@ public class ControlSpiel {
 							break;
 						}
 					}
-
 					this.letzterBefehl = input;
-
 					this.gaveAMoveOrder = true;
 
 				} else if (this.gaveAMoveOrder) {
@@ -132,7 +118,15 @@ public class ControlSpiel {
 				}
 			}
 
-	
+			if (this.gewonnen && this.verloren) {
+				if (this.istDran.equals(spieler1)) {
+					setHasWon(1);
+				} else {
+					setHasWon(-1);
+				}
+				this.resetKISpiel();
+
+			}
 
 			break;
 		default: // Fehler ungültiger Status;
@@ -159,7 +153,7 @@ public class ControlSpiel {
 		this.istDran = this.spieler1;
 		this.canYouMove = false;
 		this.canIMove = false;
-		this.isFirst = false;
+		
 		this.hasWon = 0;
 	}
 

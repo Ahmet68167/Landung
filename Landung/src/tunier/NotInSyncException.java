@@ -1,4 +1,11 @@
 package tunier;
+
+
+/**
+ * 
+ * Exception wenn Spiele nicht mehr Synchron laufen
+ *
+ */
 public class NotInSyncException extends Exception {
 
 	private final String error;

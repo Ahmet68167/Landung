@@ -1,42 +1,106 @@
 package tunier;
 
+/**
+ * Turnierklasse
+ */
+
 public class Tournament {
 
 	private IGame[] games;
 	private int[] points;
 
-	public Tournament(IGame gameA, IGame gameB) {
-		games = new IGame[2];
-		games[0] = gameA;
-		games[1] = gameB;
+	/**
+	 * 
+	 * HIER EIGENE SPIELE IMPLEMENTIEREN!
+	 * 
+	 * neue Spielinstanz des Spiels A
+	 * 
+	 * @return neue Spielinstanz des Spiels A
+	 */
+	public static IGame getGameA() {
+		// return new TournamentWrapper();
+		return new Control();
+	}
+
+	/**
+	 * 
+	 * HIER EIGENE SPIELE IMPLEMENTIEREN!
+	 * 
+	 * neue Spielinstanz des Spiels B
+	 * 
+	 * @return neue Spielinstanz des Spiels B
+	 */
+	public static IGame getGameB() {
+		// return new TournamentWrapper();
+		return new Control();
+	}
+
+	/**
+	 * Konstruktor für Tournament
+	 * 
+	 * Spieler bekommen erstmal eine standart ID
+	 */
+
+	public Tournament() {
 
 		points = new int[2];
 		points[0] = 0;
 		points[1] = 0;
 
-		run(1);
+		try {
+			run(100);
+		} catch (NotInSyncException e) {
+			e.printStackTrace();
+		}
+
 	}
 
-	private void run(int matches) {
+	/**
+	 * 
+	 * startet und verwaltet das tunier
+	 * 
+	 * @param matches
+	 * @throws NotInSyncException
+	 */
+
+	private void run(int matches) throws NotInSyncException {
 
 		for (int i = 0; i < matches; i++) {
+			games = new IGame[2];
+
+			games[0] = Tournament.getGameA();
+			games[1] = Tournament.getGameB();
+
 			IGame winner = runSingleGame(games[i % 2]);
 			if (winner == games[0]) {
-				points[0]++;
+				points[0] += 3;
+				System.out.println("Winner(" + i + "): Game A");
 			} else if (winner == games[1]) {
-				points[1]++;
+				points[1] += 3;
+				System.out.println("Winner(" + i + "): Game B");
 			}
 		}
 
+		System.out.println("------------------");
 		System.out.println("Points A:" + points[0]);
 		System.out.println("Points B:" + points[1]);
 
 	}
 
-	private IGame runSingleGame(IGame first) {
+	/**
+	 * Startet und verwaltet ein Spiel
+	 * 
+	 * @param first
+	 * @return winner
+	 * @throws NotInSyncException
+	 */
+
+	private IGame runSingleGame(IGame first) throws NotInSyncException {
 
 		// determine second player and notify him
 		IGame second = first == games[0] ? games[1] : games[0];
+
+		IGame winner = null;
 
 		second.youAreSecond();
 		first.youAreFirst();
@@ -46,103 +110,96 @@ public class Tournament {
 
 		// game loop
 		while (running) {
-		
+
+			first.printBoard();
+			second.printBoard();
+			
+			winner = makeTurn(first, second, winner);
+			if (winner != null)
+				return winner;
+
+			winner = makeTurn(second, first, winner);
+			if (winner != null)
+				return winner;
+
 			try {
-
-				// run a turn
-				IGame current = runSingleTurn(first, second);
-
-				first.printBoard();
-				second.printBoard();
-				
-				// if we have a winner
-				if (current != null) {
-					running = false;
-					return current;
-				} else {
-
-					// switch roles
-					IGame temp = first;
-					first = second;
-					second = temp;
-
-				}
-
-			} catch (NotInSyncException e) {
-				running = false;
-				System.out.println(e.getError());
-			}
+	            Thread.sleep(1000);
+            } catch (InterruptedException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+            }
 		}
 
+		// bad
 		return null;
 	}
 
-	private IGame runSingleTurn(IGame actor, IGame other)
+	/**
+	 * 
+	 * Zug eines Spielers
+	 * 
+	 * 
+	 * @param actor
+	 * @param enemy
+	 * @param winner
+	 * @return winner // wenn einer da ist ansonsten null
+	 * @throws NotInSyncException
+	 */
+
+	private IGame makeTurn(IGame actor, IGame enemy, IGame winner)
 	        throws NotInSyncException {
 
-		// check if the games are in sync
-		areGamesInSync();
+		// both running?
+		if (actor.isRunning() && enemy.isRunning()) {
 
-		// get the actor's valid turn (assuming the A.I. doesn't use
-		// "try and error")
-		String actorsTurn = actor.getMyMove();
+			// can actor move ?
+			if (actor.canIMove() && enemy.canYouMove()) {
 
-		// give it to the other game
-		boolean othersResponse = other.takeYourMove(actorsTurn);
+				// make a move
+				String move = actor.getMyMove();
+				boolean valid = enemy.takeYourMove(move);
 
-		// if other responds with false, we can assume the games aren't in sync
-		areTurnsInSync(othersResponse);
+				// does enemy recognize it as valid?
+				if (!valid) {
+					throw new NotInSyncException(
+					        "Zug des ersten Spielers im anderen Programm ungültig");
+				}
 
-		// check if someone won (note: everything is in sync here)
-		if (actor.whoWon() == 1) {
-			// actor won (?)
-			return actor;
-		} else if (actor.whoWon() == -1) {
-			return other;
-		} else
-			return null;
+			} else {
+
+				// did someone win ?
+				winner = getWinner(actor, enemy);
+				if (winner != null)
+					return winner;
+
+				throw new NotInSyncException("canIMove/canYouMove not in sync");
+			}
+
+			winner = getWinner(actor, enemy);
+			if (winner != null)
+				return winner;
+
+		} else {
+			throw new NotInSyncException("isRunning not in sync");
+		}
+
+		return null;
 
 	}
 
-	private void areTurnsInSync(boolean othersResponse)
-	        throws NotInSyncException {
-
-		if (!othersResponse) {
-			throw new NotInSyncException(
-			        "NotInSync: A game tried a move. The other responded that it was invalid.");
+	/**
+	 * 
+	 * Überprüft ob ein Spieler gewonnen hat
+	 * 
+	 * @param a
+	 * @param b
+	 */
+	private IGame getWinner(IGame a, IGame b) {
+		if (a.whoWon() == -1 * b.whoWon()
+		        && (a.whoWon() == 1 || b.whoWon() == 1)) {
+			return a.whoWon() == 1 ? a : b;
 		}
-
-	}
-
-	private void areGamesInSync() throws NotInSyncException {
-
-		String a;
-		String b;
-
-		if (games[0].isRunning() != games[1].isRunning()) {
-			a = "game[0].isRunning():" + games[0].isRunning();
-			b = "game[1].isRunning():" + games[1].isRunning();
-			throw new NotInSyncException("NotInSync: " + a + " != " + b);
-		}
-
-		if (games[0].whoWon() != games[1].whoWon()) {
-			a = "game[0].whoWon():" + games[0].whoWon();
-			b = "game[1].whoWon():" + games[1].whoWon();
-			throw new NotInSyncException("NotInSync: " + a + " != " + b);
-		}
-
-		if (games[0].canIMove() != games[1].canYouMove()) {
-			a = "game[0].canIMove():" + games[0].canIMove();
-			b = "game[1].canYouMove():" + games[1].canYouMove();
-			throw new NotInSyncException("NotInSync: " + a + " != " + b);
-		}
-
-		if (games[0].canYouMove() != games[1].canIMove()) {
-			a = "game[0].canYouMove():" + games[0].canYouMove();
-			b = "game[1].canIMove():" + games[1].canIMove();
-			throw new NotInSyncException("NotInSync: " + a + " != " + b);
-		}
-
+		return null;
 	}
 
 }
