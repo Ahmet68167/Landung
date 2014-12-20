@@ -8,7 +8,6 @@ public class Control {
 	ControlMenu controleMenu;
 	ControlSpiel controlSpiel;
 	private Main main;
-	private Output output;
 	static ControlEnum STATUS;
 
 	public Control(Main main) {

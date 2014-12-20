@@ -26,8 +26,8 @@ public class ZugPruefungTest {
 	spielfeld = new Spielfeld(); 
 	x = new Spielstein('X');
 	o = new Spielstein('O');
-	spieler1 = new MenschSpieler("Ahmet", x);
-	spieler2 = new MenschSpieler("Klaus", o);
+	spieler1 = new MenschSpieler("Ahmet", 1);
+	spieler2 = new MenschSpieler("Klaus", 2);
 
 	}
 

@@ -10,21 +10,27 @@ public abstract class Spieler {
 	private String name;
 	private int punkte;
 	private int gesamtpunkte;
-	
+
 	public Spieler() {
-		
-	}	
-	public Spieler(String name, Spielstein spielstein) {
+
+	}
+
+	public Spieler(String name, int spielernummer) {
 		this.name = name;
-		this.spielstein = spielstein;
+
 		this.punkte = 0;
 		this.gesamtpunkte = 0;
+		if (spielernummer == 1) {
+			this.spielstein = new Spielstein('X');
+		} else {
+			this.spielstein = new Spielstein('O');
+		}
 	}
 
 	public Spielstein getSpielstein() {
 		return this.spielstein;
 	}
-	
+
 	public char getSymbol() {
 		return this.spielstein.getSymbol();
 	}
@@ -46,18 +52,19 @@ public abstract class Spieler {
 	}
 
 	/**
-	 * @param spielstein the spielstein to set
+	 * @param spielstein
+	 *            the spielstein to set
 	 */
 	public void setSpielstein(Spielstein spielstein) {
 		this.spielstein = spielstein;
 	}
+
 	public void setGesamtpunkte(int gesamtpunkte) {
 		this.gesamtpunkte = gesamtpunkte;
 	}
-	
+
 	public int getGesamtpunkte() {
 		return this.gesamtpunkte;
 	}
-
 
 }

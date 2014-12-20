@@ -23,8 +23,6 @@ public class ControlSpiel {
 	Spieler spieler2;
 	private String nameSpieler1;
 	private String nameSpieler2;
-	private char symbol1 = 'X';
-	private char symbol2 = 'O';
 	ControlEnum tmp;
 	private String typ;
 	private String modus;
@@ -68,9 +66,9 @@ public class ControlSpiel {
 		this.nameSpieler1 = "KI_1";
 		this.nameSpieler2 = "KI_2";
 		this.spieler1 = new KISpieler(nameSpieler1,
-		        new Spielstein(this.symbol1), 1);
+		        1, 1);
 		this.spieler2 = new KISpieler(nameSpieler2,
-		        new Spielstein(this.symbol2), 1);
+		        2, 1);
 		this.istDran = this.spieler1;
 		this.spielfeld = new Spielfeld();
 
@@ -140,6 +138,9 @@ public class ControlSpiel {
 					this.main.getOutput().print("Letzter Befehl:" + input);
 					this.main.getOutput().print(this.spielfeld.toString());
 				}
+				
+				
+				
 			}
 
 			break;
@@ -163,6 +164,7 @@ public class ControlSpiel {
 				                + this.istDran.getGesamtpunkte()
 				                + " Punkte erreicht ");
 				this.resetSpiel();
+				this.main.getControl().checkInput("");
 
 			} else {
 				Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
@@ -181,6 +183,7 @@ public class ControlSpiel {
 				                + " Punkte erreicht ");
 
 				this.resetRunde();
+				this.main.getControl().checkInput("");
 
 			}
 
@@ -346,16 +349,14 @@ public class ControlSpiel {
 				tmp = this.spieler1.getGesamtpunkte();
 			}
 
-			this.spieler1 = new MenschSpieler(nameSpieler1, new Spielstein(
-			        this.symbol1));
+			this.spieler1 = new MenschSpieler(nameSpieler1, 1);
 			this.spieler1.setGesamtpunkte(tmp);
 
 			if (this.spieler2 != null) {
 				tmp = this.spieler2.getGesamtpunkte();
 			}
 
-			this.spieler2 = new MenschSpieler(nameSpieler2, new Spielstein(
-			        this.symbol2));
+			this.spieler2 = new MenschSpieler(nameSpieler2, 2);
 			this.spieler2.setGesamtpunkte(tmp);
 		}
 		if (this.spielfeld == null) {

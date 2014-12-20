@@ -16,8 +16,6 @@ public class ControlSpiel {
 	Spieler spieler2;
 	private String nameSpieler1;
 	private String nameSpieler2;
-	private char symbol1 = 'X';
-	private char symbol2 = 'O';
 	ControlEnum tmp;
 	private String typ;
 	private String modus;
@@ -44,15 +42,13 @@ public class ControlSpiel {
 		this.nameSpieler1 = "KI_1";
 		this.nameSpieler2 = "KI_2";
 		this.spieler1 = new KISpieler(nameSpieler1,
-		        new Spielstein(this.symbol1), 1);
+		        1, 1);
 		this.spieler2 = new KISpieler(nameSpieler2,
-		        new Spielstein(this.symbol2), 1);
+		       2, 1);
 		this.istDran = this.spieler1;
 		this.spielfeld = new Spielfeld();
-		this.spieler1 = new MenschSpieler(nameSpieler1, new Spielstein(
-		        this.symbol1));
-		this.spieler2 = new MenschSpieler(nameSpieler2, new Spielstein(
-		        this.symbol2));
+		this.spieler1 = new MenschSpieler(nameSpieler1,1);
+		this.spieler2 = new MenschSpieler(nameSpieler2,2);
 		this.setTypModus("KI", "BOO");
 		this.istDran = this.spieler1;
 	}
@@ -60,7 +56,7 @@ public class ControlSpiel {
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
 		
-		System.out.println(isFirst+" "+input);
+
 
 		switch (Control.STATUS) {
 
@@ -117,8 +113,10 @@ public class ControlSpiel {
 
 				}
 			}
-
-			if (this.gewonnen && this.verloren) {
+			
+		
+			
+			if (this.gewonnen) {
 				if (this.istDran.equals(spieler1)) {
 					setHasWon(1);
 				} else {
@@ -127,6 +125,7 @@ public class ControlSpiel {
 				this.resetKISpiel();
 
 			}
+		
 
 			break;
 		default: // Fehler ungültiger Status;
@@ -140,15 +139,13 @@ public class ControlSpiel {
 		this.nameSpieler1 = "KI_1";
 		this.nameSpieler2 = "KI_2";
 		this.spieler1 = new KISpieler(nameSpieler1,
-		        new Spielstein(this.symbol1), 1);
+		        1, 1);
 		this.spieler2 = new KISpieler(nameSpieler2,
-		        new Spielstein(this.symbol2), 1);
+		       2, 1);
 		this.istDran = this.spieler1;
 		this.spielfeld = new Spielfeld();
-		this.spieler1 = new MenschSpieler(nameSpieler1, new Spielstein(
-		        this.symbol1));
-		this.spieler2 = new MenschSpieler(nameSpieler2, new Spielstein(
-		        this.symbol2));
+		this.spieler1 = new MenschSpieler(nameSpieler1,1);
+		this.spieler2 = new MenschSpieler(nameSpieler2,2);
 		this.setTypModus("KI", "BOO");
 		this.istDran = this.spieler1;
 		this.canYouMove = false;

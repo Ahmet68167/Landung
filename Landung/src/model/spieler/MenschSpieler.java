@@ -8,8 +8,8 @@ public class MenschSpieler extends Spieler {
 		
 	}
 	
-	public MenschSpieler(String name, Spielstein spielstein) {
-		super(name, spielstein);
+	public MenschSpieler(String name, int spielernummer) {
+		super(name, spielernummer);
 	}
 
 }

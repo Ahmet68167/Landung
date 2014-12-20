@@ -10,8 +10,8 @@ public class KISpieler extends Spieler {
 		
 	}
 	
-	public KISpieler(String name, Spielstein spielstein, int schwierigkeitsstufe) {
-		super(name, spielstein);
+	public KISpieler(String name, int spielernummer, int schwierigkeitsstufe) {
+		super(name, spielernummer);
 		this.schwierigkeitsstufe = schwierigkeitsstufe;
 	}
 	

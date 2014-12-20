@@ -27,8 +27,8 @@ public class ControlSpielTest {
 		spielfeld = new Spielfeld();
 		x = new Spielstein();
 		o = new Spielstein();
-		spieler1 = new MenschSpieler("Spieler1", x);
-		spieler2 = new MenschSpieler("Spieler2", o);
+		spieler1 = new MenschSpieler("Spieler1", 1);
+		spieler2 = new MenschSpieler("Spieler2", 2);
 		controlSpiel = new ControlSpiel(null);
 	}
 
