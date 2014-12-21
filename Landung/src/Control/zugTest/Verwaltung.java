@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.TreeMap;
 
 import Control.ControlSpiel;
+import Control.ControlZug;
 import model.spieler.MenschSpieler;
 import model.spieler.Spieler;
 import model.spielfeld.Spielfeld;
@@ -27,40 +28,62 @@ public class Verwaltung {
 		this.controlspiel = controlspiel;
 	}
 	
-	
-	//************************* FEHLERHAFT ***********************
-	// Rekursion endlos, fehlt noch eine Sinnvolle Endbedingung
-	public static List alleZuege(Spielfeld spielfeld, Spieler spieler, ControlSpiel controlspiel) {
+	public static List alleZuege(Spielfeld spielfeld, Spieler spieler, 
+			ControlSpiel controlspiel, int anzahl) {
 		int[] start = new int[2];
 		int[] ziel = new int[2];
+		int bewertung;
 		List<Zug> zuege = new LinkedList<>();
 
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
+				
+				start[0] = i;
+				start[1] = j;
+				
+				if(controlspiel.getRundeZug() < 3) {
+					if(spielfeld.isEmpty(start)) {
+						Spielfeld spiel = new Spielfeld();
+						spiel.clone(spielfeld);
+						spiel.setzeSpielstein(spieler.getSpielstein(), start);
+						
+						// Wenn Spieler == Spieler1 dann alleZuege von 
+						// Spieler1 - alle Zuege von Spieler2 abziehen 
+						// um die Bewertung auszurechnen
+						if(anzahl < 1)
+							bewertung = alleZuege(spiel, spieler, controlspiel, anzahl+1).size();
+						else 
+							bewertung = 0;
+						Zug zug = new Zug("" + ( (char) (start[0] + 'a') ) + (start[1] + 1), bewertung);
+						zuege.add(zug);
+					}
+					
+				}
+				
 				for (int k = 0; k < 5; k++) {
 					for (int m = 0; m < 5; m++) {
-
-						start[0] = i;
-						start[1] = j;
+						
 						ziel[0] = k;
 						ziel[1] = m;
 						
-						if(controlspiel.getRundeZug() < 3) {
-							if(spielfeld.isEmpty(start)) {
+						 if(controlspiel.getRundeZug() >= 3) {
+							if (gueltigerZug(start, ziel, spielfeld, spieler, controlspiel)) {
+								
 								Spielfeld spiel = new Spielfeld();
 								spiel.clone(spielfeld);
+								spiel.setzeSpielstein(spieler.getSpielstein(), ziel);
 								
-								// Wenn Spieler == Spieler1 dann alleZuege von 
-								// Spieler1 - alle Zuege von Spieler2 abziehen 
-								// um die Bewertung auszurechnen
-								Zug zug = new Zug("" + start[0] + start[1], 
-										alleZuege(spiel, spieler, controlspiel).size());
-								zuege.add(zug);
+								if(anzahl < 1)
+									bewertung = alleZuege(spiel, spieler, controlspiel, anzahl+1).size();
+								else
+									bewertung = 0;
+								
+								Zug zug = new Zug("" + ( (char) (start[0] + 'a') ) 
+										+ (start[1] + 1) + ( (char) (ziel[0] + 'a') ) 
+										+ (ziel[1] + 1), bewertung);
+									zuege.add(zug);
 							}
 							
-						} else {
-							if (gueltigerZug(start, ziel, spielfeld, spieler, controlspiel));
-								//zuege.put((i*5)+(j*4)+k+m, "" + start[0] + start[1] + ziel[0] + ziel[1]);
 						}
 					}
 				}
