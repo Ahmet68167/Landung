@@ -40,7 +40,7 @@ public class ControlSpiel {
 	/**
 	 * @return the rundeZug
 	 */
-	protected int getRundeZug() {
+	public int getRundeZug() {
 		return rundeZug;
 	}
 
@@ -310,7 +310,7 @@ public class ControlSpiel {
 	/**
 	 * @return the istDran
 	 */
-	protected Spieler getIstDran() {
+	public Spieler getIstDran() {
 		return istDran;
 	}
 
@@ -419,21 +419,21 @@ public class ControlSpiel {
 	/**
 	 * @return the spieler1
 	 */
-	protected Spieler getSpieler1() {
+	public Spieler getSpieler1() {
 		return spieler1;
 	}
 
 	/**
 	 * @return the spieler2
 	 */
-	protected Spieler getSpieler2() {
+	public Spieler getSpieler2() {
 		return spieler2;
 	}
 
 	/**
 	 * @return the spielfeld
 	 */
-	protected Spielfeld getSpielfeld() {
+	public Spielfeld getSpielfeld() {
 		return spielfeld;
 	}
 
