@@ -48,7 +48,7 @@ public class ControlSpiel {
 	 * @param rundeZug
 	 *            the rundeZug to set
 	 */
-	protected void setRundeZug(int rundeZug) {
+	public void setRundeZug(int rundeZug) {
 		this.rundeZug = rundeZug;
 	}
 
