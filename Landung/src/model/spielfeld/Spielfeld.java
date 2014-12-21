@@ -105,6 +105,12 @@ public class Spielfeld {
 		return this.spielbrett;
 	}
 	
+	public void clone(Spielfeld spielfeld) {
+		for(int i = 0; i < this.spielbrett.length; i++) {
+			this.spielbrett[i] = spielfeld.spielbrett[i].clone();
+		}
+	}
+	
 	public String toString() {
 		String txt = "\n";
 		
