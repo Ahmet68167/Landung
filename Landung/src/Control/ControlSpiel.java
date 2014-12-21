@@ -483,7 +483,7 @@ public class ControlSpiel {
 		return list;
 	}
 
-	void naechsterSpieler() {
+	public void naechsterSpieler() {
 		if (this.istDran.equals(spieler1)) {
 			this.istDran = spieler2;
 		} else {
