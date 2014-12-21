@@ -318,7 +318,7 @@ public class ControlSpiel {
 	 * @param istDran
 	 *            the istDran to set
 	 */
-	protected void setIstDran(Spieler istDran) {
+	public void setIstDran(Spieler istDran) {
 		this.istDran = istDran;
 	}
 
