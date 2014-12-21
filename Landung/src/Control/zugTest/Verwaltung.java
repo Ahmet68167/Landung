@@ -90,6 +90,7 @@ public class Verwaltung {
 			}
 		}
 		
+		zuege.sort(new ZugComparator());
 		return zuege;
 	}
 	
