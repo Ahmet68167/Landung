@@ -42,6 +42,8 @@ public class Control implements IGame {
 
 	@Override
 	public boolean takeYourMove(String gegnerZug) {	
+		
+		System.out.println(gegnerZug);
 
         if(gegnerZug != null){
         	this.controlSpiel.starteSpiel(gegnerZug);

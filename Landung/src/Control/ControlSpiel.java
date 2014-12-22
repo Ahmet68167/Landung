@@ -65,10 +65,8 @@ public class ControlSpiel {
 		this.controlKI = new ControlKI(this);
 		this.nameSpieler1 = "KI_1";
 		this.nameSpieler2 = "KI_2";
-		this.spieler1 = new KISpieler(nameSpieler1,
-		        1, 1);
-		this.spieler2 = new KISpieler(nameSpieler2,
-		        2, 1);
+		this.spieler1 = new KISpieler(nameSpieler1, 1, 1);
+		this.spieler2 = new KISpieler(nameSpieler2, 2, 1);
 		this.istDran = this.spieler1;
 		this.spielfeld = new Spielfeld();
 
@@ -138,9 +136,7 @@ public class ControlSpiel {
 					this.main.getOutput().print("Letzter Befehl:" + input);
 					this.main.getOutput().print(this.spielfeld.toString());
 				}
-				
-				
-				
+
 			}
 
 			break;
@@ -150,19 +146,26 @@ public class ControlSpiel {
 			if (this.rundeSpiel == 0) {
 				Control.STATUS = Control.STATUS.HAUPTMENU;
 
-				this.main.getControl().checkInput("");
-
 				int punkte = this.spielfeld.getAnzahlLeererFelder();
 				this.istDran.setPunkte(punkte);
 				this.istDran.setGesamtpunkte(this.istDran.getGesamtpunkte()
 				        + punkte);
 
+				if (this.spieler1.getGesamtpunkte() > this.spieler2
+				        .getGesamtpunkte()) {
+
+					this.istDran = this.spieler1;
+
+				} else {
+					this.istDran = this.spieler2;
+				}
+
 				this.main.getHighscore().neuerHighScore(this.istDran.getName(),
-				        punkte);
+				        this.istDran.getGesamtpunkte());
 				this.main.getOutput().print(
-				        "" + this.istDran.getName() + " hat "
-				                + this.istDran.getGesamtpunkte()
-				                + " Punkte erreicht ");
+				        "\n Der Gewinner ist" + this.istDran.getName()
+				                + "\n  Gesammtpunkte  "
+				                + this.istDran.getGesamtpunkte());
 				this.resetSpiel();
 				this.main.getControl().checkInput("");
 
@@ -174,8 +177,6 @@ public class ControlSpiel {
 
 				this.istDran.setGesamtpunkte(this.istDran.getGesamtpunkte()
 				        + punkte);
-				this.main.getHighscore().neuerHighScore(this.istDran.getName(),
-				        punkte);
 
 				this.main.getOutput().print(
 				        "" + this.istDran.getName() + " hat "
@@ -384,7 +385,9 @@ public class ControlSpiel {
 		switch (Control.STATUS) {
 
 		case SPIELRUNDE: // ;
-			this.main.getOutput().print("Spieler: " + istDran.getName());
+			this.main.getOutput().print(
+			        "[" + istDran.getSymbol() + "]" + "Spieler: "
+			                + istDran.getName());
 			if (this.rundeZug == 4 && !this.isSonderRegelGeprueft) {
 
 				this.main
@@ -448,7 +451,7 @@ public class ControlSpiel {
 
 			Control.STATUS = Control.STATUS.SPIELRUNDE;
 			this.starteSpiel("");
-			;
+
 		}
 	}
 
