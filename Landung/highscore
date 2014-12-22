@@ -14,6 +14,16 @@
   <void method="add">
    <object class="model.highscore.HighScore">
     <void property="name">
+     <string>Bob</string>
+    </void>
+    <void property="punkte">
+     <int>43</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="model.highscore.HighScore">
+    <void property="name">
      <string>Ben</string>
     </void>
     <void property="punkte">

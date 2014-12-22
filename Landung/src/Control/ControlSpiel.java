@@ -81,9 +81,7 @@ public class ControlSpiel {
 
 			} else {
 				this.letzterBefehl = input;
-
 			}
-
 		}
 
 		switch (Control.STATUS) {
