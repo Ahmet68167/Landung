@@ -28,8 +28,11 @@ public class Verwaltung {
 		this.controlspiel = controlspiel;
 	}
 	
-	public static List alleZuege(Spielfeld spielfeld, Spieler spieler, 
-			ControlSpiel controlspiel, int anzahl) {
+	public List alleZuege(Spielfeld spielfeld, Spieler spieler) {
+		return alleZuege(spielfeld, spieler, 0);
+	}
+	
+	private List alleZuege(Spielfeld spielfeld, Spieler spieler, int anzahl) {
 		int[] start = new int[2];
 		int[] ziel = new int[2];
 		int bewertung;
@@ -51,7 +54,7 @@ public class Verwaltung {
 						// Spieler1 - alle Zuege von Spieler2 abziehen 
 						// um die Bewertung auszurechnen
 						if(anzahl < 1)
-							bewertung = alleZuege(spiel, spieler, controlspiel, anzahl+1).size();
+							bewertung = alleZuege(spiel, spieler, anzahl+1).size();
 						else 
 							bewertung = 0;
 						Zug zug = new Zug("" + ( (char) (start[0] + 'a') ) + (start[1] + 1), bewertung);
@@ -74,7 +77,7 @@ public class Verwaltung {
 								spiel.setzeSpielstein(spieler.getSpielstein(), ziel);
 								
 								if(anzahl < 1)
-									bewertung = alleZuege(spiel, spieler, controlspiel, anzahl+1).size();
+									bewertung = alleZuege(spiel, spieler, anzahl+1).size();
 								else
 									bewertung = 0;
 								
