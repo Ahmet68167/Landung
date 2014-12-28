@@ -19,11 +19,6 @@ public class ControlZug {
 	}
 
 	public boolean naechsterZug(String eingabe) {
-
-		/*
-		alleZuege();
-		System.out.println(zuege);
-		*/
 		
 		if (!istZugMoeglich() && ((2 < this.controlSpiel.getRundeZug() && this.controlSpiel.getRundeZug() < 4 || this.controlSpiel.getRundeZug() > 4)
 				|| (this.controlSpiel.getRundeZug() == 4 && !isSonderregel))) {
@@ -494,6 +489,14 @@ public class ControlZug {
 			return true;
 		}
 		return false;
+	}
+	
+	public ControlSpiel getControlSpiel() {
+		return this.controlSpiel;
+	}
+	
+	public void setControlSpiel(ControlSpiel controlspiel) {
+		this.controlSpiel = controlspiel;
 	}
 
 }
