@@ -1,17 +1,10 @@
 package Control.zugTest;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.TreeMap;
-
-import Control.ControlSpiel;
 import Control.ControlZug;
-import model.spieler.MenschSpieler;
-import model.spieler.SchlaueKi;
 import model.spieler.Spieler;
 import model.spielfeld.Spielfeld;
-import model.spielstein.Spielstein;
 
 public class Verwaltung {
 
@@ -53,12 +46,12 @@ public class Verwaltung {
 						controlzug.getControlSpiel().setSpielfeld(spiel);
 						spiel.setzeSpielstein(spieler.getSpielstein(), start);
 						
-						// Wenn Spieler == Spieler1 dann alleZuege von 
-						// Spieler1 - alle Zuege von Spieler2 abziehen 
-						// um die Bewertung auszurechnen
-						if(anzahl < 1)
+						if(anzahl < 1) {
 							bewertung = alleZuege(controlzug, spieler, anzahl+1).size();
-						else 
+							this.controlzug.getControlSpiel().naechsterSpieler();
+							bewertung -= alleZuege(controlzug, spieler, anzahl+1).size();
+							this.controlzug.getControlSpiel().naechsterSpieler();
+						} else 
 							bewertung = 0;
 						Zug zug = new Zug("" + ( (char) (start[0] + 'a') ) + (start[1] + 1), bewertung);
 						zuege.add(zug);
@@ -84,9 +77,12 @@ public class Verwaltung {
 										+ (ziel[1] + 1);
 								controlzug.macheZug(eingabe);
 								
-								if(anzahl < 1)
+								if(anzahl < 1) {
 									bewertung = alleZuege(controlzug, spieler, anzahl+1).size();
-								else
+									this.controlzug.getControlSpiel().naechsterSpieler();
+									bewertung -= alleZuege(controlzug, spieler, anzahl+1).size();
+									this.controlzug.getControlSpiel().naechsterSpieler();
+								} else 
 									bewertung = 0;
 								
 								Zug zug = new Zug("" + ( (char) (start[0] + 'a') ) 
@@ -105,27 +101,6 @@ public class Verwaltung {
 		controlzug.getControlSpiel().setSpielfeld(tmp);
 		zuege.sort(new ZugComparator());
 		return zuege;
-	}
-	
-	public static void main(String[] args) {
-		ControlSpiel cs = new ControlSpiel();
-		ControlZug cz = new ControlZug(cs);
-		SchlaueKi ki = new SchlaueKi(cz);
-		
-		System.out.println(cs.getSpielfeld());
-		System.out.println(ki.getZug().alleZuege());
-		cz.naechsterZug(ki.getKiBefehl());
-		System.out.println(cs.getSpielfeld());
-		System.out.println(ki.getZug().alleZuege());
-		cz.naechsterZug(ki.getKiBefehl());
-		System.out.println(cs.getSpielfeld());
-		System.out.println(ki.getZug().alleZuege());
-		cz.naechsterZug(ki.getKiBefehl());
-		System.out.println(cs.getSpielfeld());
-		System.out.println(ki.getZug().alleZuege());
-		cz.naechsterZug(ki.getKiBefehl());
-		System.out.println(cs.getSpielfeld());
-		
 	}
 	
 }
