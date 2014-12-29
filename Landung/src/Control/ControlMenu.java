@@ -11,7 +11,7 @@ public class ControlMenu {
 	private boolean bestOfThree = false;
 	private Control control;
 	private Spielanleitung spielanleitung;
-	private String kiStufe;
+	private int kiStufe;
 
 	public ControlMenu(Main main, Control control) {
 		this.control = control;
@@ -141,12 +141,23 @@ public class ControlMenu {
 	}
 
 	private void kiStufe(String input) {
-		if (input.equals("a") || input.equals("b") || input.equals("c")) {
+		
+		
+		if (input.equals("a")) {
 			Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
-			this.kiStufe = input;
-		}else {
+			this.kiStufe = 1;
+		} else if (input.equals("b")) {
+			Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
+			this.kiStufe = 2;
+		} else if (input.equals("c")) {
+			Control.STATUS = Control.STATUS.SPIELVORBEREITUNG;
+			this.kiStufe = 3;
+		} else {
 			this.main.getOutput().print("Fehler: ungültige Eingabe");
 		}
+		
+		
+	
 	}
 
 	private void bestOfThree(String input) {
@@ -163,14 +174,14 @@ public class ControlMenu {
 	/**
 	 * @return the kiStufe
 	 */
-	public String getKiStufe() {
+	public int getKiStufe() {
 		return kiStufe;
 	}
 
 	/**
 	 * @param kiStufe the kiStufe to set
 	 */
-	public void setKiStufe(String kiStufe) {
+	public void setKiStufe(int kiStufe) {
 		this.kiStufe = kiStufe;
 	}
 

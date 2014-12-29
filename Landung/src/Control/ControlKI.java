@@ -6,14 +6,10 @@ public class ControlKI {
 
 	private ArrayList<String> randMoveList;
 
-
 	public ControlKI(ControlSpiel controlSpiel) {
 
 		this.randMoveList = new ArrayList<>();
-
-		this.fillWithAllMoves();
-
-		
+		this.fillWithAllMoves();		
 	}
 
 	public String getKIBefehl(int runde) {
