@@ -6,7 +6,7 @@ import Control.ControlZug;
 import Control.zugTest.Verwaltung;
 import Control.zugTest.Zug;
 
-public class ZufallsKi {
+public class ZufallsKi extends KISpieler {
 
 	private ControlZug controlzug;
 	private Verwaltung zug;
@@ -16,7 +16,7 @@ public class ZufallsKi {
 		this.zug = new Verwaltung(this.controlzug);
 	}
 	
-	public String getKiBefehl() {
+	public String getBefehl() {
 		List liste;
 		liste = zug.alleZuege();
 		Zug a = (Zug) liste.get( (int) (Math.random()*liste.size()) );

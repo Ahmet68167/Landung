@@ -6,7 +6,7 @@ import Control.ControlZug;
 import Control.zugTest.Verwaltung;
 import Control.zugTest.Zug;
 
-public class SchlaueKi {
+public class SchlaueKi extends KISpieler {
 
 	private ControlZug controlzug;
 	private Verwaltung zug;
@@ -16,7 +16,7 @@ public class SchlaueKi {
 		this.zug = new Verwaltung(this.controlzug);
 	}
 	
-	public String getKiBefehl() {
+	public String getBefehl() {
 		List liste;
 		liste = zug.alleZuege();
 		Zug a = (Zug) liste.get(0);

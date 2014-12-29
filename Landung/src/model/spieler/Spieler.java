@@ -27,6 +27,8 @@ public abstract class Spieler {
 		}
 	}
 
+	public abstract String getBefehl();
+	
 	public Spielstein getSpielstein() {
 		return this.spielstein;
 	}
