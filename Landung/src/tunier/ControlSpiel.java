@@ -41,10 +41,8 @@ public class ControlSpiel {
 		this.controlKI = new ControlKI(this);
 		this.nameSpieler1 = "KI_1";
 		this.nameSpieler2 = "KI_2";
-		this.spieler1 = new KISpieler(nameSpieler1,
-		        1, 1,this.controlZug);
-		this.spieler2 = new KISpieler(nameSpieler2,
-		       2, 1,this.controlZug);
+		this.spieler1 = new KISpieler();
+		this.spieler2 = new KISpieler();
 		this.istDran = this.spieler1;
 		this.spielfeld = new Spielfeld();
 		this.spieler1 = new MenschSpieler(nameSpieler1,1);
@@ -143,10 +141,8 @@ public class ControlSpiel {
 		this.rundeZug = 1;
 		this.nameSpieler1 = "KI_1";
 		this.nameSpieler2 = "KI_2";
-		this.spieler1 = new KISpieler(nameSpieler1,
-		        1, 1);
-		this.spieler2 = new KISpieler(nameSpieler2,
-		       2, 1);
+		this.spieler1 = new KISpieler();
+		this.spieler2 = new KISpieler();
 		this.istDran = this.spieler1;
 		this.spielfeld = new Spielfeld();
 		this.spieler1 = new MenschSpieler(nameSpieler1,1);

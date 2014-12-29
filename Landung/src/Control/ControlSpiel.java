@@ -57,22 +57,7 @@ public class ControlSpiel {
 		this.controlZug = new ControlZug(this);
 	}
 
-	// Für KI Spiel ///////////////////////////////////////
-	public ControlSpiel() {
 
-		this.isKiSpiel = true;
-		this.controlZug = new ControlZug(this);
-		this.controlKI = new ControlKI(this);
-		this.nameSpieler1 = "KI_1";
-		this.nameSpieler2 = "KI_2";
-		this.spieler1 = new KISpieler(nameSpieler1, 1, 1,this.controlZug);
-		this.spieler2 = new KISpieler(nameSpieler2, 2, 1,this.controlZug);
-		this.istDran = this.spieler1;
-		this.spielfeld = new Spielfeld();
-
-	}
-
-	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
 
 
@@ -117,13 +102,8 @@ public class ControlSpiel {
 				
 				this.isZugErfolgtreich = this.controlZug.naechsterZug(input);
 
-				if (this.isKiSpiel && !this.isZugErfolgtreich) {
-					while (!this.isZugErfolgtreich) {
-						input = this.controlKI.getKIBefehl(this.rundeZug);
-						this.isZugErfolgtreich = this.controlZug
-						        .naechsterZug(input);
-					}
-				}
+	
+				
 				if (this.isZugErfolgtreich && this.spielfeld != null
 				        && !this.isKiSpiel) {
 					this.letzterBefehl = input;
@@ -365,6 +345,11 @@ public class ControlSpiel {
 	}
 
 	private void setSpielerNamen(String input) {
+		
+		if(this.isKiSpiel){
+			setKI();
+		
+		}
 
 		if (this.nameSpieler1 == null && input.length() > 2) {
 
@@ -373,6 +358,14 @@ public class ControlSpiel {
 
 			this.nameSpieler2 = input;
 		}
+	}
+	
+	private void setKI(){
+	
+		this.nameSpieler2 = "KI";	
+		this.spieler2 = new KISpieler(nameSpieler2, 2, 1,this.controlZug);
+		this.istDran = this.spieler1;
+
 	}
 
 	public void printStatus() {
@@ -506,8 +499,10 @@ public class ControlSpiel {
 	public void setTypModus(String typ, String modus, int kiStufe) {
 		
 
+
 		if (this.typ == null && this.modus == null ) {
 
+			this.isKiSpiel = true;
 			this.typ = typ;
 			this.modus = modus;
 			this.kiStufe = kiStufe;
