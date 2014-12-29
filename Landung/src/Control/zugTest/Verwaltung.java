@@ -62,6 +62,7 @@ public class Verwaltung {
 							bewertung = 0;
 						Zug zug = new Zug("" + ( (char) (start[0] + 'a') ) + (start[1] + 1), bewertung);
 						zuege.add(zug);
+						controlzug.getControlSpiel().setSpielfeld(tmp);
 					}
 					
 				}
