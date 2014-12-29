@@ -95,8 +95,9 @@ public class ControlSpiel {
 
 			} else {
 				// //////// KI SPIEL
+			
 				this.istDran.setInput(input);
-
+				
 				input = this.istDran.getBefehl();
 
 				this.isZugErfolgtreich = this.controlZug.naechsterZug(input);
@@ -106,6 +107,8 @@ public class ControlSpiel {
 					this.main.getOutput().print("Letzter Befehl:" + input);
 					this.main.getOutput().print(this.spielfeld.toString());
 				}
+				
+			
 
 			}
 
@@ -330,6 +333,8 @@ public class ControlSpiel {
 			if (!this.isKiSpiel) {
 				this.spieler2 = new MenschSpieler(nameSpieler2, 2);
 				this.spieler2.setGesamtpunkte(tmp);
+			}else{
+				this.spieler2 = new KISpieler(nameSpieler2, 2, this.kiStufe, this.controlZug);
 			}
 		}
 		if (this.spielfeld == null) {
@@ -352,7 +357,8 @@ public class ControlSpiel {
 		if (this.nameSpieler1 == null && input.length() > 2) {
 
 			this.nameSpieler1 = input;
-		} else if (this.nameSpieler2 == null && input.length() > 2) {
+		} else if (!this.isKiSpiel && this.nameSpieler2 == null
+		        && input.length() > 2) {
 
 			this.nameSpieler2 = input;
 		}
