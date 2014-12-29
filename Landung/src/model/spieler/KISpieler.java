@@ -1,7 +1,6 @@
 package model.spieler;
 
 import Control.ControlZug;
-import model.spielstein.Spielstein;
 
 public class KISpieler extends Spieler {
 
@@ -18,13 +17,9 @@ public class KISpieler extends Spieler {
 			ControlZug controlzug) {
 		super(name, spielernummer);
 		this.schwierigkeitsstufe = schwierigkeitsstufe;
-		this.controlzug = controlzug;
+		this.setControlzug(controlzug);
 		this.schlaueki = new SchlaueKi(controlzug);
 		this.zufallski = new ZufallsKi(controlzug);
-	}
-	
-	public int getSchwierigkeitsstufe() {
-		return this.schwierigkeitsstufe;
 	}
 
 	@Override
@@ -42,5 +37,36 @@ public class KISpieler extends Spieler {
 		else
 			return null;
 	}
+	
+	public int getSchwierigkeitsstufe() {
+		return this.schwierigkeitsstufe;
+	}
+	
+	public void setSchwierigkeitsstufe(int schwierigkeitsstufe) {
+		this.schwierigkeitsstufe = schwierigkeitsstufe;
+	}
 
+	public ControlZug getControlzug() {
+		return controlzug;
+	}
+
+	public void setControlzug(ControlZug controlzug) {
+		this.controlzug = controlzug;
+	}
+	
+	public SchlaueKi getSchlaueKi() {
+		return this.schlaueki;
+	}
+	
+	public void setSchlaueKi(SchlaueKi schlaueki) {
+		this.schlaueki = schlaueki;
+	}
+	
+	public ZufallsKi getZufallsKi() {
+		return this.zufallski;
+	}
+	
+	public void setZufallsKi(ZufallsKi zufallski) {
+		this.zufallski = zufallski;
+	}
 }
