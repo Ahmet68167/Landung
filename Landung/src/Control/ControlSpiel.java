@@ -32,7 +32,6 @@ public class ControlSpiel {
 	private String letzterBefehl;
 	private boolean isZugErfolgtreich;
 	private boolean isSonderRegelGeprueft = false;
-
 	private boolean isKiSpiel;
 	private ControlKI controlKI;
 	private int kiStufe;
@@ -43,7 +42,6 @@ public class ControlSpiel {
 	public int getRundeZug() {
 		return rundeZug;
 	}
-
 	/**
 	 * @param rundeZug
 	 *            the rundeZug to set

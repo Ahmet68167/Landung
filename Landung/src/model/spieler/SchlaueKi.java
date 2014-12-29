@@ -20,6 +20,10 @@ public class SchlaueKi {
 		List liste;
 		liste = zug.alleZuege();
 		Zug a = (Zug) liste.get(0);
+		
+		if(liste.size() == 0){
+			return "";
+		}
 		return a.getZug();
 	}
 	

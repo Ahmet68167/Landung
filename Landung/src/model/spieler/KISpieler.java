@@ -36,7 +36,7 @@ public class KISpieler extends Spieler {
 		} else if(this.schwierigkeitsstufe == 3)
 			return this.schlaueki.getBefehl();
 		else
-			return null;
+			return "";
 	}
 	
 	public int getSchwierigkeitsstufe() {
