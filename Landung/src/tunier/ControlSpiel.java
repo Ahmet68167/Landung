@@ -42,9 +42,9 @@ public class ControlSpiel {
 		this.nameSpieler1 = "KI_1";
 		this.nameSpieler2 = "KI_2";
 		this.spieler1 = new KISpieler(nameSpieler1,
-		        1, 1);
+		        1, 1,this.controlZug);
 		this.spieler2 = new KISpieler(nameSpieler2,
-		       2, 1);
+		       2, 1,this.controlZug);
 		this.istDran = this.spieler1;
 		this.spielfeld = new Spielfeld();
 		this.spieler1 = new MenschSpieler(nameSpieler1,1);

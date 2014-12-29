@@ -13,8 +13,10 @@ public class MenschSpieler extends Spieler {
 	}
 
 	@Override
-	public String getBefehl() {
-		return null;
+	public String getBefehl(String str) {
+		return str;
 	}
+
+	
 
 }

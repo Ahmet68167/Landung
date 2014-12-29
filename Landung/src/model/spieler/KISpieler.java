@@ -23,7 +23,9 @@ public class KISpieler extends Spieler {
 	}
 
 	@Override
-	public String getBefehl() {
+	public String getBefehl(String str) {
+
+		
 		if(this.schwierigkeitsstufe == 1)
 			return this.zufallski.getBefehl();
 		else if(this.schwierigkeitsstufe == 2) {
@@ -69,4 +71,6 @@ public class KISpieler extends Spieler {
 	public void setZufallsKi(ZufallsKi zufallski) {
 		this.zufallski = zufallski;
 	}
+
+
 }
