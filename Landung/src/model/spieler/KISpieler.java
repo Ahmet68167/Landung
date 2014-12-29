@@ -2,7 +2,7 @@ package model.spieler;
 
 import model.spielstein.Spielstein;
 
-public class KISpieler extends Spieler {
+public abstract class KISpieler extends Spieler {
 
 	private int schwierigkeitsstufe;
 	

@@ -12,4 +12,9 @@ public class MenschSpieler extends Spieler {
 		super(name, spielernummer);
 	}
 
+	@Override
+	public String getBefehl() {
+		return null;
+	}
+
 }
