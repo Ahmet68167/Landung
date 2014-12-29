@@ -6,7 +6,7 @@ import Control.ControlZug;
 import Control.zugTest.Verwaltung;
 import Control.zugTest.Zug;
 
-public class ZufallsKi extends KISpieler {
+public class ZufallsKi {
 
 	private ControlZug controlzug;
 	private Verwaltung zug;

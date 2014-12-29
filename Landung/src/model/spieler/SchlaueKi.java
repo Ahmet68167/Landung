@@ -6,7 +6,7 @@ import Control.ControlZug;
 import Control.zugTest.Verwaltung;
 import Control.zugTest.Zug;
 
-public class SchlaueKi extends KISpieler {
+public class SchlaueKi {
 
 	private ControlZug controlzug;
 	private Verwaltung zug;
