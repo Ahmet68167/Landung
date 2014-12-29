@@ -105,25 +105,4 @@ public class Verwaltung {
 		return zuege;
 	}
 	
-	public static void main(String[] args) {
-		ControlSpiel cs = new ControlSpiel();
-		ControlZug cz = new ControlZug(cs);
-		SchlaueKi ki = new SchlaueKi(cz);
-		
-		System.out.println(cs.getSpielfeld());
-		System.out.println(ki.getZug().alleZuege());
-		cz.naechsterZug(ki.getKiBefehl());
-		System.out.println(cs.getSpielfeld());
-		System.out.println(ki.getZug().alleZuege());
-		cz.naechsterZug(ki.getKiBefehl());
-		System.out.println(cs.getSpielfeld());
-		System.out.println(ki.getZug().alleZuege());
-		cz.naechsterZug(ki.getKiBefehl());
-		System.out.println(cs.getSpielfeld());
-		System.out.println(ki.getZug().alleZuege());
-		cz.naechsterZug(ki.getKiBefehl());
-		System.out.println(cs.getSpielfeld());
-		
-	}
-	
 }
