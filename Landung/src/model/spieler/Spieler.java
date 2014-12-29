@@ -10,6 +10,7 @@ public abstract class Spieler {
 	private String name;
 	private int punkte;
 	private int gesamtpunkte;
+	private String input;
 
 	public Spieler() {
 
@@ -27,9 +28,7 @@ public abstract class Spieler {
 		}
 	}
 
-	public abstract String getBefehl(String input);
-	
-
+	public abstract String getBefehl();
 	
 	public Spielstein getSpielstein() {
 		return this.spielstein;
@@ -69,6 +68,14 @@ public abstract class Spieler {
 
 	public int getGesamtpunkte() {
 		return this.gesamtpunkte;
+	}
+	
+	public String getInput() {
+		return this.input;
+	}
+	
+	public void setInput(String input) {
+		this.input = input;
 	}
 
 }

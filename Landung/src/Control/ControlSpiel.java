@@ -111,8 +111,10 @@ public class ControlSpiel {
 
 			} else {
 				// //////// KI SPIEL
-				input = this.istDran.getBefehl(input);
-			
+				this.istDran.setInput(input);
+				
+				input = this.istDran.getBefehl();
+				
 				this.isZugErfolgtreich = this.controlZug.naechsterZug(input);
 
 				if (this.isKiSpiel && !this.isZugErfolgtreich) {

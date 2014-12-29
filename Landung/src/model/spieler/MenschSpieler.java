@@ -3,7 +3,7 @@ package model.spieler;
 import model.spielstein.Spielstein;
 
 public class MenschSpieler extends Spieler {
-
+	
 	public MenschSpieler() {
 		
 	}
@@ -13,10 +13,8 @@ public class MenschSpieler extends Spieler {
 	}
 
 	@Override
-	public String getBefehl(String str) {
-		return str;
+	public String getBefehl() {
+		return super.getInput();
 	}
-
-	
 
 }
