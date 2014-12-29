@@ -117,8 +117,9 @@ public class ControlZug {
 						ziel[0] = k;
 						ziel[1] = m;
 
-						if (gueltigerZug(start, ziel))
-							return true;
+						if (gueltigerZug(start, ziel)){
+							return true;}
+				
 
 					}
 				}
@@ -163,6 +164,7 @@ public class ControlZug {
 	}
 
 	public boolean gueltigerZug(int[] start, int[] ziel) {
+	
 		// Pruefe start
 		if (this.controlSpiel.getSpielfeld().fetchSpielstein(start).getSymbol() != this.controlSpiel
 		        .getIstDran().getSymbol())

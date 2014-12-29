@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 import speichern.FileHandler;
-
 import Main.Main;
 import model.spieler.KISpieler;
 import model.spieler.MenschSpieler;
@@ -36,6 +35,7 @@ public class ControlSpiel {
 
 	private boolean isKiSpiel;
 	private ControlKI controlKI;
+	private String kiStufe;
 
 	/**
 	 * @return the rundeZug
@@ -506,5 +506,30 @@ public class ControlSpiel {
 	protected void setRundeSpiel(int rundeSpiel) {
 		this.rundeSpiel = rundeSpiel;
 	}
+
+	public void setTypModus(String typ, String modus, String kiStufe) {
+		
+
+		if (this.typ == null && this.modus == null && this.kiStufe == null) {
+
+			this.typ = typ;
+			this.modus = modus;
+			this.kiStufe = kiStufe;
+			
+		
+
+			if (typ.equals("KI")) {
+				this.nameSpieler1 = "KI";
+			}
+
+			if (modus.equals("BOO")) {
+				this.rundeSpiel = 1;
+			} else if (modus.equals("BOT")) {
+
+				this.rundeSpiel = 3;
+			}
+		}
+	    
+    }
 
 }

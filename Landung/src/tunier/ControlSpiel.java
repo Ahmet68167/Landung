@@ -52,6 +52,11 @@ public class ControlSpiel {
 		this.setTypModus("KI", "BOO");
 		this.istDran = this.spieler1;
 	}
+	
+	public boolean canIMove(){
+		
+		return this.controlZug.istZugMoeglich();
+	}
 
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
@@ -116,7 +121,7 @@ public class ControlSpiel {
 			
 		
 			
-			if (this.gewonnen) {
+			if (this.gewonnen || this.verloren) {
 				if (this.istDran.equals(spieler1)) {
 					setHasWon(1);
 				} else {

@@ -31,23 +31,17 @@ public class ControlKI {
 			}
 		}
 		
-		for(int i = 0; i < 5;i++ ){
-		
+		for(int i = 0; i < 5;i++ ){		
 			for(int k = 0; k< 5;k++){
-		
-				for(int j = 0; j<5;j++){
-					
+				for(int j = 0; j<5;j++){					
 					for(int l= 0;l<5;l++){
 						tmp = ""+(char) (97+i);
 						tmp +=""+(k+1);
 						tmp +=""+(char) (97+j);
-						this.randMoveList.add(tmp+""+(l+1));
-						
+						this.randMoveList.add(tmp+""+(l+1));						
 					}
 				}
-			}
-			
-		}
-		
+			}			
+		}		
 	}
 }

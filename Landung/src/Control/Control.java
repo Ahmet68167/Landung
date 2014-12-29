@@ -41,9 +41,9 @@ public class Control {
 		if (STATUS == STATUS.SPIELVORBEREITUNG) {
 			if (this.controleMenu.isGegenKI()) {
 				if (this.controleMenu.isBestOfOne()) {
-					this.controlSpiel.setTypModus("KI", "BOO");
+					this.controlSpiel.setTypModus("KI", "BOO",this.controleMenu.getKiStufe());
 				} else if (this.controleMenu.isBestOfThree()) {
-					this.controlSpiel.setTypModus("KI", "BOT");
+					this.controlSpiel.setTypModus("KI", "BOT",this.controleMenu.getKiStufe());
 				}
 
 			} else if (this.controleMenu.isGegenMensch()) {
