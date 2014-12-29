@@ -73,6 +73,11 @@ public class ControlSpiel {
 		case SPIELVORBEREITUNG:
 
 			if (this.rundeSpiel > 0) {
+				
+				if(this.isKiSpiel){
+					setKI();				
+				}
+
 				this.setSpielerNamen(input);
 				this.initSpielMaterial();
 				this.startSpieler();
@@ -95,10 +100,15 @@ public class ControlSpiel {
 				}
 
 			} else {
+				
+			
+			
 				// //////// KI SPIEL
 				this.istDran.setInput(input);
 				
 				input = this.istDran.getBefehl();
+				
+		
 				
 				this.isZugErfolgtreich = this.controlZug.naechsterZug(input);
 
@@ -346,10 +356,6 @@ public class ControlSpiel {
 
 	private void setSpielerNamen(String input) {
 		
-		if(this.isKiSpiel){
-			setKI();
-		
-		}
 
 		if (this.nameSpieler1 == null && input.length() > 2) {
 
@@ -364,7 +370,7 @@ public class ControlSpiel {
 	
 		this.nameSpieler2 = "KI";	
 		this.spieler2 = new KISpieler(nameSpieler2, 2, 1,this.controlZug);
-		this.istDran = this.spieler1;
+
 
 	}
 
