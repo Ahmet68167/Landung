@@ -35,7 +35,7 @@ public class ControlSpiel {
 
 	private boolean isKiSpiel;
 	private ControlKI controlKI;
-	private String kiStufe;
+	private int kiStufe;
 
 	/**
 	 * @return the rundeZug
@@ -75,14 +75,6 @@ public class ControlSpiel {
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
 
-		if (this.isKiSpiel) {
-			if (input == null || input == "") {
-				input = this.controlKI.getKIBefehl(this.rundeZug);
-
-			} else {
-				this.letzterBefehl = input;
-			}
-		}
 
 		switch (Control.STATUS) {
 		case LADENAUSWAHL:
@@ -507,10 +499,10 @@ public class ControlSpiel {
 		this.rundeSpiel = rundeSpiel;
 	}
 
-	public void setTypModus(String typ, String modus, String kiStufe) {
+	public void setTypModus(String typ, String modus, int kiStufe) {
 		
 
-		if (this.typ == null && this.modus == null && this.kiStufe == null) {
+		if (this.typ == null && this.modus == null ) {
 
 			this.typ = typ;
 			this.modus = modus;
