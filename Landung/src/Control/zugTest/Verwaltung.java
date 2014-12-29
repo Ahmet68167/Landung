@@ -91,7 +91,8 @@ public class Verwaltung {
 								Zug zug = new Zug("" + ( (char) (start[0] + 'a') ) 
 										+ (start[1] + 1) + ( (char) (ziel[0] + 'a') ) 
 										+ (ziel[1] + 1), bewertung);
-									zuege.add(zug);
+								zuege.add(zug);
+								controlzug.getControlSpiel().setSpielfeld(tmp);
 							}
 							
 						}
@@ -103,6 +104,27 @@ public class Verwaltung {
 		controlzug.getControlSpiel().setSpielfeld(tmp);
 		zuege.sort(new ZugComparator());
 		return zuege;
+	}
+	
+	public static void main(String[] args) {
+		ControlSpiel cs = new ControlSpiel();
+		ControlZug cz = new ControlZug(cs);
+		SchlaueKi ki = new SchlaueKi(cz);
+		
+		System.out.println(cs.getSpielfeld());
+		System.out.println(ki.getZug().alleZuege());
+		cz.naechsterZug(ki.getKiBefehl());
+		System.out.println(cs.getSpielfeld());
+		System.out.println(ki.getZug().alleZuege());
+		cz.naechsterZug(ki.getKiBefehl());
+		System.out.println(cs.getSpielfeld());
+		System.out.println(ki.getZug().alleZuege());
+		cz.naechsterZug(ki.getKiBefehl());
+		System.out.println(cs.getSpielfeld());
+		System.out.println(ki.getZug().alleZuege());
+		cz.naechsterZug(ki.getKiBefehl());
+		System.out.println(cs.getSpielfeld());
+		
 	}
 	
 }
