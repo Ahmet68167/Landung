@@ -19,11 +19,12 @@ public class SchlaueKi {
 	public String getBefehl() {
 		List liste;
 		liste = zug.alleZuege();
-		Zug a = (Zug) liste.get(0);
+	
 		
 		if(liste.size() == 0){
 			return "";
 		}
+		Zug a = (Zug) liste.get(0);
 		return a.getZug();
 	}
 	

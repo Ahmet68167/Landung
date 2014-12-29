@@ -19,7 +19,12 @@ public class ZufallsKi {
 	public String getBefehl() {
 		List liste;
 		liste = zug.alleZuege();
+		
+		if(liste.size() == 0){
+			return "";
+		}
 		Zug a = (Zug) liste.get( (int) (Math.random()*liste.size()) );
+
 		return a.getZug();
 	}
 	
