@@ -2,33 +2,41 @@ package model.spieler;
 
 import java.util.List;
 
-import Control.ControlSpiel;
+import Control.ControlZug;
 import Control.zugTest.Verwaltung;
 import Control.zugTest.Zug;
 
 public class ZufallsKi {
 
-	private ControlSpiel controlspiel;
+	private ControlZug controlzug;
 	private Verwaltung zug;
 	
-	public ZufallsKi(ControlSpiel controlspiel) {
-		this.controlspiel = controlspiel;
-		this.zug = new Verwaltung(this.controlspiel);
+	public ZufallsKi(ControlZug controlzug) {
+		this.controlzug = controlzug;
+		this.zug = new Verwaltung(this.controlzug);
 	}
 	
 	public String getKiBefehl() {
 		List liste;
-		liste = zug.alleZuege(this.controlspiel.getSpielfeld(), this.controlspiel.getIstDran());
+		liste = zug.alleZuege();
 		Zug a = (Zug) liste.get( (int) (Math.random()*liste.size()) );
 		return a.getZug();
 	}
 	
-	public ControlSpiel getControlSpiel() {
-		return this.controlspiel;
+	public ControlZug getControlZug() {
+		return this.controlzug;
 	}
 	
-	public void setControlSpiel(ControlSpiel controlspiel) {
-		this.controlspiel = controlspiel;
+	public void setControlZug(ControlZug controlzug) {
+		this.controlzug = controlzug;
+	}
+	
+	public Verwaltung getZug() {
+		return this.zug;
+	}
+	
+	public void setZug(Verwaltung zug) {
+		this.zug = zug;
 	}
 	
 }

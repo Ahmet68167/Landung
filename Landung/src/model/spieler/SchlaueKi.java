@@ -2,33 +2,41 @@ package model.spieler;
 
 import java.util.List;
 
-import Control.ControlSpiel;
+import Control.ControlZug;
 import Control.zugTest.Verwaltung;
 import Control.zugTest.Zug;
 
 public class SchlaueKi {
 
-	private ControlSpiel controlspiel;
+	private ControlZug controlzug;
 	private Verwaltung zug;
 	
-	public SchlaueKi(ControlSpiel controlspiel) {
-		this.controlspiel = controlspiel;
-		this.zug = new Verwaltung(this.controlspiel);
+	public SchlaueKi(ControlZug controlzug) {
+		this.controlzug = controlzug;
+		this.zug = new Verwaltung(this.controlzug);
 	}
 	
 	public String getKiBefehl() {
 		List liste;
-		liste = zug.alleZuege(this.controlspiel.getSpielfeld(), this.controlspiel.getIstDran());
+		liste = zug.alleZuege();
 		Zug a = (Zug) liste.get(0);
 		return a.getZug();
 	}
 	
-	public ControlSpiel getControlSpiel() {
-		return this.controlspiel;
+	public ControlZug getControlZug() {
+		return this.controlzug;
 	}
 	
-	public void setControlSpiel(ControlSpiel controlspiel) {
-		this.controlspiel = controlspiel;
+	public void setControlZug(ControlZug controlspiel) {
+		this.controlzug = controlspiel;
+	}
+	
+	public Verwaltung getZug() {
+		return this.zug;
+	}
+	
+	public void setZug(Verwaltung zug) {
+		this.zug = zug;
 	}
 	
 }
