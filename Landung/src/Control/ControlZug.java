@@ -20,7 +20,11 @@ public class ControlZug {
 
 	public boolean naechsterZug(String eingabe) {
 		
-		if (!istZugMoeglich() && ((2 < this.controlSpiel.getRundeZug() && this.controlSpiel.getRundeZug() < 4 || this.controlSpiel.getRundeZug() > 4)
+		boolean gueltigerZug = true;
+		
+		if (!istZugMoeglich() && ((2 < this.controlSpiel.getRundeZug() 
+				&& this.controlSpiel.getRundeZug() < 4 
+				|| this.controlSpiel.getRundeZug() > 4)
 				|| (this.controlSpiel.getRundeZug() == 4 && !isSonderregel))) {
 			this.controlSpiel.naechsterSpieler();
 			this.output.print(this.controlSpiel.getIstDran().getName()
@@ -47,12 +51,24 @@ public class ControlZug {
 					if (!this.controlSpiel.isKiSpiel()) {
 						this.output.print("Fehler: ungültiger Zug");
 					}
-					return false;
+					gueltigerZug = false;
 				}
 			}
 		}
 
-		return true;
+		if (!istZugMoeglich() && ((2 < this.controlSpiel.getRundeZug() 
+				&& this.controlSpiel.getRundeZug() < 4 
+				|| this.controlSpiel.getRundeZug() > 4)
+				|| (this.controlSpiel.getRundeZug() == 4 && !isSonderregel))) {
+			this.controlSpiel.naechsterSpieler();
+			this.output.print(this.controlSpiel.getIstDran().getName()
+			        + " hat gewonnen.");
+			Control.STATUS = Control.STATUS.SPIELRUNDENENDE;
+			this.controlSpiel.starteSpiel("");
+
+		}
+		
+		return gueltigerZug;
 
 	}
 
