@@ -8,7 +8,7 @@ public class Control {
 	ControlMenu controleMenu;
 	ControlSpiel controlSpiel;
 	private Main main;
-	static ControlEnum STATUS;
+	public static ControlEnum STATUS;
 
 	public Control(Main main) {
 		this.main = main;
