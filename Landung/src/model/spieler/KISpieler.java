@@ -15,7 +15,7 @@ public class KISpieler extends Spieler {
 	
 	public KISpieler(String name, int spielernummer, int schwierigkeitsstufe, 
 			ControlZug controlzug) {
-		super(name, spielernummer);
+		super(name, spielernummer, "Ki");
 		this.schwierigkeitsstufe = schwierigkeitsstufe;
 		this.setControlzug(controlzug);
 		this.schlaueki = new SchlaueKi(controlzug);

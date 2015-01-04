@@ -9,7 +9,7 @@ public class MenschSpieler extends Spieler {
 	}
 	
 	public MenschSpieler(String name, int spielernummer) {
-		super(name, spielernummer);
+		super(name, spielernummer, "Mensch");
 	}
 
 	@Override

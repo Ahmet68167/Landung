@@ -11,12 +11,13 @@ public abstract class Spieler {
 	private int punkte;
 	private int gesamtpunkte;
 	private String input;
+	private String typ;
 
 	public Spieler() {
 
 	}
 
-	public Spieler(String name, int spielernummer) {
+	public Spieler(String name, int spielernummer, String typ) {
 		this.name = name;
 
 		this.punkte = 0;
@@ -76,6 +77,14 @@ public abstract class Spieler {
 	
 	public void setInput(String input) {
 		this.input = input;
+	}
+
+	public String getTyp() {
+		return typ;
+	}
+
+	public void setTyp(String typ) {
+		this.typ = typ;
 	}
 
 }
