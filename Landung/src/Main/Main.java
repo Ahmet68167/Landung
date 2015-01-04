@@ -38,8 +38,8 @@ public class Main {
 
 		while (true) {
 			this.control.printStatus();
-
-				this.control.checkInput(this.input.read());		
+				
+			this.control.checkInput(this.input.read());
 			
 			if (control.isBeendet()) {
 				this.output.print("Spiel beendet");
