@@ -136,8 +136,8 @@ public class ControlSpiel {
 				this.main.getHighscore().neuerHighScore(this.istDran.getName(),
 				        this.istDran.getGesamtpunkte());
 				this.main.getOutput().print(
-				        "\n Der Gewinner ist" + this.istDran.getName()
-				                + "\n  Gesammtpunkte  "
+				        "\nDer Gewinner ist " + this.istDran.getName()
+				                + "\nGesammtpunkte: "
 				                + this.istDran.getGesamtpunkte());
 				this.resetSpiel();
 				this.main.getControl().checkInput("");
