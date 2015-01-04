@@ -230,7 +230,7 @@ public class ControlZug {
 	public boolean testeDiagonalUnten(int[] start, int[] ziel) {
 		int[] pos = new int[2];
 
-		for (int i = 1; i <= ziel[0] - start[0]; i++) {
+		for (int i = 1; i < ziel[0] - start[0]; i++) {
 			pos[0] = start[0] + i;
 			pos[1] = start[1] - i;
 			if (!this.controlSpiel.getSpielfeld().isEmpty(pos))
