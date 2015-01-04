@@ -55,5 +55,9 @@ public class Control {
 			}
 		}
 	}
+	
+	public ControlSpiel getControlSpiel() {
+		return this.controlSpiel;
+	}
 
 }
