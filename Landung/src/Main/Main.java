@@ -38,8 +38,17 @@ public class Main {
 
 		while (true) {
 			this.control.printStatus();
+
+			if(Control.STATUS == Control.STATUS.SPIELRUNDE &&
+				this.control.getControlSpiel().getIstDran().getTyp().equals("Ki"))
 				
-			this.control.checkInput(this.input.read());
+				if(this.control.getControlSpiel().getRundeZug() == 4)
+					this.control.checkInput("n");
+				else
+					this.control.checkInput("");
+			else
+				this.control.checkInput(this.input.read());
+			
 			
 			if (control.isBeendet()) {
 				this.output.print("Spiel beendet");
