@@ -19,9 +19,9 @@ public abstract class Spieler {
 
 	public Spieler(String name, int spielernummer, String typ) {
 		this.name = name;
-
 		this.punkte = 0;
 		this.gesamtpunkte = 0;
+		this.typ = typ;
 		if (spielernummer == 1) {
 			this.spielstein = new Spielstein('X');
 		} else {
