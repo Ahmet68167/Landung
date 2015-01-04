@@ -138,7 +138,7 @@ public class ControlSpiel {
 				this.main.getOutput().print(
 				        "\nDer Gewinner ist " + this.istDran.getName()
 				                + "\nGesammtpunkte: "
-				                + this.istDran.getGesamtpunkte());
+				                + this.istDran.getGesamtpunkte() + "\n");
 				this.resetSpiel();
 				this.main.getControl().checkInput("");
 
