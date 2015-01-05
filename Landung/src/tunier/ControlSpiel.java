@@ -1,6 +1,5 @@
 package tunier;
 
-
 public class ControlSpiel {
 
 	public ControlZug controlZug;
@@ -18,7 +17,7 @@ public class ControlSpiel {
 	private String letzterBefehl;
 	private boolean isSonderRegelGeprueft = false;
 	private ControlKI controlKI;
-	
+
 	public boolean gewonnen = false;
 	public boolean isSecond = false;
 	public String gegenerZug = "";
@@ -40,35 +39,29 @@ public class ControlSpiel {
 		this.spieler2 = new KISpieler();
 		this.istDran = this.spieler1;
 		this.spielfeld = new Spielfeld();
-		this.spieler1 = new MenschSpieler(nameSpieler1,1);
-		this.spieler2 = new MenschSpieler(nameSpieler2,2);
+		this.spieler1 = new MenschSpieler(nameSpieler1, 1);
+		this.spieler2 = new MenschSpieler(nameSpieler2, 2);
 		this.setTypModus("KI", "BOO");
 		this.istDran = this.spieler1;
 	}
-	
-public String getKIMove(){
-	String kiMove = "";
-	while (!this.canIMove) {
-		kiMove = this.controlKI.getKIBefehl(this.rundeZug);
-		this.canIMove = this.controlZug.naechsterZug(kiMove);
 
-	}
+	public String getKIMove() {
+		String kiMove = "";
+		while (!this.canIMove) {
+			kiMove = this.controlKI.getKIBefehl(this.rundeZug);
+			this.canIMove = this.controlZug.naechsterZug(kiMove);
+
+		}
 		return kiMove;
-}
-	
-
-	
-	
+	}
 
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
-		
-
 
 		switch (Control.STATUS) {
 
 		case SPIELRUNDE:
-			
+
 			if (this.rundeZug == 4 && !this.isSonderRegelGeprueft) {
 				this.controlZug.setSonderregel(true);
 				this.isSonderRegelGeprueft = true;
@@ -84,11 +77,9 @@ public String getKIMove(){
 				} else if (this.gaveAMoveOrder) {
 					this.canIMove = false;
 					input = getKIMove();
-				
-						this.controlZug.naechsterZug(input);
 
-						
-					
+					this.controlZug.naechsterZug(input);
+
 					this.letzterBefehl = input;
 					this.gaveAMoveOrder = false;
 				}
@@ -97,9 +88,8 @@ public String getKIMove(){
 				if (!this.gaveAMoveOrder) {
 					this.canIMove = false;
 					input = getKIMove();
-						this.controlZug.naechsterZug(input);
+					this.controlZug.naechsterZug(input);
 
-					
 					this.letzterBefehl = input;
 					this.gaveAMoveOrder = true;
 
@@ -110,15 +100,12 @@ public String getKIMove(){
 
 				}
 			}
-			
-		
-			
+
 			if (!this.controlZug.canIMove()) {
-			
+
 				this.resetKISpiel();
 
 			}
-		
 
 			break;
 		default: // Fehler ungültiger Status;
@@ -135,13 +122,12 @@ public String getKIMove(){
 		this.spieler2 = new KISpieler();
 		this.istDran = this.spieler1;
 		this.spielfeld = new Spielfeld();
-		this.spieler1 = new MenschSpieler(nameSpieler1,1);
-		this.spieler2 = new MenschSpieler(nameSpieler2,2);
+		this.spieler1 = new MenschSpieler(nameSpieler1, 1);
+		this.spieler2 = new MenschSpieler(nameSpieler2, 2);
 		this.setTypModus("KI", "BOO");
 		this.istDran = this.spieler1;
 		this.canYouMove = false;
 		this.canIMove = false;
-		
 
 	}
 
@@ -241,8 +227,6 @@ public String getKIMove(){
 		this.rundeSpiel = rundeSpiel;
 	}
 
-
-
 	/**
 	 * @param i
 	 * @param spieler
@@ -271,8 +255,8 @@ public String getKIMove(){
 	}
 
 	public void setSpielfeld(Spielfeld spiel) {
-	    this.spielfeld = spiel;
-	    
-    }
+		this.spielfeld = spiel;
+
+	}
 
 }
