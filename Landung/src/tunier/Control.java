@@ -70,9 +70,9 @@ public class Control implements IGame {
 
 	@Override
 	public void printBoard() {
-	if (this.controlSpiel.getSpielfeld() != null) {
+	/*	if (this.controlSpiel.getSpielfeld() != null) {
 			System.out.println(this.controlSpiel.getSpielfeld().toString());
-		}
+		}*/
 	}
 
 	@Override

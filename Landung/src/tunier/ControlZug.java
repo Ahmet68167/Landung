@@ -125,7 +125,7 @@ public class ControlZug {
 				}
 				
 			} else {
-
+				
 				return false;
 
 			}

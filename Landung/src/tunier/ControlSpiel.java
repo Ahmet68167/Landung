@@ -27,7 +27,6 @@ public class ControlSpiel {
 	public boolean isFirst = false;
 	public boolean verloren = false;
 	private Control control;
-	
 
 	// Für KI Spiel ///////////////////////////////////////
 	public ControlSpiel(Control control) {
@@ -35,32 +34,25 @@ public class ControlSpiel {
 		this.controlZug = new ControlZug(this);
 		this.controlKI = new ControlKI(this);
 		this.nameSpieler1 = "KI_1";
-		this.nameSpieler2 = "KI_2";	
+		this.nameSpieler2 = "KI_2";
+
 		this.istDran = this.spieler1;
 		this.spielfeld = new Spielfeld();
 		this.spieler1 = new KISpieler(nameSpieler1, 1,3,this.controlZug);
-		this.spieler2 = new KISpieler(nameSpieler2, 2,3,this.controlZug);
+		this.spieler2 = new MenschSpieler(nameSpieler2, 2 );
 		this.setTypModus("KI", "BOO");
 		this.istDran = this.spieler1;
 	}
 
 	public String getKIMove() {
 		String kiMove = "";
-	
-	
-		if (this.rundeZug == 4 && !this.isSonderRegelGeprueft) {
-			this.controlZug.setSonderregel(false);
-			this.isSonderRegelGeprueft = true;
-			
-		
+		while (!this.canIMove) {
+			kiMove = this.controlKI.getKIBefehl(this.rundeZug);
+			this.canIMove = this.controlZug.naechsterZug(kiMove);
+
 		}
-		
-	     kiMove = this.istDran.getBefehl();
-
-	     return kiMove;
-		
+		return kiMove;
 	}
-
 
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
@@ -69,7 +61,10 @@ public class ControlSpiel {
 
 		case SPIELRUNDE:
 
-			
+			if (this.rundeZug == 4 && !this.isSonderRegelGeprueft) {
+				this.controlZug.setSonderregel(false);
+				this.isSonderRegelGeprueft = true;
+			}
 			// //////// KI SPIEL
 			if (isSecond) {
 
@@ -125,7 +120,7 @@ public class ControlSpiel {
 		this.istDran = this.spieler1;
 		this.spielfeld = new Spielfeld();
 		this.spieler1 = new KISpieler(nameSpieler1, 1,3,this.controlZug);
-		this.spieler2 = new KISpieler(nameSpieler2, 2,3,this.controlZug);
+		this.spieler2 = new MenschSpieler(nameSpieler2, 2 );
 		this.setTypModus("KI", "BOO");
 		this.istDran = this.spieler1;
 		this.canYouMove = false;
