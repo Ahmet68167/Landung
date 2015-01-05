@@ -47,11 +47,20 @@ public class ControlSpiel {
 	public String getKIMove() {
 		String kiMove = "";
 	
+	
+		if (this.rundeZug == 4 && !this.isSonderRegelGeprueft) {
+			this.controlZug.setSonderregel(false);
+			this.isSonderRegelGeprueft = true;
+			
+		
+		}
+		
 	     kiMove = this.istDran.getBefehl();
-	     System.out.println(""+kiMove);
+
 	     return kiMove;
 		
 	}
+
 
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
@@ -60,10 +69,7 @@ public class ControlSpiel {
 
 		case SPIELRUNDE:
 
-			if (this.rundeZug == 4 && !this.isSonderRegelGeprueft) {
-				this.controlZug.setSonderregel(true);
-				this.isSonderRegelGeprueft = true;
-			}
+			
 			// //////// KI SPIEL
 			if (isSecond) {
 
@@ -116,8 +122,6 @@ public class ControlSpiel {
 		this.rundeZug = 1;
 		this.nameSpieler1 = "KI_1";
 		this.nameSpieler2 = "KI_2";
-		this.spieler1 = new KISpieler();
-		this.spieler2 = new KISpieler();
 		this.istDran = this.spieler1;
 		this.spielfeld = new Spielfeld();
 		this.spieler1 = new KISpieler(nameSpieler1, 1,3,this.controlZug);
