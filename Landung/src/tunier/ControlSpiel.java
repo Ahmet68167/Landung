@@ -46,12 +46,9 @@ public class ControlSpiel {
 
 	public String getKIMove() {
 		String kiMove = "";
-	
+		
 			kiMove = this.spieler1.getBefehl();
 			
-			
-			
-	
 		return kiMove;
 	}
 
@@ -102,7 +99,7 @@ public class ControlSpiel {
 			}
 
 			if (!this.controlZug.canIMove()) {
-
+	
 				this.resetKISpiel();
 
 			}
@@ -118,7 +115,7 @@ public class ControlSpiel {
 		this.rundeZug = 1;
 		this.nameSpieler1 = "KI_1";
 		this.nameSpieler2 = "KI_2";
-		this.istDran = this.spieler1;
+		
 		this.spielfeld = new Spielfeld();
 		this.spieler1 = new KISpieler(nameSpieler1, 1,3,this.controlZug);
 		this.spieler2 = new MenschSpieler(nameSpieler2, 2 );
@@ -126,6 +123,12 @@ public class ControlSpiel {
 		this.istDran = this.spieler1;
 		this.canYouMove = false;
 		this.canIMove = false;
+		/// SPIELER WECHSEL, entscheiden wer KI und Wer MenschSpieler Spieler 1 oder Spieler 2
+		if(this.isFirst){
+			this.istDran = spieler1;
+		}else{
+			this.istDran = spieler2;
+		}
 
 	}
 

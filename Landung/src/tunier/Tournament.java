@@ -48,7 +48,7 @@ public class Tournament {
 		points[1] = 0;
 
 		try {
-			run(10);
+			run(100);
 		} catch (NotInSyncException e) {
 			e.printStackTrace();
 		}
@@ -104,6 +104,8 @@ public class Tournament {
 
 		second.youAreSecond();
 		first.youAreFirst();
+		
+
 
 		// running variable
 		boolean running = true;
@@ -111,8 +113,9 @@ public class Tournament {
 		// game loop
 		while (running) {
 
-			first.printBoard();
-			second.printBoard();
+			
+		//	second.printBoard();
+	//		first.printBoard();
 			
 			winner = makeTurn(first, second, winner);
 			if (winner != null)
@@ -121,7 +124,6 @@ public class Tournament {
 			winner = makeTurn(second, first, winner);
 			if (winner != null)
 				return winner;
-
 
 		}
 
@@ -142,7 +144,7 @@ public class Tournament {
 	 */
 
 	private IGame makeTurn(IGame actor, IGame enemy, IGame winner)
-	        throws NotInSyncException {
+			throws NotInSyncException {
 
 		// both running?
 		if (actor.isRunning() && enemy.isRunning()) {
@@ -157,7 +159,7 @@ public class Tournament {
 				// does enemy recognize it as valid?
 				if (!valid) {
 					throw new NotInSyncException(
-					        "Zug des ersten Spielers im anderen Programm ungültig");
+							"Zug des ersten Spielers im anderen Programm ungültig");
 				}
 
 			} else {
@@ -192,8 +194,10 @@ public class Tournament {
 	private IGame getWinner(IGame a, IGame b) {
 		
 		
+		
+		
 		if (a.whoWon() == -1 * b.whoWon()
-		        && (a.whoWon() == 1 || b.whoWon() == 1)) {
+				&& (a.whoWon() == 1 || b.whoWon() == 1)) {
 			return a.whoWon() == 1 ? a : b;
 		}
 		return null;
