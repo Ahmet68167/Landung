@@ -195,6 +195,8 @@ public class Tournament {
 	 * @param b
 	 */
 	private IGame getWinner(IGame a, IGame b) {
+		
+		System.out.println(a.whoWon()+" "+b.whoWon());
 		if (a.whoWon() == -1 * b.whoWon()
 		        && (a.whoWon() == 1 || b.whoWon() == 1)) {
 			return a.whoWon() == 1 ? a : b;

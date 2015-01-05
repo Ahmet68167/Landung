@@ -10,7 +10,7 @@ import model.spielstein.Spielstein;
 
 public class ControlSpiel {
 
-	private ControlZug controlZug;
+	public ControlZug controlZug;
 	private int rundeSpiel = 1;
 	Spieler spieler1;
 	Spieler spieler2;
@@ -51,10 +51,19 @@ public class ControlSpiel {
 		this.istDran = this.spieler1;
 	}
 	
-	public boolean canIMove(){
-		
-		return this.controlZug.istZugMoeglich();
+public String getKIMove(){
+	String kiMove = "";
+	while (!this.canIMove) {
+		kiMove = this.controlKI.getKIBefehl(this.rundeZug);
+		this.canIMove = this.controlZug.naechsterZug(kiMove);
+
 	}
+		return kiMove;
+}
+	
+
+	
+	
 
 	// /////////////////////////////////////////////////////////
 	public void starteSpiel(String input) {
@@ -79,16 +88,12 @@ public class ControlSpiel {
 
 				} else if (this.gaveAMoveOrder) {
 					this.canIMove = false;
+					input = getKIMove();
+				
+						this.controlZug.naechsterZug(input);
 
-					while (!this.canYouMove) {
-						input = this.controlKI.getKIBefehl(this.rundeZug);
-						this.canIMove = this.controlZug.naechsterZug(input);
-
-						if (this.gewonnen || this.verloren) {
-							input = null;
-							break;
-						}
-					}
+						
+					
 					this.letzterBefehl = input;
 					this.gaveAMoveOrder = false;
 				}
@@ -96,16 +101,10 @@ public class ControlSpiel {
 			if (isFirst) {
 				if (!this.gaveAMoveOrder) {
 					this.canIMove = false;
+					input = getKIMove();
+						this.controlZug.naechsterZug(input);
 
-					while (!this.canIMove) {
-						input = this.controlKI.getKIBefehl(this.rundeZug);
-						this.canIMove = this.controlZug.naechsterZug(input);
-
-						if (this.gewonnen || this.verloren) {
-							input = null;
-							break;
-						}
-					}
+					
 					this.letzterBefehl = input;
 					this.gaveAMoveOrder = true;
 
@@ -119,12 +118,8 @@ public class ControlSpiel {
 			
 		
 			
-			if (this.gewonnen || this.verloren) {
-				if (this.istDran.equals(spieler1)) {
-					setHasWon(1);
-				} else {
-					setHasWon(-1);
-				}
+			if (!this.controlZug.canIMove()) {
+			
 				this.resetKISpiel();
 
 			}

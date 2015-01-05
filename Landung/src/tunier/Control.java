@@ -1,11 +1,11 @@
 package tunier;
+
 import tunier.IGame;
 
 public class Control implements IGame {
 
 	private ControlSpiel controlSpiel;
 	static ControlEnum STATUS;
-
 
 	// Für KI Spiel
 	public Control() {
@@ -18,20 +18,18 @@ public class Control implements IGame {
 		this.controlSpiel.starteSpiel(input);
 	}
 
-
-
 	// ///////// Interface Methoden /////////////////
 	@Override
 	public void youAreSecond() {
 		this.controlSpiel.isSecond = true;
-		
+
 	}
 
 	@Override
 	public boolean isRunning() {
-	
-			return true;
-	
+
+		return true;
+
 	}
 
 	@Override
@@ -41,34 +39,34 @@ public class Control implements IGame {
 	}
 
 	@Override
-	public boolean takeYourMove(String gegnerZug) {		
-		
+	public boolean takeYourMove(String gegnerZug) {
 
-        if(gegnerZug != null){
-        	this.controlSpiel.starteSpiel(gegnerZug);
-        	return true;
-        }
-		return true;
+		if (gegnerZug != null) {
+			this.controlSpiel.starteSpiel(gegnerZug);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	public String getMyMove() {
-	    this.controlSpiel.starteSpiel("");    
-	 
+		this.controlSpiel.starteSpiel("");
+
 		return this.controlSpiel.getLetzterBefehl();
 	}
 
 	@Override
-	public boolean canYouMove() {	
-	
-	
-		return true;
+	public boolean canYouMove() {
+		
+		return this.controlSpiel.controlZug.canIMove();
 	}
+
 	@Override
 	public boolean canIMove() {
 		
-		return true;
+		return this.controlSpiel.controlZug.canIMove();
 	}
+
 	@Override
 	public void printBoard() {
 		if (this.controlSpiel.getSpielfeld() != null) {
@@ -77,8 +75,8 @@ public class Control implements IGame {
 	}
 
 	@Override
-    public void youAreFirst() {
+	public void youAreFirst() {
 		this.controlSpiel.isFirst = true;
-	    
-    }
+
+	}
 }

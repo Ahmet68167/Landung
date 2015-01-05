@@ -17,22 +17,52 @@ public class ControlZug {
 		this.controlSpiel = controlSpiel;
 		this.output = new Output();
 	}
-
-	public boolean naechsterZug(String eingabe) {
-		
+	public boolean canIMove(){
 		if (!istZugMoeglich()
 		        && ((2 < this.controlSpiel.getRundeZug()
 		                && this.controlSpiel.getRundeZug() < 4 || this.controlSpiel
 		                .getRundeZug() > 4) || (this.controlSpiel.getRundeZug() == 4 && !isSonderregel))) {
+			if(this.controlSpiel.getIstDran() == this.controlSpiel.spieler1)
+				this.controlSpiel.setHasWon(1);
+			else
+				this.controlSpiel.setHasWon(-1);
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	public boolean testTurn(String eingabe){
+		int[] start = new int[2];
+		int[] ziel = new int[2];
+		int[] entf = new int[2];
+
+		start[0] = getKoordinaten(eingabe)[0];
+		start[1] = getKoordinaten(eingabe)[1];
+		ziel[0] = getKoordinaten(eingabe)[2];
+		ziel[1] = getKoordinaten(eingabe)[3];
+
+		if (!gueltigerZug(start, ziel)){
+			if(this.controlSpiel.getIstDran() == this.controlSpiel.spieler1)
+				this.controlSpiel.setHasWon(1);
+			else
+				this.controlSpiel.setHasWon(-1);
+			return false;}else{
+				return true;
+			}
+	}
+	
+
+	public boolean naechsterZug(String eingabe) {
+		
+		if (!canIMove()) {
 
 			this.controlSpiel.verloren = true;
 			this.controlSpiel.naechsterSpieler();
 			this.output.print(this.controlSpiel.getIstDran().getName()
 			        + " hat gewonnen.");
 
-			Control.STATUS = Control.STATUS.SPIELRUNDE;			
-	
-
+			Control.STATUS = Control.STATUS.SPIELRUNDE;	
 			
 			if(this.controlSpiel.getIstDran() == this.controlSpiel.spieler1)
 				this.controlSpiel.setHasWon(1);
@@ -50,6 +80,10 @@ public class ControlZug {
 
 				if (gewonnen()) {
 					
+					if(this.controlSpiel.getIstDran() == this.controlSpiel.spieler1)
+						this.controlSpiel.setHasWon(1);
+					else
+						this.controlSpiel.setHasWon(-1);
 					Control.STATUS = Control.STATUS.SPIELRUNDE;
 					this.controlSpiel.gewonnen = true;
 	
