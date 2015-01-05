@@ -4,19 +4,18 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
-import InputOutput.Output;
-
 public class ControlZug {
 
-	private ControlSpiel controlSpiel;
+	private tunier.ControlSpiel controlSpiel;
 	private boolean isSonderregel = false;
-	private Output output;
+	
 	private Map<Integer, String> zuege;
 
-	public ControlZug(ControlSpiel controlSpiel) {
-		this.controlSpiel = controlSpiel;
-		this.output = new Output();
-	}
+	
+	public ControlZug(tunier.ControlSpiel controlSpiel2) {
+		this.controlSpiel = controlSpiel2;
+	
+    }
 	public boolean canIMove(){
 		if (!istZugMoeglich()
 		        && ((2 < this.controlSpiel.getRundeZug()
@@ -93,8 +92,6 @@ public class ControlZug {
 
 			this.controlSpiel.verloren = true;
 			this.controlSpiel.naechsterSpieler();
-			this.output.print(this.controlSpiel.getIstDran().getName()
-			        + " hat gewonnen.");
 
 			Control.STATUS = Control.STATUS.SPIELRUNDE;	
 			
@@ -230,9 +227,7 @@ public class ControlZug {
 		}
 
 	}
-
 	public boolean gueltigerZug(int[] start, int[] ziel) {
-	
 		// Pruefe start
 		if (this.controlSpiel.getSpielfeld().fetchSpielstein(start).getSymbol() != this.controlSpiel
 		        .getIstDran().getSymbol())
@@ -317,7 +312,7 @@ public class ControlZug {
 	public boolean testeDiagonalUnten(int[] start, int[] ziel) {
 		int[] pos = new int[2];
 
-		for (int i = 1; i <= ziel[0] - start[0]; i++) {
+		for (int i = 1; i < ziel[0] - start[0]; i++) {
 			pos[0] = start[0] + i;
 			pos[1] = start[1] - i;
 			if (!this.controlSpiel.getSpielfeld().isEmpty(pos))
@@ -577,5 +572,10 @@ public class ControlZug {
 		}
 		return false;
 	}
+	public ControlSpiel getControlSpiel() {
+	    // TODO Auto-generated method stub
+	    return this.controlSpiel;
+    }
+	
 
 }

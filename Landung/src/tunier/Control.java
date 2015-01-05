@@ -5,12 +5,13 @@ import tunier.IGame;
 public class Control implements IGame {
 
 	private ControlSpiel controlSpiel;
+	public int hasWon;
 	static ControlEnum STATUS;
 
 	// Für KI Spiel
 	public Control() {
-
-		this.controlSpiel = new ControlSpiel();
+		this.hasWon = 0;
+		this.controlSpiel = new ControlSpiel(this);
 		this.STATUS = STATUS.SPIELRUNDE;
 	}
 
@@ -34,8 +35,8 @@ public class Control implements IGame {
 
 	@Override
 	public int whoWon() {
-
-		return this.controlSpiel.getHasWon();
+	
+		return this.hasWon;
 	}
 
 	@Override

@@ -48,7 +48,7 @@ public class Tournament {
 		points[1] = 0;
 
 		try {
-			run(100);
+			run(10);
 		} catch (NotInSyncException e) {
 			e.printStackTrace();
 		}
@@ -123,7 +123,7 @@ public class Tournament {
 				return winner;
 
 			try {
-	            Thread.sleep(1000);
+	            Thread.sleep(5);
             } catch (InterruptedException e) {
 	            // TODO Auto-generated catch block
 	            e.printStackTrace();

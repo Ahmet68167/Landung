@@ -1,12 +1,5 @@
 package tunier;
 
-import Control.ControlEnum;
-import Main.Main;
-import model.spieler.KISpieler;
-import model.spieler.MenschSpieler;
-import model.spieler.Spieler;
-import model.spielfeld.Spielfeld;
-import model.spielstein.Spielstein;
 
 public class ControlSpiel {
 
@@ -25,7 +18,7 @@ public class ControlSpiel {
 	private String letzterBefehl;
 	private boolean isSonderRegelGeprueft = false;
 	private ControlKI controlKI;
-	private int hasWon = 0;
+	
 	public boolean gewonnen = false;
 	public boolean isSecond = false;
 	public String gegenerZug = "";
@@ -34,9 +27,11 @@ public class ControlSpiel {
 	public boolean canIMove = false;
 	public boolean isFirst = false;
 	public boolean verloren = false;
+	private Control control;
 
 	// Für KI Spiel ///////////////////////////////////////
-	public ControlSpiel() {
+	public ControlSpiel(Control control) {
+		this.control = control;
 		this.controlZug = new ControlZug(this);
 		this.controlKI = new ControlKI(this);
 		this.nameSpieler1 = "KI_1";
@@ -147,7 +142,7 @@ public String getKIMove(){
 		this.canYouMove = false;
 		this.canIMove = false;
 		
-		this.hasWon = 0;
+
 	}
 
 	/**
@@ -246,12 +241,7 @@ public String getKIMove(){
 		this.rundeSpiel = rundeSpiel;
 	}
 
-	/**
-	 * @return the hasWon
-	 */
-	public int getHasWon() {
-		return hasWon;
-	}
+
 
 	/**
 	 * @param i
@@ -261,7 +251,7 @@ public String getKIMove(){
 	 */
 	public void setHasWon(int i) {
 
-		this.hasWon = i;
+		this.control.hasWon = i;
 
 	}
 
@@ -279,5 +269,10 @@ public String getKIMove(){
 	protected void setRundeZug(int rundeZug) {
 		this.rundeZug = rundeZug;
 	}
+
+	public void setSpielfeld(Spielfeld spiel) {
+	    this.spielfeld = spiel;
+	    
+    }
 
 }
