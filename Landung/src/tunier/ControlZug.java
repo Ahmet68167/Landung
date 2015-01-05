@@ -27,11 +27,35 @@ public class ControlZug {
 			else
 				this.controlSpiel.setHasWon(-1);
 			return false;
+		}
+		this.controlSpiel.naechsterSpieler();
+		if (!istZugMoeglich()
+		        && ((2 < this.controlSpiel.getRundeZug()
+		                && this.controlSpiel.getRundeZug() < 4 || this.controlSpiel
+		                .getRundeZug() > 4) || (this.controlSpiel.getRundeZug() == 4 && !isSonderregel))) {
+			if(this.controlSpiel.getIstDran() == this.controlSpiel.spieler1)
+				this.controlSpiel.setHasWon(1);
+			else
+				this.controlSpiel.setHasWon(-1);
+			return false;
+		}
+		this.controlSpiel.naechsterSpieler();
+		return true;
+	}
+	public boolean canYouMove(){
+		if (!istZugMoeglich()
+		        && ((2 < this.controlSpiel.getRundeZug()
+		                && this.controlSpiel.getRundeZug() < 4 || this.controlSpiel
+		                .getRundeZug() > 4) || (this.controlSpiel.getRundeZug() == 4 && !isSonderregel))) {
+			if(this.controlSpiel.getIstDran() == this.controlSpiel.spieler1)
+				this.controlSpiel.setHasWon(1);
+			else
+				this.controlSpiel.setHasWon(-1);
+			return false;
 		}else{
 			return true;
 		}
 	}
-	
 	public boolean testTurn(String eingabe){
 		int[] start = new int[2];
 		int[] ziel = new int[2];
@@ -47,9 +71,19 @@ public class ControlZug {
 				this.controlSpiel.setHasWon(1);
 			else
 				this.controlSpiel.setHasWon(-1);
-			return false;}else{
-				return true;
-			}
+			return false;}
+		
+		this.controlSpiel.naechsterSpieler();
+		if (!gueltigerZug(start, ziel)){
+			if(this.controlSpiel.getIstDran() == this.controlSpiel.spieler1)
+				this.controlSpiel.setHasWon(1);
+			else
+				this.controlSpiel.setHasWon(-1);
+			return false;}
+		this.controlSpiel.naechsterSpieler();
+		
+		return true;
+		
 	}
 	
 
