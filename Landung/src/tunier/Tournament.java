@@ -48,7 +48,7 @@ public class Tournament {
 		points[1] = 0;
 
 		try {
-			run(10);
+			run(100);
 		} catch (NotInSyncException e) {
 			e.printStackTrace();
 		}
