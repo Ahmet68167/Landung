@@ -46,11 +46,12 @@ public class ControlSpiel {
 
 	public String getKIMove() {
 		String kiMove = "";
-		while (!this.canIMove) {
-			kiMove = this.controlKI.getKIBefehl(this.rundeZug);
-			this.canIMove = this.controlZug.naechsterZug(kiMove);
-
-		}
+	
+			kiMove = this.spieler1.getBefehl();
+			
+			
+			
+	
 		return kiMove;
 	}
 
