@@ -1,6 +1,6 @@
 package Control;
 
-import tunier.IGame;
+import tunier.Gruppe3.IGame;
 import InputOutput.Output;
 import Main.Main;
 
