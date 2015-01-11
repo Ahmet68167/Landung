@@ -50,6 +50,10 @@ public class ControlSpiel {
 		this.rundeZug = rundeZug;
 	}
 
+	public ControlSpiel(){
+		
+	}
+	
 	public ControlSpiel(Main main) {
 		this.main = main;
 		this.controlZug = new ControlZug(this);

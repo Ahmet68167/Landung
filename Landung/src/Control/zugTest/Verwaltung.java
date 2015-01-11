@@ -10,6 +10,10 @@ public class Verwaltung {
 
 	private ControlZug controlzug;
 	
+	public Verwaltung(){
+		
+	}
+	
 	public Verwaltung(ControlZug controlzug) {
 		this.controlzug = controlzug;
 	}
@@ -22,11 +26,11 @@ public class Verwaltung {
 		this.controlzug = controlzug;
 	}
 	
-	public List alleZuege() {
+	public List<Zug> alleZuege() {
 		return alleZuege(this.controlzug, this.controlzug.getControlSpiel().getIstDran(), 0);
 	}
 	
-	private List alleZuege(ControlZug controlzug, Spieler spieler, int anzahl) {
+	private List<Zug> alleZuege(ControlZug controlzug, Spieler spieler, int anzahl) {
 		int[] start = new int[2];
 		int[] ziel = new int[2];
 		int bewertung;

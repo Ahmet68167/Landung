@@ -11,6 +11,10 @@ public class SchlaueKi {
 	private ControlZug controlzug;
 	private Verwaltung zug;
 	
+	public SchlaueKi(){
+		
+	}
+	
 	public SchlaueKi(ControlZug controlzug) {
 		this.controlzug = controlzug;
 		this.zug = new Verwaltung(this.controlzug);

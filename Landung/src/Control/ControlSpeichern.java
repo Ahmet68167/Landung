@@ -15,6 +15,8 @@ public class ControlSpeichern {
 	private Spieler istDran;
 	private int rundeZug;
 	private int rundeSpiel;
+	
+	
 	/**
 	 * @return the rundeZug
 	 */

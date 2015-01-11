@@ -11,6 +11,10 @@ public class ZufallsKi {
 	private ControlZug controlzug;
 	private Verwaltung zug;
 	
+	public ZufallsKi(){
+		
+	}
+	
 	public ZufallsKi(ControlZug controlzug) {
 		this.controlzug = controlzug;
 		this.zug = new Verwaltung(this.controlzug);

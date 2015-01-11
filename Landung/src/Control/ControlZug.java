@@ -12,6 +12,10 @@ public class ControlZug {
 	private boolean isSonderregel = false;
 	private Output output;
 	private Map<Integer, String> zuege;
+	
+	public ControlZug(){
+		
+	}
 
 	public ControlZug(ControlSpiel controlSpiel) {
 		this.controlSpiel = controlSpiel;
